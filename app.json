@@ -29,10 +29,10 @@
     },
     "OWNER_ID": {
       "description": "Telegram user ID of the bot owner",
-      "value": "",
+      "value": "6076474757",
       "required": true
     },
-    "SESSION_STR": {
+    "STRING_SESSION": {
       "description": "A Pyrogram session string for the user account",
       "value": "",
       "required": true

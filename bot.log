@@ -2944,3 +2944,4 @@ UnboundLocalError: cannot access local variable 'queues' where it is not associa
 2025-05-05 14:02:54,748 - pyrogram.dispatcher - INFO - dispatcher.py:272 - Started 32 HandlerTasks
 2025-05-05 14:02:54,748 - __main__ - INFO - main.py:74 - Bot authorized successfully! 🎉 Authorized as: Temporary
 2025-05-05 14:02:54,748 - __main__ - INFO - main.py:78 - Bot initialization completed successfully
+2025-05-05 15:43:37,526 - pytgcalls - INFO - idle.py:23 - Stop signal received (SIGINT). Exiting...
