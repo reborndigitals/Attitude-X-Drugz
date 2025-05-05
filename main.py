@@ -2,7 +2,6 @@ import asyncio
 from pyrogram import idle
 import os
 import logging
-from config import STRING_SESSION
 # Third-party libraries
 from pytgcalls import filters as call_filters
 from pytgcalls import PyTgCalls
@@ -16,14 +15,17 @@ from config import *
 
 # Initialize clients dictionary
 # Configure logging
+import logging
+
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    format='%(asctime)s - %(name)s - %(levelname)s - %(filename)s:%(lineno)d - %(message)s',
     handlers=[
         logging.FileHandler('bot.log'),
         logging.StreamHandler()
     ]
 )
+
 logger = logging.getLogger(__name__)
 # Cache directory setup
 cache_dir = f"{ggg}/cache"
@@ -66,7 +68,6 @@ async def main():
         clients["call_py"] = call_py
         clients["bot"] = bot
         
-        await session.start()
         await call_py.start()
         await bot.start()
         client_name = f"{bot.me.first_name} {bot.me.last_name or ''}".strip()

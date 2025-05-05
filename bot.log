@@ -2750,3 +2750,197 @@ UnboundLocalError: cannot access local variable 'queues' where it is not associa
 2025-05-04 18:39:09,535 - __main__ - INFO - Bot authorized successfully! 🎉 Authorized as: Temporary
 2025-05-04 18:39:09,535 - __main__ - INFO - Bot initialization completed successfully
 2025-05-04 18:47:37,894 - pytgcalls - INFO - Stop signal received (SIGINT). Exiting...
+2025-05-05 13:50:42,995 - __main__ - INFO - Starting bot initialization...
+2025-05-05 13:50:43,217 - pyrogram.session.auth - INFO - Start creating a new auth key on DC2
+2025-05-05 13:50:43,217 - pyrogram.connection.connection - INFO - Connecting...
+2025-05-05 13:50:43,470 - pyrogram.connection.connection - INFO - Connected! Production DC2 - IPv4
+2025-05-05 13:50:45,281 - pyrogram.session.auth - INFO - Done auth key exchange: DhGenOk
+2025-05-05 13:50:45,282 - pyrogram.connection.connection - INFO - Disconnected
+2025-05-05 13:50:45,285 - pyrogram.connection.connection - INFO - Connecting...
+2025-05-05 13:50:45,540 - pyrogram.connection.connection - INFO - Connected! Production DC2 - IPv4
+2025-05-05 13:50:45,541 - pyrogram.session.session - INFO - NetworkTask started
+2025-05-05 13:50:46,328 - pyrogram.session.session - INFO - Session initialized: Pyrogram v2.2.1 (Layer 202)
+2025-05-05 13:50:46,328 - pyrogram.session.session - INFO - Device: CPython 3.13.2 - Pyrogram 2.2.1
+2025-05-05 13:50:46,328 - pyrogram.session.session - INFO - System: Linux 6.8.0-1024-oracle (en)
+2025-05-05 13:50:46,328 - pyrogram.session.session - INFO - Session started
+2025-05-05 13:50:46,329 - pyrogram.session.session - INFO - PingTask started
+2025-05-05 13:50:51,651 - pyrogram.session.session - INFO - PingTask stopped
+2025-05-05 13:50:51,651 - pyrogram.session.session - INFO - NetworkTask stopped
+2025-05-05 13:50:51,651 - pyrogram.connection.connection - INFO - Disconnected
+2025-05-05 13:50:51,651 - pyrogram.session.session - INFO - Session stopped
+2025-05-05 13:51:45,428 - __main__ - INFO - Starting bot initialization...
+2025-05-05 13:51:45,634 - pyrogram.session.auth - INFO - Start creating a new auth key on DC2
+2025-05-05 13:51:45,634 - pyrogram.connection.connection - INFO - Connecting...
+2025-05-05 13:51:45,884 - pyrogram.connection.connection - INFO - Connected! Production DC2 - IPv4
+2025-05-05 13:51:47,699 - pyrogram.session.auth - INFO - Done auth key exchange: DhGenOk
+2025-05-05 13:51:47,700 - pyrogram.connection.connection - INFO - Disconnected
+2025-05-05 13:51:47,704 - pyrogram.connection.connection - INFO - Connecting...
+2025-05-05 13:51:47,958 - pyrogram.connection.connection - INFO - Connected! Production DC2 - IPv4
+2025-05-05 13:51:47,959 - pyrogram.session.session - INFO - NetworkTask started
+2025-05-05 13:51:48,730 - pyrogram.session.session - INFO - Session initialized: Pyrogram v2.2.1 (Layer 202)
+2025-05-05 13:51:48,730 - pyrogram.session.session - INFO - Device: CPython 3.13.2 - Pyrogram 2.2.1
+2025-05-05 13:51:48,731 - pyrogram.session.session - INFO - System: Linux 6.8.0-1024-oracle (en)
+2025-05-05 13:51:48,731 - pyrogram.session.session - INFO - Session started
+2025-05-05 13:51:48,732 - pyrogram.session.session - INFO - PingTask started
+2025-05-05 13:51:59,676 - pyrogram.session.session - INFO - PingTask stopped
+2025-05-05 13:51:59,676 - pyrogram.session.session - INFO - NetworkTask stopped
+2025-05-05 13:51:59,676 - pyrogram.connection.connection - INFO - Disconnected
+2025-05-05 13:51:59,676 - pyrogram.session.session - INFO - Session stopped
+2025-05-05 13:52:32,439 - __main__ - INFO - Starting bot initialization...
+2025-05-05 13:52:32,647 - pyrogram.session.auth - INFO - Start creating a new auth key on DC2
+2025-05-05 13:52:32,647 - pyrogram.connection.connection - INFO - Connecting...
+2025-05-05 13:52:32,898 - pyrogram.connection.connection - INFO - Connected! Production DC2 - IPv4
+2025-05-05 13:52:35,249 - pyrogram.session.auth - INFO - Done auth key exchange: DhGenOk
+2025-05-05 13:52:35,249 - pyrogram.connection.connection - INFO - Disconnected
+2025-05-05 13:52:35,252 - pyrogram.connection.connection - INFO - Connecting...
+2025-05-05 13:52:35,507 - pyrogram.connection.connection - INFO - Connected! Production DC2 - IPv4
+2025-05-05 13:52:35,508 - pyrogram.session.session - INFO - NetworkTask started
+2025-05-05 13:52:36,286 - pyrogram.session.session - INFO - Session initialized: Pyrogram v2.2.1 (Layer 202)
+2025-05-05 13:52:36,286 - pyrogram.session.session - INFO - Device: CPython 3.13.2 - Pyrogram 2.2.1
+2025-05-05 13:52:36,286 - pyrogram.session.session - INFO - System: Linux 6.8.0-1024-oracle (en)
+2025-05-05 13:52:36,286 - pyrogram.session.session - INFO - Session started
+2025-05-05 13:52:36,287 - pyrogram.session.session - INFO - PingTask started
+2025-05-05 13:52:44,310 - pyrogram.session.session - INFO - PingTask stopped
+2025-05-05 13:52:44,311 - pyrogram.session.session - INFO - NetworkTask stopped
+2025-05-05 13:52:44,311 - pyrogram.connection.connection - INFO - Disconnected
+2025-05-05 13:52:44,311 - pyrogram.session.session - INFO - Session stopped
+2025-05-05 13:55:57,608 - __main__ - INFO - Starting bot initialization...
+2025-05-05 13:55:57,819 - pyrogram.session.auth - INFO - Start creating a new auth key on DC2
+2025-05-05 13:55:57,819 - pyrogram.connection.connection - INFO - Connecting...
+2025-05-05 13:55:58,073 - pyrogram.connection.connection - INFO - Connected! Production DC2 - IPv4
+2025-05-05 13:56:00,013 - pyrogram.session.auth - INFO - Done auth key exchange: DhGenOk
+2025-05-05 13:56:00,013 - pyrogram.connection.connection - INFO - Disconnected
+2025-05-05 13:56:00,018 - pyrogram.connection.connection - INFO - Connecting...
+2025-05-05 13:56:00,272 - pyrogram.connection.connection - INFO - Connected! Production DC2 - IPv4
+2025-05-05 13:56:00,273 - pyrogram.session.session - INFO - NetworkTask started
+2025-05-05 13:56:01,045 - pyrogram.session.session - INFO - Session initialized: Pyrogram v2.2.1 (Layer 202)
+2025-05-05 13:56:01,046 - pyrogram.session.session - INFO - Device: CPython 3.13.2 - Pyrogram 2.2.1
+2025-05-05 13:56:01,046 - pyrogram.session.session - INFO - System: Linux 6.8.0-1024-oracle (en)
+2025-05-05 13:56:01,046 - pyrogram.session.session - INFO - Session started
+2025-05-05 13:56:01,047 - pyrogram.session.session - INFO - PingTask started
+2025-05-05 13:56:15,066 - pyrogram.session.session - INFO - PingTask stopped
+2025-05-05 13:56:15,066 - pyrogram.session.session - INFO - NetworkTask stopped
+2025-05-05 13:56:15,066 - pyrogram.connection.connection - INFO - Disconnected
+2025-05-05 13:56:15,066 - pyrogram.session.session - INFO - Session stopped
+2025-05-05 13:56:22,955 - __main__ - INFO - Starting bot initialization...
+2025-05-05 13:56:23,164 - pyrogram.session.auth - INFO - Start creating a new auth key on DC2
+2025-05-05 13:56:23,164 - pyrogram.connection.connection - INFO - Connecting...
+2025-05-05 13:56:23,330 - pyrogram.connection.connection - INFO - Disconnected
+2025-05-05 13:57:27,448 - __main__ - INFO - main.py:38 - Starting bot initialization...
+2025-05-05 13:57:27,657 - pyrogram.session.auth - INFO - auth.py:99 - Start creating a new auth key on DC2
+2025-05-05 13:57:27,658 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-05 13:57:27,909 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC2 - IPv4
+2025-05-05 13:57:30,186 - pyrogram.session.auth - INFO - auth.py:284 - Done auth key exchange: DhGenOk
+2025-05-05 13:57:30,187 - pyrogram.connection.connection - INFO - connection.py:81 - Disconnected
+2025-05-05 13:57:30,192 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-05 13:57:30,441 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC2 - IPv4
+2025-05-05 13:57:30,442 - pyrogram.session.session - INFO - session.py:321 - NetworkTask started
+2025-05-05 13:57:31,255 - pyrogram.session.session - INFO - session.py:155 - Session initialized: Pyrogram v2.2.1 (Layer 202)
+2025-05-05 13:57:31,255 - pyrogram.session.session - INFO - session.py:156 - Device: CPython 3.13.2 - Pyrogram 2.2.1
+2025-05-05 13:57:31,255 - pyrogram.session.session - INFO - session.py:157 - System: Linux 6.8.0-1024-oracle (en)
+2025-05-05 13:57:31,255 - pyrogram.session.session - INFO - session.py:174 - Session started
+2025-05-05 13:57:31,256 - pyrogram.session.session - INFO - session.py:296 - PingTask started
+2025-05-05 13:57:42,350 - pyrogram.session.session - INFO - session.py:318 - PingTask stopped
+2025-05-05 13:57:42,350 - pyrogram.session.session - INFO - session.py:348 - NetworkTask stopped
+2025-05-05 13:57:42,350 - pyrogram.connection.connection - INFO - connection.py:81 - Disconnected
+2025-05-05 13:57:42,350 - pyrogram.session.session - INFO - session.py:199 - Session stopped
+2025-05-05 13:59:52,915 - __main__ - INFO - main.py:37 - Starting bot initialization...
+2025-05-05 13:59:53,107 - pyrogram.session.auth - INFO - auth.py:99 - Start creating a new auth key on DC2
+2025-05-05 13:59:53,107 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-05 13:59:53,361 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC2 - IPv4
+2025-05-05 13:59:55,247 - pyrogram.session.auth - INFO - auth.py:284 - Done auth key exchange: DhGenOk
+2025-05-05 13:59:55,247 - pyrogram.connection.connection - INFO - connection.py:81 - Disconnected
+2025-05-05 13:59:55,251 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-05 13:59:55,505 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC2 - IPv4
+2025-05-05 13:59:55,505 - pyrogram.session.session - INFO - session.py:321 - NetworkTask started
+2025-05-05 13:59:56,405 - pyrogram.session.session - INFO - session.py:155 - Session initialized: Pyrogram v2.2.1 (Layer 202)
+2025-05-05 13:59:56,405 - pyrogram.session.session - INFO - session.py:156 - Device: CPython 3.13.2 - Pyrogram 2.2.1
+2025-05-05 13:59:56,405 - pyrogram.session.session - INFO - session.py:157 - System: Linux 6.8.0-1024-oracle (en)
+2025-05-05 13:59:56,405 - pyrogram.session.session - INFO - session.py:174 - Session started
+2025-05-05 13:59:56,406 - pyrogram.session.session - INFO - session.py:296 - PingTask started
+2025-05-05 14:00:14,541 - pyrogram.session.session - INFO - session.py:318 - PingTask stopped
+2025-05-05 14:00:14,541 - pyrogram.session.session - INFO - session.py:348 - NetworkTask stopped
+2025-05-05 14:00:14,541 - pyrogram.connection.connection - INFO - connection.py:81 - Disconnected
+2025-05-05 14:00:14,541 - pyrogram.session.session - INFO - session.py:199 - Session stopped
+2025-05-05 14:02:45,079 - __main__ - INFO - main.py:37 - Starting bot initialization...
+2025-05-05 14:02:45,272 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-05 14:02:45,481 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC1 - IPv4
+2025-05-05 14:02:45,482 - pyrogram.session.session - INFO - session.py:321 - NetworkTask started
+2025-05-05 14:02:46,125 - pyrogram.session.session - INFO - session.py:155 - Session initialized: Pyrogram v2.2.1 (Layer 202)
+2025-05-05 14:02:46,125 - pyrogram.session.session - INFO - session.py:156 - Device: CPython 3.13.2 - Pyrogram 2.2.1
+2025-05-05 14:02:46,125 - pyrogram.session.session - INFO - session.py:157 - System: Linux 6.8.0-1024-oracle (en)
+2025-05-05 14:02:46,125 - pyrogram.session.session - INFO - session.py:174 - Session started
+2025-05-05 14:02:46,126 - pyrogram.session.session - INFO - session.py:296 - PingTask started
+2025-05-05 14:02:46,801 - pytgcalls - WARNING - start.py:315 - Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+2025-05-05 14:02:47,082 - pyrogram.session.auth - INFO - auth.py:99 - Start creating a new auth key on DC2
+2025-05-05 14:02:47,082 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-05 14:02:47,336 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC2 - IPv4
+2025-05-05 14:02:50,553 - pyrogram.session.auth - INFO - auth.py:284 - Done auth key exchange: DhGenOk
+2025-05-05 14:02:50,553 - pyrogram.connection.connection - INFO - connection.py:81 - Disconnected
+2025-05-05 14:02:50,556 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-05 14:02:50,802 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC2 - IPv4
+2025-05-05 14:02:50,802 - pyrogram.session.session - INFO - session.py:321 - NetworkTask started
+2025-05-05 14:02:51,551 - pyrogram.session.session - INFO - session.py:155 - Session initialized: Pyrogram v2.2.1 (Layer 202)
+2025-05-05 14:02:51,551 - pyrogram.session.session - INFO - session.py:156 - Device: CPython 3.13.2 - Pyrogram 2.2.1
+2025-05-05 14:02:51,551 - pyrogram.session.session - INFO - session.py:157 - System: Linux 6.8.0-1024-oracle (en)
+2025-05-05 14:02:51,551 - pyrogram.session.session - INFO - session.py:174 - Session started
+2025-05-05 14:02:51,552 - pyrogram.session.session - INFO - session.py:296 - PingTask started
+2025-05-05 14:02:51,824 - pyrogram.session.session - INFO - session.py:318 - PingTask stopped
+2025-05-05 14:02:51,825 - pyrogram.session.session - INFO - session.py:348 - NetworkTask stopped
+2025-05-05 14:02:51,825 - pyrogram.connection.connection - INFO - connection.py:81 - Disconnected
+2025-05-05 14:02:51,825 - pyrogram.session.session - INFO - session.py:199 - Session stopped
+2025-05-05 14:02:51,827 - pyrogram.session.auth - INFO - auth.py:99 - Start creating a new auth key on DC5
+2025-05-05 14:02:51,827 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-05 14:02:51,922 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC5 - IPv4
+2025-05-05 14:02:53,347 - pyrogram.session.auth - INFO - auth.py:284 - Done auth key exchange: DhGenOk
+2025-05-05 14:02:53,347 - pyrogram.connection.connection - INFO - connection.py:81 - Disconnected
+2025-05-05 14:02:53,349 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-05 14:02:53,443 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC5 - IPv4
+2025-05-05 14:02:53,443 - pyrogram.session.session - INFO - session.py:321 - NetworkTask started
+2025-05-05 14:02:53,760 - pyrogram.session.session - INFO - session.py:155 - Session initialized: Pyrogram v2.2.1 (Layer 202)
+2025-05-05 14:02:53,760 - pyrogram.session.session - INFO - session.py:156 - Device: CPython 3.13.2 - Pyrogram 2.2.1
+2025-05-05 14:02:53,760 - pyrogram.session.session - INFO - session.py:157 - System: Linux 6.8.0-1024-oracle (en)
+2025-05-05 14:02:53,760 - pyrogram.session.session - INFO - session.py:174 - Session started
+2025-05-05 14:02:53,760 - pyrogram.session.session - INFO - session.py:296 - PingTask started
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("active_chats") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("mentionall") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("seek_handler_func") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("cancel_spam") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("delete_message_handler") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("auth_user") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("unauth_user") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("block_user") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("unblock_user") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("show_sudo_list") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("add_to_sudo") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("remove_from_sudo") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("user_client_start_handler") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("commands_handler") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("blocklist_handler") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("play_handler_func") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("button_end_handler") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("on_video_chat_end") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] ChatMemberUpdatedHandler("on_member_kick") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("end_handler_func") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("loop_handler_func") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("skip_handler_func") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("button_resume_handler") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("button_pause_handler") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("resume_handler_func") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,747 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("pause_handler_func") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,748 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("broadcast_callback_handler") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,748 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("toggle_setting") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,748 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("status_command_handler") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,748 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("broadcast_command_handler") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,748 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("handle_power_command") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,748 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("pingme") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,748 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("info_command") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,748 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("close_message") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,748 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("kang") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,748 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("memify") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,748 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("pull_handler") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,748 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("set_welcome_handler") in group 0 from "plugins.bots"
+2025-05-05 14:02:54,748 - pyrogram.client - INFO - client.py:1017 - [bot] Successfully loaded 38 plugins from "plugins"
+2025-05-05 14:02:54,748 - pyrogram.dispatcher - INFO - dispatcher.py:272 - Started 32 HandlerTasks
+2025-05-05 14:02:54,748 - __main__ - INFO - main.py:74 - Bot authorized successfully! 🎉 Authorized as: Temporary
+2025-05-05 14:02:54,748 - __main__ - INFO - main.py:78 - Bot initialization completed successfully

@@ -10,14 +10,14 @@ from thumbnails import *
 from fonts import *
 
 # Use getenv for all sensitive/configurable values
-API_ID = getenv("API_ID",)
-API_HASH = getenv("API_HASH", "")
-STRING_SESSION = getenv("SESSION_STR", "")
-GROUP = getenv("GROUP", "nub_coder_s")
-CHANNEL = getenv("CHANNEL", "nub_coders_updates")
-BOT_TOKEN = getenv("BOT_TOKEN", "")
-OWNER_ID = getenv("OWNER_ID", 6076474757)
-mongodb = getenv("MONGODB_URI", "")
+API_ID = os.getenv("API_ID",)
+API_HASH = os.getenv("API_HASH", "")
+STRING_SESSION = os.getenv("STRING_SESSION", "")
+GROUP = os.getenv("GROUP", "nub_coder_s")
+CHANNEL = os.getenv("CHANNEL", "nub_coders_updates")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "")
+OWNER_ID = os.getenv("OWNER_ID", 6076474757)
+mongodb = os.getenv("MONGODB_URI", "")
 # Working directory
 ggg = os.getcwd()
 
