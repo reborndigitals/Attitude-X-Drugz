@@ -52,7 +52,7 @@ async def main():
             api_hash=API_HASH,
             session_string=STRING_SESSION,
             in_memory=True,
-            no_updates=True,
+            #no_updates=True,
             sleep_threshold=32
         )
         
