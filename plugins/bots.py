@@ -2617,37 +2617,7 @@ from pyrogram.enums import ChatMemberStatus
 from pyrogram.types import Message, ChatMemberUpdated
 
 
-#@Client.on_message(filters.video_chat_ended)
-async def on_video_chat_end(client: Client, message: Message):
-    """
-    Handler for when a video chat/voice chat ends
-    """
-    try:
-        await remove_active_chat(client, message.chat.id)
-        if message.chat.id in playing:
-            playing[message.chat.id].clear()
-    except Exception as e:
-        logger.info(f"Error in video chat end handler: {e}")
 
-#@Client.on_chat_member_updated()
-async def on_member_kick(client: Client, chat_member_updated: ChatMemberUpdated):
-    """
-    Handler for when a user is kicked from the group
-    """
-    try:
-        if (chat_member_updated.old_chat_member and 
-            chat_member_updated.old_chat_member.status != ChatMemberStatus.BANNED and
-            chat_member_updated.new_chat_member.status == ChatMemberStatus.BANNED):
-            
-            bot_username = client.me.username
-            session_id = session.me.id
-            if chat_member_updated.new_chat_member.user.id == session_id:
-                await remove_active_chat(client, chat_member_updated.chat.id)
-                if chat_member_updated.chat.id in playing:
-                    playing[chat_member_updated.chat.id].clear()
-
-    except Exception as e:
-        logger.info(f"Error in member kick handler: {e}")
 
 @Client.on_message(filters.command("end"))
 @retry()
