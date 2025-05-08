@@ -2697,7 +2697,7 @@ async def button_end_handler(client: Client, callback_query: CallbackQuery):
             except:
                 pass
             await join_call(next['message'],
- next['title'], next['session'], next['yt_link'], next['chat'], next['by'], next['duration'], next['mode'], next['thumb']
+ next['title'], next['yt_link'], next['chat'], next['by'], next['duration'], next['mode'], next['thumb']
 )
          else:
             await clients['call_py'].leave_call(chat_id)
@@ -2810,7 +2810,7 @@ async def skip_handler_func(client, message):
           await call_py.pause(message.chat.id)
        except:
           pass
-       await join_call(next['message'], next['title'], next['session'], next['yt_link'], next['chat'], next['by'], next['duration'], next['mode'], next['thumb']
+       await join_call(next['message'], next['title'], next['yt_link'], next['chat'], next['by'], next['duration'], next['mode'], next['thumb']
 )
     else:
        await call_py.leave_call(message.chat.id)

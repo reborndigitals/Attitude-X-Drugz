@@ -2945,3 +2945,206 @@ UnboundLocalError: cannot access local variable 'queues' where it is not associa
 2025-05-05 14:02:54,748 - __main__ - INFO - main.py:74 - Bot authorized successfully! 🎉 Authorized as: Temporary
 2025-05-05 14:02:54,748 - __main__ - INFO - main.py:78 - Bot initialization completed successfully
 2025-05-05 15:43:37,526 - pytgcalls - INFO - idle.py:23 - Stop signal received (SIGINT). Exiting...
+2025-05-08 17:05:05,265 - __main__ - INFO - main.py:37 - Starting bot initialization...
+2025-05-08 17:05:05,467 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-08 17:05:05,679 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC1 - IPv4
+2025-05-08 17:05:05,680 - pyrogram.session.session - INFO - session.py:321 - NetworkTask started
+2025-05-08 17:05:06,326 - pyrogram.session.session - INFO - session.py:155 - Session initialized: Pyrogram v2.2.1 (Layer 202)
+2025-05-08 17:05:06,326 - pyrogram.session.session - INFO - session.py:156 - Device: CPython 3.13.2 - Pyrogram 2.2.1
+2025-05-08 17:05:06,326 - pyrogram.session.session - INFO - session.py:157 - System: Linux 6.8.0-1025-oracle (en)
+2025-05-08 17:05:06,326 - pyrogram.session.session - INFO - session.py:174 - Session started
+2025-05-08 17:05:06,327 - pyrogram.session.session - INFO - session.py:296 - PingTask started
+2025-05-08 17:05:06,787 - pyrogram.dispatcher - INFO - dispatcher.py:272 - Started 32 HandlerTasks
+2025-05-08 17:05:07,581 - pyrogram.session.auth - INFO - auth.py:99 - Start creating a new auth key on DC2
+2025-05-08 17:05:07,581 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-08 17:05:07,829 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC2 - IPv4
+2025-05-08 17:05:10,186 - pyrogram.session.auth - INFO - auth.py:284 - Done auth key exchange: DhGenOk
+2025-05-08 17:05:10,187 - pyrogram.connection.connection - INFO - connection.py:81 - Disconnected
+2025-05-08 17:05:10,189 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-08 17:05:10,440 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC2 - IPv4
+2025-05-08 17:05:10,440 - pyrogram.session.session - INFO - session.py:321 - NetworkTask started
+2025-05-08 17:05:11,208 - pyrogram.session.session - INFO - session.py:155 - Session initialized: Pyrogram v2.2.1 (Layer 202)
+2025-05-08 17:05:11,208 - pyrogram.session.session - INFO - session.py:156 - Device: CPython 3.13.2 - Pyrogram 2.2.1
+2025-05-08 17:05:11,208 - pyrogram.session.session - INFO - session.py:157 - System: Linux 6.8.0-1025-oracle (en)
+2025-05-08 17:05:11,208 - pyrogram.session.session - INFO - session.py:174 - Session started
+2025-05-08 17:05:11,209 - pyrogram.session.session - INFO - session.py:296 - PingTask started
+2025-05-08 17:05:11,514 - pyrogram.session.session - INFO - session.py:318 - PingTask stopped
+2025-05-08 17:05:11,514 - pyrogram.session.session - INFO - session.py:348 - NetworkTask stopped
+2025-05-08 17:05:11,515 - pyrogram.connection.connection - INFO - connection.py:81 - Disconnected
+2025-05-08 17:05:11,515 - pyrogram.session.session - INFO - session.py:199 - Session stopped
+2025-05-08 17:05:11,517 - pyrogram.session.auth - INFO - auth.py:99 - Start creating a new auth key on DC5
+2025-05-08 17:05:11,517 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-08 17:05:11,611 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC5 - IPv4
+2025-05-08 17:05:12,994 - pyrogram.session.auth - INFO - auth.py:284 - Done auth key exchange: DhGenOk
+2025-05-08 17:05:12,994 - pyrogram.connection.connection - INFO - connection.py:81 - Disconnected
+2025-05-08 17:05:12,996 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-08 17:05:13,091 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC5 - IPv4
+2025-05-08 17:05:13,091 - pyrogram.session.session - INFO - session.py:321 - NetworkTask started
+2025-05-08 17:05:13,412 - pyrogram.session.session - INFO - session.py:155 - Session initialized: Pyrogram v2.2.1 (Layer 202)
+2025-05-08 17:05:13,412 - pyrogram.session.session - INFO - session.py:156 - Device: CPython 3.13.2 - Pyrogram 2.2.1
+2025-05-08 17:05:13,412 - pyrogram.session.session - INFO - session.py:157 - System: Linux 6.8.0-1025-oracle (en)
+2025-05-08 17:05:13,412 - pyrogram.session.session - INFO - session.py:174 - Session started
+2025-05-08 17:05:13,412 - pyrogram.session.session - INFO - session.py:296 - PingTask started
+2025-05-08 17:05:14,250 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("active_chats") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("mentionall") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("seek_handler_func") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("cancel_spam") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("delete_message_handler") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("auth_user") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("unauth_user") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("block_user") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("unblock_user") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("show_sudo_list") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("add_to_sudo") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("remove_from_sudo") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("user_client_start_handler") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("commands_handler") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("blocklist_handler") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("play_handler_func") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("button_end_handler") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("end_handler_func") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("loop_handler_func") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("skip_handler_func") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("button_resume_handler") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("button_pause_handler") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("resume_handler_func") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("pause_handler_func") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("broadcast_callback_handler") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("toggle_setting") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("status_command_handler") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,251 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("broadcast_command_handler") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,252 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("handle_power_command") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,252 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("pingme") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,252 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("info_command") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,252 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("close_message") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,252 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("kang") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,252 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("memify") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,252 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("pull_handler") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,252 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("set_welcome_handler") in group 0 from "plugins.bots"
+2025-05-08 17:05:14,252 - pyrogram.client - INFO - client.py:1017 - [bot] Successfully loaded 36 plugins from "plugins"
+2025-05-08 17:05:14,252 - pyrogram.dispatcher - INFO - dispatcher.py:272 - Started 32 HandlerTasks
+2025-05-08 17:05:14,252 - __main__ - INFO - main.py:74 - Bot authorized successfully! 🎉 Authorized as: Temporary
+2025-05-08 17:05:14,252 - __main__ - INFO - main.py:78 - Bot initialization completed successfully
+2025-05-08 17:05:19,068 - googleapiclient.discovery_cache - INFO - __init__.py:49 - file_cache is only supported with oauth2client<4.0.0
+2025-05-08 17:05:19,497 - googleapiclient.http - WARNING - http.py:140 - Encountered 403 Forbidden with reason "quotaExceeded"
+2025-05-08 17:05:19,497 - plugins.bots - WARNING - bots.py:2147 - API Error: 403 The request cannot be completed because you have exceeded your <a href="/youtube/v3/getting-started#quota">quota</a>.
+2025-05-08 17:05:19,497 - plugins.bots - INFO - bots.py:2350 - YouTube API failed or quota exceeded, falling back to yt-dlp...
+2025-05-08 17:05:31,406 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-08 17:05:31,501 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC5 (media) - IPv4
+2025-05-08 17:05:31,501 - pyrogram.session.session - INFO - session.py:321 - NetworkTask started
+2025-05-08 17:05:31,799 - pyrogram.session.session - INFO - session.py:155 - Session initialized: Pyrogram v2.2.1 (Layer 202)
+2025-05-08 17:05:31,799 - pyrogram.session.session - INFO - session.py:156 - Device: CPython 3.13.2 - Pyrogram 2.2.1
+2025-05-08 17:05:31,799 - pyrogram.session.session - INFO - session.py:157 - System: Linux 6.8.0-1025-oracle (en)
+2025-05-08 17:05:31,799 - pyrogram.session.session - INFO - session.py:174 - Session started
+2025-05-08 17:05:31,800 - pyrogram.session.session - INFO - session.py:296 - PingTask started
+2025-05-08 17:05:43,129 - googleapiclient.discovery_cache - INFO - __init__.py:49 - file_cache is only supported with oauth2client<4.0.0
+2025-05-08 17:05:43,360 - googleapiclient.http - WARNING - http.py:140 - Encountered 403 Forbidden with reason "quotaExceeded"
+2025-05-08 17:05:43,360 - plugins.bots - WARNING - bots.py:2147 - API Error: 403 The request cannot be completed because you have exceeded your <a href="/youtube/v3/getting-started#quota">quota</a>.
+2025-05-08 17:05:43,361 - plugins.bots - INFO - bots.py:2350 - YouTube API failed or quota exceeded, falling back to yt-dlp...
+2025-05-08 17:05:47,517 - pyrogram.methods.messages.send_message - WARNING - send_message.py:213 - `disable_web_page_preview` is deprecated and will be removed in future updates. Use `link_preview_options` instead.
+2025-05-08 17:06:38,743 - plugins.bots - INFO - bots.py:103 - User 8186766999 is song owner, bypassing admin check
+2025-05-08 17:06:38,743 - plugins.bots - INFO - bots.py:160 - User 8186766999 authorized for button_end_handler
+2025-05-08 17:06:39,326 - plugins.bots - ERROR - bots.py:165 - Error checking admin status: join_call() takes 8 positional arguments but 9 were given
+Chat: -1002687882691
+User: 8186766999
+Command: skip
+2025-05-08 17:07:01,344 - pytgcalls - INFO - idle.py:23 - Stop signal received (SIGINT). Exiting...
+2025-05-08 17:09:03,714 - __main__ - INFO - main.py:37 - Starting bot initialization...
+2025-05-08 17:09:03,907 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-08 17:09:04,119 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC1 - IPv4
+2025-05-08 17:09:04,119 - pyrogram.session.session - INFO - session.py:321 - NetworkTask started
+2025-05-08 17:09:04,763 - pyrogram.session.session - INFO - session.py:155 - Session initialized: Pyrogram v2.2.1 (Layer 202)
+2025-05-08 17:09:04,763 - pyrogram.session.session - INFO - session.py:156 - Device: CPython 3.13.2 - Pyrogram 2.2.1
+2025-05-08 17:09:04,763 - pyrogram.session.session - INFO - session.py:157 - System: Linux 6.8.0-1025-oracle (en)
+2025-05-08 17:09:04,763 - pyrogram.session.session - INFO - session.py:174 - Session started
+2025-05-08 17:09:04,764 - pyrogram.session.session - INFO - session.py:296 - PingTask started
+2025-05-08 17:09:05,227 - pyrogram.dispatcher - INFO - dispatcher.py:272 - Started 32 HandlerTasks
+2025-05-08 17:09:05,940 - pyrogram.session.auth - INFO - auth.py:99 - Start creating a new auth key on DC2
+2025-05-08 17:09:05,940 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-08 17:09:06,200 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC2 - IPv4
+2025-05-08 17:09:08,550 - pyrogram.session.auth - INFO - auth.py:284 - Done auth key exchange: DhGenOk
+2025-05-08 17:09:08,550 - pyrogram.connection.connection - INFO - connection.py:81 - Disconnected
+2025-05-08 17:09:08,553 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-08 17:09:08,803 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC2 - IPv4
+2025-05-08 17:09:08,803 - pyrogram.session.session - INFO - session.py:321 - NetworkTask started
+2025-05-08 17:09:09,564 - pyrogram.session.session - INFO - session.py:155 - Session initialized: Pyrogram v2.2.1 (Layer 202)
+2025-05-08 17:09:09,564 - pyrogram.session.session - INFO - session.py:156 - Device: CPython 3.13.2 - Pyrogram 2.2.1
+2025-05-08 17:09:09,564 - pyrogram.session.session - INFO - session.py:157 - System: Linux 6.8.0-1025-oracle (en)
+2025-05-08 17:09:09,564 - pyrogram.session.session - INFO - session.py:174 - Session started
+2025-05-08 17:09:09,565 - pyrogram.session.session - INFO - session.py:296 - PingTask started
+2025-05-08 17:09:09,832 - pyrogram.session.session - INFO - session.py:318 - PingTask stopped
+2025-05-08 17:09:09,832 - pyrogram.session.session - INFO - session.py:348 - NetworkTask stopped
+2025-05-08 17:09:09,832 - pyrogram.connection.connection - INFO - connection.py:81 - Disconnected
+2025-05-08 17:09:09,832 - pyrogram.session.session - INFO - session.py:199 - Session stopped
+2025-05-08 17:09:09,833 - pyrogram.session.auth - INFO - auth.py:99 - Start creating a new auth key on DC5
+2025-05-08 17:09:09,834 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-08 17:09:09,927 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC5 - IPv4
+2025-05-08 17:09:11,898 - pyrogram.session.auth - INFO - auth.py:284 - Done auth key exchange: DhGenOk
+2025-05-08 17:09:11,898 - pyrogram.connection.connection - INFO - connection.py:81 - Disconnected
+2025-05-08 17:09:11,900 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-08 17:09:11,994 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC5 - IPv4
+2025-05-08 17:09:11,994 - pyrogram.session.session - INFO - session.py:321 - NetworkTask started
+2025-05-08 17:09:12,331 - pyrogram.session.session - INFO - session.py:155 - Session initialized: Pyrogram v2.2.1 (Layer 202)
+2025-05-08 17:09:12,331 - pyrogram.session.session - INFO - session.py:156 - Device: CPython 3.13.2 - Pyrogram 2.2.1
+2025-05-08 17:09:12,331 - pyrogram.session.session - INFO - session.py:157 - System: Linux 6.8.0-1025-oracle (en)
+2025-05-08 17:09:12,331 - pyrogram.session.session - INFO - session.py:174 - Session started
+2025-05-08 17:09:12,332 - pyrogram.session.session - INFO - session.py:296 - PingTask started
+2025-05-08 17:09:12,854 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("active_chats") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("mentionall") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("seek_handler_func") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("cancel_spam") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("delete_message_handler") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("auth_user") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("unauth_user") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("block_user") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("unblock_user") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("show_sudo_list") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("add_to_sudo") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("remove_from_sudo") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("user_client_start_handler") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("commands_handler") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("blocklist_handler") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("play_handler_func") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("button_end_handler") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("end_handler_func") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("loop_handler_func") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,855 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("skip_handler_func") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,856 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("button_resume_handler") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,856 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("button_pause_handler") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,856 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("resume_handler_func") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,856 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("pause_handler_func") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,856 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("broadcast_callback_handler") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,856 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("toggle_setting") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,856 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("status_command_handler") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,856 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("broadcast_command_handler") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,856 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("handle_power_command") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,856 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("pingme") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,856 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("info_command") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,856 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] CallbackQueryHandler("close_message") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,856 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("kang") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,856 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("memify") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,856 - pyrogram.client - INFO - client.py:940 - [bot] [LOAD] MessageHandler("set_welcome_handler") in group 0 from "plugins.bots"
+2025-05-08 17:09:12,856 - pyrogram.client - INFO - client.py:1017 - [bot] Successfully loaded 35 plugins from "plugins"
+2025-05-08 17:09:12,856 - pyrogram.dispatcher - INFO - dispatcher.py:272 - Started 32 HandlerTasks
+2025-05-08 17:09:12,857 - __main__ - INFO - main.py:74 - Bot authorized successfully! 🎉 Authorized as: Temporary
+2025-05-08 17:09:12,857 - __main__ - INFO - main.py:78 - Bot initialization completed successfully
+2025-05-08 17:10:35,550 - googleapiclient.discovery_cache - INFO - __init__.py:49 - file_cache is only supported with oauth2client<4.0.0
+2025-05-08 17:10:35,882 - googleapiclient.http - WARNING - http.py:140 - Encountered 403 Forbidden with reason "quotaExceeded"
+2025-05-08 17:10:35,883 - plugins.bots - WARNING - bots.py:2158 - API Error: 403 The request cannot be completed because you have exceeded your <a href="/youtube/v3/getting-started#quota">quota</a>.
+2025-05-08 17:10:35,883 - plugins.bots - INFO - bots.py:2361 - YouTube API failed or quota exceeded, falling back to yt-dlp...
+2025-05-08 17:10:45,963 - pyrogram.connection.connection - INFO - connection.py:62 - Connecting...
+2025-05-08 17:10:46,328 - pyrogram.connection.connection - INFO - connection.py:69 - Connected! Production DC5 (media) - IPv4
+2025-05-08 17:10:46,328 - pyrogram.session.session - INFO - session.py:321 - NetworkTask started
+2025-05-08 17:10:46,625 - pyrogram.session.session - INFO - session.py:155 - Session initialized: Pyrogram v2.2.1 (Layer 202)
+2025-05-08 17:10:46,625 - pyrogram.session.session - INFO - session.py:156 - Device: CPython 3.13.2 - Pyrogram 2.2.1
+2025-05-08 17:10:46,625 - pyrogram.session.session - INFO - session.py:157 - System: Linux 6.8.0-1025-oracle (en)
+2025-05-08 17:10:46,625 - pyrogram.session.session - INFO - session.py:174 - Session started
+2025-05-08 17:10:46,626 - pyrogram.session.session - INFO - session.py:296 - PingTask started
+2025-05-08 17:10:46,784 - googleapiclient.discovery_cache - INFO - __init__.py:49 - file_cache is only supported with oauth2client<4.0.0
+2025-05-08 17:10:47,025 - googleapiclient.http - WARNING - http.py:140 - Encountered 403 Forbidden with reason "quotaExceeded"
+2025-05-08 17:10:47,025 - plugins.bots - WARNING - bots.py:2158 - API Error: 403 The request cannot be completed because you have exceeded your <a href="/youtube/v3/getting-started#quota">quota</a>.
+2025-05-08 17:10:47,025 - plugins.bots - INFO - bots.py:2361 - YouTube API failed or quota exceeded, falling back to yt-dlp...
+2025-05-08 17:10:50,504 - pyrogram.methods.messages.send_message - WARNING - send_message.py:213 - `disable_web_page_preview` is deprecated and will be removed in future updates. Use `link_preview_options` instead.
+2025-05-08 17:10:56,114 - plugins.bots - INFO - bots.py:114 - User 8186766999 is song owner, bypassing admin check
+2025-05-08 17:10:56,114 - plugins.bots - INFO - bots.py:171 - User 8186766999 authorized for button_end_handler
+2025-05-08 17:15:34,744 - pytgcalls - INFO - idle.py:23 - Stop signal received (SIGINT). Exiting...
