@@ -1,35 +1,46 @@
-from pyrogram.errors import StickersetInvalid, YouBlockedUser
+import asyncio
+import base64
+import datetime
 import logging
-from pyrogram import Client, filters
+import os
+import random
+import re
+import requests
+import time
+from functools import wraps
+
+from pyrogram import Client, filters, enums
+from pyrogram.enums import ChatType, ChatMemberStatus
+from pyrogram.errors import (
+    StickersetInvalid,
+    YouBlockedUser,
+    FloodWait,
+    InviteHashExpired,
+    ChannelPrivate,
+    GroupcallForbidden,
+    UserBlocked,
+    PeerIdInvalid,
+    MessageDeleteForbidden
+)
 from pyrogram.raw.functions.messages import GetStickerSet
 from pyrogram.raw.types import InputStickerSetShortName
+from pyrogram.types import (
+    CallbackQuery,
+    Message,
+    InlineKeyboardMarkup,
+    InlineKeyboardButton
+)
+
+from pytgcalls.exceptions import NotInCallError, NoActiveGroupCall
+from pytgcalls.types import AudioQuality, MediaStream, VideoQuality
+
+from config import *
+from fonts import *
+from tools import *
+
 # Clients will be passed as parameter instead of imported
 # Get the logger
 logger = logging.getLogger("pyrogram")
-import asyncio
-import os
-from tools import *
-from fonts import *
-from pyrogram import enums
-from pyrogram.types import CallbackQuery, Message
-from pyrogram.enums import ChatType, ChatMemberStatus
-from pyrogram.errors.exceptions import InviteHashExpired, ChannelPrivate, GroupcallForbidden, UserBlocked, PeerIdInvalid, MessageDeleteForbidden
-from pytgcalls.exceptions import NotInCallError
-from config import *
-import time
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from pyrogram.errors import FloodWait
-import datetime
-import random
-from pytgcalls.exceptions import NoActiveGroupCall
-import base64
-import re
-from pytgcalls.types import AudioQuality
-from pytgcalls.types import MediaStream
-from pytgcalls.types import VideoQuality
-import requests
-
-from functools import wraps
 session = clients["session"]
 call_py = clients["call_py"]
 
