@@ -44,40 +44,6 @@ logger = logging.getLogger("pyrogram")
 session = clients["session"]
 call_py = clients["call_py"]
 
-def retry(max_retries=3, initial_delay=5, backoff=2, exceptions=(FloodWait, OSError)):
-    def decorator(func):
-        @wraps(func)
-        async def wrapper(*args, **kwargs):
-            retries = 0
-            delay = initial_delay
-            logger.debug(f"Entering retry wrapper for {func.__name__} with max_retries={max_retries}")
-            
-            while retries < max_retries:
-                try:
-                    logger.debug(f"Attempt {retries + 1}/{max_retries} for {func.__name__}")
-                    result = await func(*args, **kwargs)
-                    logger.debug(f"Successfully executed {func.__name__} on attempt {retries + 1}")
-                    return result
-                except exceptions as e:
-                    retries += 1
-                    wait = e.value if isinstance(e, FloodWait) else delay
-                    logger.warning(
-                        f"Retry {retries}/{max_retries} for {func.__name__} after {wait}s. "
-                        f"Error: {str(e)}"
-                    )
-                    await asyncio.sleep(wait)
-                    delay *= backoff
-                except Exception as e:
-                    logger.error(
-                        f"Unexpected error in {func.__name__}: {str(e)}\n"
-                        f"Args: {args}\nKwargs: {kwargs}"
-                    )
-                    raise
-            
-            logger.warning(f"All {max_retries} retries exhausted for {func.__name__}")
-            return await func(*args, **kwargs)
-        return wrapper
-    return decorator
 
 
 
@@ -206,7 +172,6 @@ async def add_active_chat(client,chat_id):
 
 
 @Client.on_message(filters.command("ac"))
-@retry()
 async def active_chats(client, message):
     admin_file = f"{ggg}/admin.txt"
     user_id = message.from_user.id
@@ -262,7 +227,6 @@ async def remove_active_chat(client, chat_id):
 
 
 @Client.on_message(filters.command("tagall") & filters.group)
-@retry()
 @admin_only()
 async def mentionall(client, message):
     await message.delete()
@@ -296,7 +260,6 @@ async def mentionall(client, message):
 
 
 @Client.on_message(filters.command(["seek", "seekback"]))
-@retry()
 @admin_only()
 async def seek_handler_func(client, message):
     try:
@@ -420,7 +383,6 @@ async def seek_handler_func(client, message):
 
 
 @Client.on_message(filters.command("cancel") & filters.group)
-@retry()
 @admin_only()
 async def cancel_spam(client, message):
     if not message.chat.id in spam_chats:
@@ -433,7 +395,6 @@ async def cancel_spam(client, message):
         return await message.reply("**Dismissing Mention.**")
 
 @Client.on_message(filters.command("del") & filters.group)
-@retry()
 @admin_only()
 async def delete_message_handler(client, message):
     # Check if the message is a reply
@@ -452,7 +413,6 @@ async def delete_message_handler(client, message):
 
 
 @Client.on_message(filters.command("auth") & filters.group)
-@retry()
 @admin_only()
 async def auth_user(client, message):
     admin_file = f"{ggg}/admin.txt"
@@ -529,7 +489,6 @@ async def auth_user(client, message):
             await message.reply("You need to reply to a message or provide a user ID.")
 
 @Client.on_message(filters.command("unauth") & filters.group)
-@retry()
 @admin_only()
 async def unauth_user(client, message):
     admin_file = f"{ggg}/admin.txt"
@@ -595,7 +554,6 @@ async def unauth_user(client, message):
             await message.reply("You need to reply to a message or provide a user ID.")
 
 @Client.on_message(filters.command("block"))
-@retry()
 async def block_user(client, message):
     admin_file = f"{ggg}/admin.txt"
     user_id = message.from_user.id
@@ -670,7 +628,6 @@ async def block_user(client, message):
 # Start the bot
 
 @Client.on_message(filters.command("unblock"))
-@retry()
 async def unblock_user(client, message):
     # Check if the message is a reply
     admin_file = f"{ggg}/admin.txt"
@@ -732,7 +689,6 @@ async def unblock_user(client, message):
 
 
 @Client.on_message(filters.command("sudolist"))
-@retry()
 async def show_sudo_list(client, message):
     # Check admin permissions
     admin_file = f"{ggg}/admin.txt"
@@ -782,7 +738,6 @@ async def show_sudo_list(client, message):
 
 
 @Client.on_message(filters.command("addsudo"))
-@retry()
 async def add_to_sudo(client, message):
     # Check admin permissions
     admin_file = f"{ggg}/admin.txt"
@@ -867,7 +822,6 @@ async def add_to_sudo(client, message):
             await message.reply("You need to reply to a message or provide a user ID.")
 
 @Client.on_message(filters.command("rmsudo"))
-@retry()
 async def remove_from_sudo(client, message):
     # Check admin permissions
     admin_file = f"{ggg}/admin.txt"
@@ -1012,7 +966,6 @@ async def send_log_message(client, log_group_id, message, is_private):
 
 
 @Client.on_message(filters.command("start") | (filters.group & create_custom_filter))
-@retry()
 async def user_client_start_handler(client, message):
     user_id = message.chat.id
     user_data = collection.find_one({"bot_id": client.me.id})
@@ -1229,7 +1182,6 @@ async def format_welcome_message(client, text, chat_id, user_or_chat_name):
 
 
 @Client.on_callback_query(filters.regex(r"commands_(.*)"))
-@retry()
 async def commands_handler(client, callback_query):
     data = callback_query.data.split("_", 1)[1]  # Extract command type
     user_id = callback_query.from_user.id
@@ -1566,7 +1518,6 @@ async def commands_handler(client, callback_query):
 
 
 @Client.on_message(filters.command("blocklist"))
-@retry()
 async def blocklist_handler(client, message):
     admin_file = f"{ggg}/admin.txt"
     user_id = message.from_user.id
@@ -1775,7 +1726,6 @@ def with_opencv(filename):
 # duration = get_media_duration('path/to/your/media/file.ogg')
 # print(duration)
 @Client.on_message(filters.command(["play", "vplay", "playforce", "vplayforce", "cplay", "cvplay", "cplayforce", "cvplayforce"]))
-@retry()
 async def play_handler_func(client, message):
     session_name = f'user_{client.me.id}'
     user_dir = f"{ggg}/{session_name}"
@@ -2577,7 +2527,6 @@ async def status(client, message):
 
 
 @Client.on_callback_query(filters.regex("^(end|cend)$"))
-@retry()
 @admin_only()
 async def button_end_handler(client: Client, callback_query: CallbackQuery):
     user_data = collection.find_one({"bot_id": client.me.id})
@@ -2631,7 +2580,6 @@ from pyrogram.types import Message, ChatMemberUpdated
 
 
 @Client.on_message(filters.command("end"))
-@retry()
 @admin_only()
 async def end_handler_func(client, message):
   try:
@@ -2669,7 +2617,6 @@ from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery
 
 @Client.on_callback_query(filters.regex("^(skip|cskip)$"))
-@retry()
 @admin_only()
 async def button_end_handler(client: Client, callback_query: CallbackQuery):
     user_data = collection.find_one({"bot_id": client.me.id})
@@ -2720,7 +2667,6 @@ async def button_end_handler(client: Client, callback_query: CallbackQuery):
         playing[chat_id].clear()
 
 @Client.on_message(filters.command("loop"))
-@retry()
 @admin_only()
 async def loop_handler_func(client, message):
     try:
@@ -2788,7 +2734,6 @@ async def loop_handler_func(client, message):
         )
 
 @Client.on_message(filters.command("skip"))
-@retry()
 @admin_only()
 async def skip_handler_func(client, message):
   try:
@@ -2831,7 +2776,6 @@ async def skip_handler_func(client, message):
 
 
 @Client.on_callback_query(filters.regex("^(resume|cresume)$"))
-@retry()
 @admin_only()
 async def button_resume_handler(client: Client, callback_query: CallbackQuery):
     user_data = collection.find_one({"bot_id": client.me.id})
@@ -2862,7 +2806,6 @@ async def button_resume_handler(client: Client, callback_query: CallbackQuery):
 
 
 @Client.on_callback_query(filters.regex("^(pause|cpause)$"))
-@retry()
 @admin_only()
 async def button_pause_handler(client: Client, callback_query: CallbackQuery):
     user_data = collection.find_one({"bot_id": client.me.id})
@@ -2891,7 +2834,6 @@ async def button_pause_handler(client: Client, callback_query: CallbackQuery):
         await callback_query.answer(f"{upper_mono('Assistant is not streaming anything!')}", show_alert=True)
 
 @Client.on_message(filters.command("resume"))
-@retry()
 @admin_only()
 async def resume_handler_func(client, message):
   user_data = collection.find_one({"bot_id": client.me.id})
@@ -2909,7 +2851,6 @@ async def resume_handler_func(client, message):
 
 
 @Client.on_message(filters.command("pause"))
-@retry()
 @admin_only()
 async def pause_handler_func(client, message):
   user_data = collection.find_one({"bot_id": client.me.id})
@@ -2932,7 +2873,6 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
 @Client.on_callback_query(filters.regex("broadcast"))
-@retry()
 async def broadcast_callback_handler(client, callback_query: CallbackQuery):
     # Fetch user data for the callback query
     user_data = user_sessions.find_one({"bot_id": client.me.id})
@@ -3178,7 +3118,6 @@ async def compare_message(mess, client, session):
     return None
 
 @Client.on_callback_query(filters.regex(r"toggle_(.*)"))
-@retry()
 async def toggle_setting(client, callback_query):
     sender_id = client.me.id
 
@@ -3196,7 +3135,6 @@ async def toggle_setting(client, callback_query):
 
 
 @Client.on_message(filters.command("stats"))
-@retry()
 async def status_command_handler(client, message):
     user_id = message.from_user.id
     admin_file = f"{ggg}/admin.txt"
@@ -3226,7 +3164,6 @@ async def status_command_handler(client, message):
 
 
 @Client.on_message(filters.command(["broadcast", "fbroadcast"]) & filters.private)
-@retry()
 async def broadcast_command_handler(client, message):
     user_id = message.from_user.id
     admin_file = f"{ggg}/admin.txt"
@@ -3302,7 +3239,6 @@ async def broadcast_command_handler(client, message):
 
 
 @Client.on_message(filters.command("powers") & filters.group)
-@retry()
 @admin_only()
 async def handle_power_command(client, message):
     try:
@@ -3378,7 +3314,6 @@ async def handle_power_command(client, message):
 
 
 @Client.on_message(filters.command("ping"))
-@retry()
 async def pingme(client, message):
     # Calculate uptime
     from random import choice
@@ -3444,7 +3379,6 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 import os
 
 @Client.on_message(filters.command("about"))
-@retry()
 async def info_command(client: Client, message: Message):
     chat = message.chat
     replied = message.reply_to_message
@@ -3707,7 +3641,6 @@ async def info_command(client: Client, message: Message):
 
 
 @Client.on_callback_query(filters.regex("^close$"))
-@retry()
 async def close_message(client, query):
     try:
         # Delete the original message
@@ -3724,7 +3657,6 @@ async def close_message(client, query):
 
 
 @Client.on_message(filters.command("kang"))
-@retry()
 async def kang(client, message):
     bot_username = client.me.username
     client = clients['session']
