@@ -625,7 +625,36 @@ async def block_user(client, message):
         else:
             await message.reply("You need to reply to a message or provide a user ID.")
 
-# Start the bot
+@Client.on_message(filters.command("reboot") & filters.private)
+async def reboot_handler(client: Client, message: Message):
+    user_id = message.from_user.id
+    admin_file = f"{ggg}/admin.txt"
+
+    # MongoDB: Fetch sudoers list
+    users_data = user_sessions.find_one({"bot_id": client.me.id})
+    sudoers = users_data.get("SUDOERS", []) if users_data else []
+
+    # Admin file check
+    is_admin = False
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            is_admin = user_id in admin_ids
+
+    # Authorization check
+    is_authorized = (
+        is_admin or
+        OWNER_ID == user_id or
+        user_id in sudoers
+    )
+
+    if not is_authorized:
+        return await message.reply("**MF\n\nTHIS IS OWNER/SUDOER'S COMMAND...**")
+
+    # Authorized: Reboot process
+    await message.reply("**Admin command received. Rebooting...**")
+    await client.stop(block=False)
+    os.system(f"kill -9 {os.getpid()}")  # Hard kill (optional after client.stop())
 
 @Client.on_message(filters.command("unblock"))
 async def unblock_user(client, message):
@@ -4146,3 +4175,5 @@ async def set_welcome_handler(client, message):
         error_msg = f"❌ Error: `{str(e)}`"
         logger.info(f"Error for user {message.from_user.id}: {str(e)}")
         return await message.reply_text(error_msg)
+
+
