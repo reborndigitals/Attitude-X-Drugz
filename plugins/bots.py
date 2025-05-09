@@ -148,7 +148,7 @@ def admin_only():
                             logger.debug("Command ends with 'del', auth_user status reset")
                     
                     is_authorized = (
-                        is_admin or get_user_id_by_client(user_id, client) or user_id in sudoers or is_auth_user)
+                        is_admin or OWNER_ID == user_id or user_id in sudoers or is_auth_user)
                     
                     if not user_id:
                         linked_chat = await client.get_chat(chat_id)
@@ -222,7 +222,7 @@ async def active_chats(client, message):
     # Check permissions
     is_authorized = (
         is_admin or
-        OWNER_ID or
+        OWNER_ID == user_id or
         user_id in sudoers
     )
 
@@ -489,7 +489,7 @@ async def auth_user(client, message):
             # Check if user can be authorized
             if (replied_user_id != message.chat.id and 
                 not replied_message.from_user.is_self and 
-                not get_user_id_by_client(replied_user_id, client)):
+                not OWNER_ID == replied_user_id):
                 
                 # Check if user is already authorized in this chat
                 if replied_user_id not in auth_users[str(chat_id)]:
@@ -611,7 +611,7 @@ async def block_user(client, message):
     # Check permissions
     is_authorized = (
         is_admin or
-        OWNER_ID or
+        OWNER_ID == user_id or
         user_id in sudoers
     )
 
@@ -635,7 +635,7 @@ async def block_user(client, message):
                  if replied_user_id in admin_ids:
                      return await message.reply(f"**MF\n\nYou can't block my owner.**")
             # Check if the replied user is the same as the current chat (group) id
-            if replied_user_id != message.chat.id and not replied_message.from_user.is_self and not get_user_id_by_client(replied_user_id, client):
+            if replied_user_id != message.chat.id and not replied_message.from_user.is_self and not OWNER_ID == replied_user_id:
                 if not replied_user_id in busers:
                     collection.update_one({"bot_id": client.me.id},
                                         {"$push": {'busers': replied_user_id}},
@@ -687,7 +687,7 @@ async def unblock_user(client, message):
     # Check permissions
     is_authorized = (
         is_admin or
-        OWNER_ID or
+        OWNER_ID == user_id or
         user_id in sudoers
     )
 
@@ -744,7 +744,7 @@ async def show_sudo_list(client, message):
             is_admin = user_id in admin_ids
 
     # Check permissions
-    is_authorized = is_admin or OWNER_ID
+    is_authorized = is_admin or OWNER_ID == user_id
 
     if not is_authorized:
         return await message.reply("**MF\n\nTHIS IS PAID OWNER'S COMMAND...**")
@@ -794,7 +794,7 @@ async def add_to_sudo(client, message):
             admin_ids = [int(line.strip()) for line in file.readlines()]
             is_admin = user_id in admin_ids
     
-    is_authorized = is_admin or OWNER_ID
+    is_authorized = is_admin or OWNER_ID == user_id
 
     if not is_authorized:
         return await message.reply("**MF\n\nTHIS IS OWNER'S COMMAND...**")
@@ -1240,7 +1240,7 @@ async def commands_handler(client, callback_query):
     if os.path.exists(admin_file):
         with open(admin_file, "r") as file:
             admin_ids = [int(line.strip()) for line in file.readlines()]
-            if user_id in admin_ids or OWNER_ID:
+            if user_id in admin_ids or OWNER_ID == user_id:
                 is_admin = True
     owner = await client.get_users(OWNER_ID)
     ow_id = owner.id if owner.username else None
@@ -1582,7 +1582,7 @@ async def blocklist_handler(client, message):
     # Check permissions
     is_authorized = (
         is_admin or
-        OWNER_ID or
+        OWNER_ID == user_id or
         user_id in sudoers
     )
 
@@ -3214,7 +3214,7 @@ async def status_command_handler(client, message):
     # Check permissions
     is_authorized = (
         is_admin or
-        OWNER_ID or
+        OWNER_ID == user_id or
         user_id in sudoers
     )
 
@@ -3242,7 +3242,7 @@ async def broadcast_command_handler(client, message):
     # Check permissions
     is_authorized = (
         is_admin or
-        OWNER_ID or
+        OWNER_ID == user_id or
         user_id in sudoers
     )
 
