@@ -17,6 +17,7 @@ GROUP = os.getenv("GROUP", "nub_coder_s")
 CHANNEL = os.getenv("CHANNEL", "nub_coders_updates")
 BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 OWNER_ID = os.getenv("OWNER_ID", 6076474757)
+LOGGER_ID = os.getenv("LOGGER_ID", None)
 mongodb = os.getenv("MONGODB_URI", "")
 # Working directory
 ggg = os.getcwd()
