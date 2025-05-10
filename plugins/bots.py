@@ -1134,9 +1134,6 @@ async def user_client_start_handler(client, message):
         ram_total = "N/A"
         disk_total = "N/A"
     try:
-       if not client.me.username in active:
-          await message.reply(f"No assistant userbot detected\nstopping the bot😢😢")
-          return await client.stop(block=False)
        photu = None
        async for photo in client.get_chat_photos(client.me.id):
            photu = photo.file_id
