@@ -51,12 +51,12 @@
       "description": "MongoDB connection string URI for database",
       "value": "",
       "required": true
-    }
+    },
     "MONGODB_URI": {
       "description": "chat id of the logger group",
       "value": "",
       "required": false
-    },
+    }
   },
   "buildpacks": [
     {
