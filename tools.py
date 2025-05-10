@@ -1082,7 +1082,7 @@ async def end(client, update):
 
   try:
         collection.update_one(
-            {"user_id": clients["bot"].me.id},
+            {"bot_id": clients["bot"].me.id},
            {"$push": {'dates': datetime.datetime.now()}},
             upsert=True
         )
