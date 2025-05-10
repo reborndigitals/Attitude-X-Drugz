@@ -653,7 +653,6 @@ async def reboot_handler(client: Client, message: Message):
 
     # Authorized: Reboot process
     await message.reply("**Admin command received. Rebooting...**")
-    await client.stop(block=False)
     os.system(f"kill -9 {os.getpid()}")  # Hard kill (optional after client.stop())
 
 @Client.on_message(filters.command("unblock"))
