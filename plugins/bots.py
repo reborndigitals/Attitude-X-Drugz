@@ -1613,7 +1613,6 @@ async def dend(client, update, channel_id= None):
         chat_id = int(channel_id or update.chat.id)  # Ensure integer chat_id
         if chat_id in queues and queues[chat_id]:
             next_song = queues[chat_id].pop(0)
-            print(next_song)
             playing[chat_id] = next_song
             await join_call(
                 next_song['message'], 
@@ -1730,13 +1729,10 @@ def with_opencv(filename):
             audio = File(filename)
             if audio is not None and hasattr(audio, 'info') and hasattr(audio.info, 'length'):
                 duration = audio.info.length
-                print(int(duration))
                 return int(duration)
             else:
-                print(0)
                 return 0
         except MutagenError:
-            print(0)
             return 0
     # Handle video files with OpenCV
     else:
@@ -1745,11 +1741,9 @@ def with_opencv(filename):
         frame_count = video.get(cv2.CAP_PROP_FRAME_COUNT)
         duration = frame_count / fps if fps else 0
         video.release()
-        print(int(duration))
         return int(duration)
 # Example usage
 # duration = get_media_duration('path/to/your/media/file.ogg')
-# print(duration)
 @Client.on_message(filters.command(["play", "vplay", "playforce", "vplayforce", "cplay", "cvplay", "cplayforce", "cvplayforce"]))
 async def play_handler_func(client, message):
     session_name = f'user_{client.me.id}'
@@ -1903,7 +1897,6 @@ async def play_handler_func(client, message):
         search_query = input_text[1]  
 
         title, duration, youtube_link, thumbnail, channel_name, views, video_id = handle_youtube(search_query,user_dir)
-        print(title)
         if not youtube_link:  
             try:  
                 await massage.edit(f"{upper_mono('No matching query found, please retry!')}")  

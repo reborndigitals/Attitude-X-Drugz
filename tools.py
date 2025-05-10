@@ -1112,7 +1112,6 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 async def join_call(message, title, youtube_link, chat, by, duration, mode, thumb):
     audio_flags = MediaStream.Flags.IGNORE if mode == "audio" else None
-    print(youtube_link)
     position = len(queues.get(message.chat.id)) if queues.get(message.chat.id) else 0
     try:
         cookie_files = ['cook.txt', 'cooki.txt', 'cookie.txt', 'cookies.txt']
