@@ -71,6 +71,11 @@ async def main():
         await bot.start()
         client_name = f"{bot.me.first_name} {bot.me.last_name or ''}".strip()
         logger.info(f"Bot authorized successfully! 🎉 Authorized as: {client_name}")
+        user_sessions.update_one(
+    {"bot_id": bot.me.id},                 # search filter
+    {"$setOnInsert": {"bot_id": bot.me.id}},  # insert this only if not found
+    upsert=True
+)
     except Exception as e:
         logger.error(f"Failed to initialize bot client: {str(e)}")
         raise
