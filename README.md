@@ -35,11 +35,11 @@ Required:
 - `API_HASH`: Telegram API hash from my.telegram.org
 - `STRING_SESSION`: Pyrogram session string
 - `MONGODB_URI`: MongoDB connection URI
+- `OWNER_ID`: Bot owner's Telegram ID (default: 6076474757)
 
 Optional:
 - `GROUP`: Telegram group username (default: "nub_coder_s")
 - `CHANNEL`: Telegram channel username (default: "nub_coders_updates")
-- `OWNER_ID`: Bot owner's Telegram ID (default: 6076474757)
 - `LOGGER_ID`: Logging group chat ID
 
 **Option 2: Environment Variables (for deployment)**
@@ -55,8 +55,6 @@ Optional variables:
 - `GROUP`
 - `CHANNEL`
 - `LOGGER_ID`
-
-**Note:** The app.json file shows these same variables are required for deployment. Make sure to set all required values before deploying.
 
 4. Run the bot:
 ```bash
