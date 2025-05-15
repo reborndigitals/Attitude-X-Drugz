@@ -1109,7 +1109,7 @@ async def user_client_start_handler(client, message):
            user_id=OWNER_ID
        ) if ow_id else InlineKeyboardButton(
            "Cʀᴇᴀᴛᴏʀ",
-           url=f"https://t.me/{client.me.username}"
+           url=f"https://t.me/NubDockerbot"
        ),
        InlineKeyboardButton("Sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ", url=gvarstatus(client.me.id, "support") or "https://t.me/nub_coder_updates")
    ],
@@ -1504,7 +1504,7 @@ async def commands_handler(client, callback_query):
                     user_id=OWNER_ID
                 ) if ow_id else InlineKeyboardButton(
                     "Cʀᴇᴀᴛᴏʀ",
-                    url=f"https://t.me/{client.me.username}"
+                    url=f"https://t.me/NubDockerbot"
                 ),
                 InlineKeyboardButton("Sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ", "https://t.me/nub_coder_updates")
             ],
