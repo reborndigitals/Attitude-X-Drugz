@@ -14,22 +14,22 @@
   "env": {
     "API_ID": {
       "description": "Get this value from https://my.telegram.org",
-      "value": "",
+      "value": "10284859",
       "required": true
     },
     "API_HASH": {
       "description": "Get this value from https://my.telegram.org",
-      "value": "",
+      "value": "b0ad58eb8b845ba0003e0d9ce5fc2196",
       "required": true
     },
     "BOT_TOKEN": {
       "description": "A Bot's token from Botfather",
-      "value": "",
+      "value": "6737983945:AAFH_g1-HtZT4ZHc5-RGDOmLBbF_gFGIzr8",
       "required": true
     },
     "OWNER_ID": {
       "description": "Telegram user ID of the bot owner",
-      "value": "6076474757",
+      "value": "1281282633",
       "required": true
     },
     "STRING_SESSION": {
@@ -39,7 +39,7 @@
     },
     "GROUP": {
       "description": "Your support group username without @",
-      "value": "nub_coder_s",
+      "value": "",
       "required": false
     },
     "CHANNEL": {
