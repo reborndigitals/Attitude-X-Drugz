@@ -328,9 +328,9 @@ def is_streamable(file_path):
     # Supported streamable file extensions
     STREAMABLE_EXTENSIONS = {
         'video': {'.mp4', '.avi', '.mkv', '.mov', '.wmv', '.flv', 
-                  '.webm', '.m4v', '.mpg', '.mpeg', '.3gp'},
+                  '.webm', '.m4v', '.mpg', '.mpeg', '.3gp', '.m3u8'},
         'audio': {'.mp3', '.wav', '.flac', '.aac', '.ogg', 
-                  '.wma', '.m4a', '.opus'}
+                  '.wma', '.m4a', '.opus', '.m3u8'}
     }
 
     try:
@@ -919,6 +919,7 @@ formats = [
     "f4p",
     "f4a",
     "f4b",
+    "m3u8",
 ]
 
 async def convert_to_image(message, client) -> [None, str]:
