@@ -21,7 +21,7 @@ py-tgcalls
 cryptg
 #pyrofork
 #https://devgagan.in/wp-content/uploads/2024/06/ggnpyro.zip
-https://github.com/KurimuzonAkuma/pyrogram/archive/dev.zip
+#https://github.com/KurimuzonAkuma/pyrogram/archive/dev.zip
 Telethon
 TgCrypto
 pymongo
@@ -29,7 +29,7 @@ requests
 pymongo
 lxml
 fake_useragent
-git+https://github.com/yt-dlp/yt-dlp.git
+#git+https://github.com/yt-dlp/yt-dlp.git
 Pillow
 opencv-python-headless
 python-ffmpeg
@@ -37,5 +37,6 @@ ffmpeg
 uvloop
 reportlab
 aiohttp
-pyrogram
-oauth2client==3.0.0
+#pyrogram
+kurigram
+#oauth2client==3.0.0
