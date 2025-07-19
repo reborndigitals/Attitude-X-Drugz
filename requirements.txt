@@ -38,3 +38,4 @@ uvloop
 reportlab
 aiohttp
 pyrogram
+oauth2client==3.0.0
