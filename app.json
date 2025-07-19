@@ -34,22 +34,22 @@
     },
     "STRING_SESSION": {
       "description": "A Pyrogram session string for the user account",
-      "value": "BQDMBnkAUAT07ba_FhaUng1I3ShLuciewUMN5mCQmOdW61HeJBOi1YWbh6N8YnQqMTgc7q88wMQtW3Pbjp7fjO6Ku06ykgkqzFaDVUIgTyDNicIkB_9Q8zlRy-uibi93HdXO_nNRaTJrFAmycgJ00Tc8am7xlPwiY91Z7R5RsQhgzkUJ0gOJcPwvTSJX-bSTRvZG31FVLM8etSwf_9EsAyO_BD759cgfqst_Y7cq3tYlaPeAgoaTrwOw7leVZ8iarsi5jwtcySBSo8pVr2QKfMG0ABxM8WVTs54s6cJd_5Xi02Ia0EZkYclv2gSmcdGSV43oiLjLmt4FhrmDBhzvM0AJiUTEbgAAAAHjb-HaAA",
+      "value": "BQDMBnkAhl63LfVwI1-Pu38Cj_U5J1fg94CoUuYa8VcOfu6JcKTsMf6IjdKxGuJUmTyLcycSMFw4H_amfXQ-6B8q0DoT1uA7xM4nAxR8XBQvDkepomQoB9qF6fiTRTBMJjIXFfVgNUY_5JI9PK08mJ26whDradE6lMEPlvVcR4Jto3KdaLpvTPE45nmx5VeAUl_LAgy4o3VgOa9S0yKy8Ha8d0ueGa_A8goiXm52ADheVq2EOcCuu09e-kJixlMujIuDrqLFd4S_RLlfTSvvmYAF0eOu1b6jz1vOwFahGBQCOT_eucH26KQe-VUlWlT-ECD3LyRJIwezaSrYZADjw_aXMUqQaQAAAAHjb-HaAA",
       "required": true
     },
     "GROUP": {
       "description": "Your support group username without @",
-      "value": "Tamil_Team_DarkMoon",
+      "value": "HeartBeat_Fam",
       "required": false
     },
     "CHANNEL": {
       "description": "Your updates channel username without @",
-      "value": "TamilChat_HB",
+      "value": "HeartBeat_Offi",
       "required": false
     },
     "MONGODB_URI": {
       "description": "MongoDB connection string URI for database",
-      "value": "mongodb+srv://Krishna:pss968048@cluster0.4rfuzro.mongodb.net/?retryWrites=true&w=majority",
+      "value": "mongodb+srv://heartbeat:Beat7Heart@heartbeat.1h1nbxv.mongodb.net/?retryWrites=true&w=majority",
       "required": true
     },
     "LOGGER_ID": {
