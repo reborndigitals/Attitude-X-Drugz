@@ -1109,7 +1109,7 @@ async def user_client_start_handler(client, message):
            user_id=OWNER_ID
        ) if ow_id else InlineKeyboardButton(
            "Cʀᴇᴀᴛᴏʀ",
-           url=f"https://t.me/HeartBeat_Fam"
+           url=f"https://t.me/rajeshrakis"
        ),
        InlineKeyboardButton("Nᴇᴛᴡᴏʀᴋ", url=gvarstatus(client.me.id, "support") or "https://t.me/HeartBeat_Fam")
    ],
