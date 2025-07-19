@@ -620,8 +620,8 @@ queue_styles = {
 ╚ ℙ𝕠𝕤𝕚𝕥𝕚𝕠𝕟: #{}""",
 
     5: """• ғᴜᴛᴜʀᴇ ᴛʀᴀᴄᴋ •
-┏━━━━━━━━━━━
-┣⟡ ᴛɪᴛʟᴇ: {}[18]
+┏━━━━━━━━━━━━━━━
+┣⟡ ᴛɪᴛʟᴇ: {}
 ┣⟡ ʟᴇɴɢᴛʜ: {}
 ┗⟡ ᴘᴏꜱɪᴛɪᴏɴ: #{}""",
 
@@ -706,8 +706,8 @@ play_styles = {
 ╚ ℝ𝕖𝕢𝕦𝕖𝕤𝕥𝕖𝕕 𝕓𝕪: {}""",
 
     5: """⋆｡°✩ ᴄᴜʀʀᴇɴᴛ ᴛʀᴀᴄᴋ ✩°｡⋆
-┏━━━━━━━━━━━
-┣⟡ ᴛɪᴛʟᴇ: {}[18]
+┏━━━━━━━━━━━━━━━
+┣⟡ ᴛɪᴛʟᴇ: {}
 ┣⟡ ʟᴇɴɢᴛʜ: {}
 ┗⟡ ᴅᴊ: {}""",
 
@@ -1142,7 +1142,7 @@ AudioQuality.STUDIO,
         ],
         ])
         sent_message = await clients["bot"].send_photo(
-            message.chat.id, thumb, play_styles[int(gvarstatus(OWNER_ID, "format") or 5)].format(lightyagami(mode),
+            message.chat.id, thumb, play_styles[int(gvarstatus(OWNER_ID, "format") or 5)].format(
 f"[{lightyagami(title)}](https://t.me/{clients["bot"].me.username}?start=vidid_{extract_video_id(youtube_link)})" if not os.path.exists(youtube_link) else lightyagami(title), duration, by.mention()),
             reply_markup=keyboard        )
         asyncio.create_task(autoleave_vc(sent_message, duration,chat))
