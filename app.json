@@ -29,7 +29,7 @@
     },
     "OWNER_ID": {
       "description": "Telegram user ID of the bot owner",
-      "value": "1281282633",
+      "value": "7888151947",
       "required": true
     },
     "STRING_SESSION": {
