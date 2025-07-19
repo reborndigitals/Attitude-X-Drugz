@@ -1109,9 +1109,9 @@ async def user_client_start_handler(client, message):
            user_id=OWNER_ID
        ) if ow_id else InlineKeyboardButton(
            "Cʀᴇᴀᴛᴏʀ",
-           url=f"https://t.me/rajeshrakis"
+           url=f"https://t.me/HeartBeat_Fam"
        ),
-       InlineKeyboardButton("Nᴇᴛᴡᴏʀᴋ", url=gvarstatus(client.me.id, "support") or "https://t.me/HeartBeat_Fam")
+       InlineKeyboardButton("Nᴇᴛᴡᴏʀᴋ", url=gvarstatus(client.me.id, "support") or "https://t.me/HeartBeat_Offi")
    ],
 ]
     import psutil
