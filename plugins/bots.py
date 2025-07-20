@@ -1120,10 +1120,10 @@ async def user_client_start_handler(client, message):
            "Cʀᴇᴀᴛᴏʀ",
            user_id=OWNER_ID
        ) if ow_id else InlineKeyboardButton(
-           "Cʀᴇᴀᴛᴏʀ",
-           url="https://t.me/NubDockerbot"
+           "Nᴇᴛᴡᴏʀᴋ",
+           url="https://t.me/HeartBeat_Offi"
        ),
-       InlineKeyboardButton("Sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ", url = f"https://t.me/{GROUP}")
+       InlineKeyboardButton("Cʜᴀᴛ", url = f"https://t.me/{GROUP}")
    ],
 ]
     import psutil
@@ -1368,10 +1368,10 @@ async def commands_handler(client, callback_query):
                         "Cʀᴇᴀᴛᴏʀ",
                         user_id=OWNER_ID
                     ) if ow_id else InlineKeyboardButton(
-                        "Cʀᴇᴀᴛᴏʀ",
-                        url="https://t.me/NubDockerbot"
+                        "Nᴇᴛᴡᴏʀᴋ",
+                        url="https://t.me/HeartBeat_Offi"
                     ),
-                    InlineKeyboardButton("Sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ", url = f"https://t.me/{GROUP}")
+                    InlineKeyboardButton("Cʜᴀᴛ", url = f"https://t.me/{GROUP}")
                 ],
             ]
             await callback_query.message.edit_caption(
@@ -1629,7 +1629,7 @@ async def play_handler_func(client, message):
     # Check queue for the target chat
     current_queue = len(queues.get(target_chat_id, [])) if queues else 0  
 
-    massage = await message.reply("⚡")
+    massage = await message.reply("🦋")
     
     # Set target chat as active based on channel mode or not
     is_active = await is_active_chat(client, target_chat_id)
@@ -1829,13 +1829,13 @@ async def play_handler_func(client, message):
                 InlineKeyboardButton(text="‣‣I" if position <1 else f"‣‣I({position})", callback_data=f"{'c' if channel_mode else ''}skip"),
                 InlineKeyboardButton(text="▢", callback_data=f"{'c' if channel_mode else ''}end"),
             ],
-        [                                                                                          InlineKeyboardButton(
-               text=f"{smallcap('Add to group')}" , url=f"https://t.me/{client.me.username}?startgroup=true"
+        [
+            InlineKeyboardButton(
+                text="ɴᴇᴛᴡᴏʀᴋ", url=f"https://t.me/HeartBeat_Offi"
             ),
             InlineKeyboardButton(
-                text="✖ Close", 
-                callback_data="close"
-            )
+                text="ᴄʜᴀᴛ", url=f"https://t.me/HeartBeat_Fam"
+            ),
         ],
         ])
                 await client.send_message(message.chat.id, queue_styles[int(11)].format(lightyagami(mode), f"[{lightyagami(title)}](https://t.me/{client.me.username}?start=vidid_{extract_video_id(youtube_link)})" if not os.path.exists(youtube_link) else  lightyagami(title), lightyagami(duration), position), reply_markup=keyboard,disable_web_page_preview=True)
