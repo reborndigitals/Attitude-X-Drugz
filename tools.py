@@ -549,7 +549,7 @@ async def update_progress_button(message, duration_str,chat):
             elapsed_str = time.strftime('%M:%S', time.gmtime(int(time.time() - played[chat.id])))
             elapsed_seconds = int(time.time() - played[chat.id])
             # Calculate progress bar (6 `─` with spaces)
-            progress_length = 600
+            progress_length = 8
             position = min(int((elapsed_seconds / total_seconds) * progress_length), progress_length)
             progress_bar = "ﮩ٨ـ" * position + "𔘓" + "ﮩ٨ـ" * (progress_length - position - 1)
             progress_bar = progress_bar.strip()  # Remove trailing spaces
