@@ -23,6 +23,7 @@ from pyrogram.errors import (
     MessageDeleteForbidden
 )
 from pyrogram.raw.functions.messages import GetStickerSet
+from pyrogram.enums import MessageEntityType
 from pyrogram.raw.types import InputStickerSetShortName
 from pyrogram.types import (
     CallbackQuery,
@@ -70,76 +71,87 @@ def admin_only():
                     command = update.command[0].lower()
                     logger.debug(f"Message command '{command}' from user {user_id} in chat {chat_id}")
                     
-                # Check if user is trying to skip their own song
-                is_song_owner = False
-                if isinstance(update, CallbackQuery):
-                    if update.message.chat.id in playing and playing[update.message.chat.id]:
-                        current_song = playing[update.message.chat.id]
-                        if user_id and command in ["skip", "cskip"] and current_song["by"].id == user_id:
-                            is_song_owner = True
-                            logger.info(f"User {user_id} is song owner, bypassing admin check")
-                else:
-                    if update.chat.id in playing and playing[update.chat.id]:
-                        current_song = playing[update.chat.id]
-                        if user_id and command in ["skip", "cskip"] and current_song["by"].id == user_id:
-                            is_song_owner = True
-                            logger.info(f"User {user_id} is song owner, bypassing admin check")
-                
-                if not is_song_owner:
-                    logger.debug("Performing full admin check")
-                    user_data = user_sessions.find_one({"bot_id": client.me.id})
-                    sudoers = user_data.get("SUDOERS", [])
-                    
-                    # Check admin status
-                    is_admin = False
-                    admin_file = f"{ggg}/admin.txt"
-                    if os.path.exists(admin_file):
-                        with open(admin_file, "r") as file:
-                            admin_ids = [int(line.strip()) for line in file.readlines()]
-                            is_admin = user_id in admin_ids
-                            if is_admin:
-                                logger.debug(f"User {user_id} is in admin list")
-                    
-                    # Check permissions
-                    is_auth_user = False
-                    auth_users = user_data.get('auth_users', {})
-                    if isinstance(auth_users, dict) and str(chat_id) in auth_users:
-                        is_auth_user = user_id in auth_users[str(chat_id)]
-                        if is_auth_user:
-                            logger.debug(f"User {user_id} is authorized for chat {chat_id}")
-                        
-                    if not isinstance(update, CallbackQuery):
-                        if command and str(command).endswith('del'):
-                            is_auth_user = False
-                            logger.debug("Command ends with 'del', auth_user status reset")
-                    
-                    is_authorized = (
-                        is_admin or OWNER_ID == user_id or user_id in sudoers or is_auth_user)
-                    
-                    if not user_id:
-                        linked_chat = await client.get_chat(chat_id)
-                        if linked_chat.linked_chat and update.sender_chat.id == linked_chat.linked_chat.id:
-                            logger.debug("Message from linked channel, allowing access")
-                            return await func(client, update)
-                        logger.warning("Cannot verify admin status from unknown user")
+                if not user_id:
+                    linked_chat = await client.get_chat(chat_id)
+                    if linked_chat.linked_chat and update.sender_chat.id == linked_chat.linked_chat.id:
+                        logger.debug("Message from linked channel, allowing access")
+                        return await func(client, update)
+                    logger.warning("Cannot verify admin status from unknown user")
+                    if isinstance(update, CallbackQuery):
+                        await update.answer("⚠️ Cannot verify admin status from unknown user.", show_alert=True)
+                    else:
                         await update.reply("⚠️ Cannot verify admin status from unknown user.", reply_to_message_id=reply_id)
-                        return
+                    return
+                
+                logger.debug("Performing admin check")
+                user_data = user_sessions.find_one({"bot_id": client.me.id})
+                sudoers = user_data.get("SUDOERS", [])
+                
+                # Check admin status
+                is_admin = False
+                admin_file = f"{ggg}/admin.txt"
+                if os.path.exists(admin_file):
+                    with open(admin_file, "r") as file:
+                        admin_ids = [int(line.strip()) for line in file.readlines()]
+                        is_admin = user_id in admin_ids
+                        if is_admin:
+                            logger.debug(f"User {user_id} is in admin list")
+                
+                # Check permissions
+                is_auth_user = False
+                auth_users = user_data.get('auth_users', {})
+                if isinstance(auth_users, dict) and str(chat_id) in auth_users:
+                    is_auth_user = user_id in auth_users[str(chat_id)]
+                    if is_auth_user:
+                        logger.debug(f"User {user_id} is authorized for chat {chat_id}")
                     
-                    chat_member = await client.get_chat_member(chat_id, user_id)
-                    if not (chat_member.status in (ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR) or is_authorized):
-                        logger.warning(f"User {user_id} not authorized for command {command}")
-                        if isinstance(update, CallbackQuery):
-                            await update.answer("⚠️ This action is restricted to admins only.", show_alert=True)
-                        else:
-                            await update.reply("⚠️ This command is restricted to admins only.", reply_to_message_id=reply_id)
-                        return
+                if not isinstance(update, CallbackQuery):
+                    if command and str(command).endswith('del'):
+                        is_auth_user = False
+                        logger.debug("Command ends with 'del', auth_user status reset")
+                
+                is_authorized = (
+                    is_admin or str(OWNER_ID) == str(user_id) or user_id in sudoers or is_auth_user)
+                
+                # Get chat member status
+                chat_member = await client.get_chat_member(chat_id, user_id)
+                is_chat_admin = chat_member.status in (ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR)
+                
+                # Check if user is trying to skip their own song (only for skip commands)
+                is_song_owner_skip = False
+                if command in ["skip", "cskip"]:
+                    if isinstance(update, CallbackQuery):
+                        if update.message.chat.id in playing and playing[update.message.chat.id]:
+                            current_song = playing[update.message.chat.id]
+                            if current_song["by"].id == user_id:
+                                is_song_owner_skip = True
+                                logger.debug(f"User {user_id} is song owner for skip command")
+                    else:
+                        if update.chat.id in playing and playing[update.chat.id]:
+                            current_song = playing[update.chat.id]
+                            if current_song["by"].id == user_id:
+                                is_song_owner_skip = True
+                                logger.debug(f"User {user_id} is song owner for skip command")
+                
+                # Allow access if user is admin OR (for skip commands only) if they own the song
+                if not (is_chat_admin or is_authorized or is_song_owner_skip):
+                    logger.warning(f"User {user_id} not authorized for command {command}")
+                    if isinstance(update, CallbackQuery):
+                        await update.answer("⚠️ This action is restricted to admins only.", show_alert=True)
+                    else:
+                        await update.reply("⚠️ This command is restricted to admins only.", reply_to_message_id=reply_id)
+                    return
                 
                 logger.info(f"User {user_id} authorized for {func.__name__}")
                 return await func(client, update)
                 
             except Exception as e:
-                error_msg = f"Error checking admin status: {str(e)}\nChat: {chat_id}\nUser: {user_id}\nCommand: {command}"
+                error_msg = f"Error checking admin status: {str(e)}"
                 logger.error(error_msg)
+                if isinstance(update, CallbackQuery):
+                    await update.answer("⚠️ Authorization check failed.", show_alert=True)
+                else:
+                    await update.reply("⚠️ Authorization check failed.")
                 return
         return wrapper
     return decorator
@@ -187,7 +199,7 @@ async def active_chats(client, message):
     # Check permissions
     is_authorized = (
         is_admin or
-        OWNER_ID == user_id or
+        str(OWNER_ID) == str(user_id) or
         user_id in sudoers
     )
 
@@ -352,7 +364,7 @@ async def seek_handler_func(client, message):
                 message.chat.id,
                 MediaStream(
                     current_song['yt_link'],
-                    AudioQuality.STUDIO,
+                    AudioQuality.HIGH,
                     VideoQuality.HD_720p,
                     video_flags=audio_flags,
                     ytdlp_parameters='--cookies-from-browser chrome',
@@ -569,7 +581,7 @@ async def block_user(client, message):
     # Check permissions
     is_authorized = (
         is_admin or
-        OWNER_ID == user_id or
+        str(OWNER_ID) == str(user_id) or
         user_id in sudoers
     )
 
@@ -644,7 +656,7 @@ async def reboot_handler(client: Client, message: Message):
     # Authorization check
     is_authorized = (
         is_admin or
-        OWNER_ID == user_id or
+        str(OWNER_ID) == str(user_id) or
         user_id in sudoers
     )
 
@@ -672,7 +684,7 @@ async def unblock_user(client, message):
     # Check permissions
     is_authorized = (
         is_admin or
-        OWNER_ID == user_id or
+        str(OWNER_ID) == str(user_id) or
         user_id in sudoers
     )
 
@@ -728,7 +740,7 @@ async def show_sudo_list(client, message):
             is_admin = user_id in admin_ids
 
     # Check permissions
-    is_authorized = is_admin or OWNER_ID == user_id
+    is_authorized = is_admin or str(OWNER_ID) == str(user_id)
 
     if not is_authorized:
         return await message.reply("**MF\n\nTHIS IS PAID OWNER'S COMMAND...**")
@@ -777,7 +789,7 @@ async def add_to_sudo(client, message):
             admin_ids = [int(line.strip()) for line in file.readlines()]
             is_admin = user_id in admin_ids
     
-    is_authorized = is_admin or OWNER_ID == user_id
+    is_authorized = is_admin or str(OWNER_ID) == str(user_id)
 
     if not is_authorized:
         return await message.reply("**MF\n\nTHIS IS OWNER'S COMMAND...**")
@@ -1109,9 +1121,9 @@ async def user_client_start_handler(client, message):
            user_id=OWNER_ID
        ) if ow_id else InlineKeyboardButton(
            "Cʀᴇᴀᴛᴏʀ",
-           url=f"https://t.me/HeartBeat_Fam"
+           url="https://t.me/NubDockerbot"
        ),
-       InlineKeyboardButton("Nᴇᴛᴡᴏʀᴋ", url=gvarstatus(client.me.id, "support") or "https://t.me/HeartBeat_Offi")
+       InlineKeyboardButton("Sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ", url = f"https://t.me/{GROUP}")
    ],
 ]
     import psutil
@@ -1160,34 +1172,22 @@ async def user_client_start_handler(client, message):
 
 
 
-       greet_message = gvarstatus(client.me.id, "WELCOME") or f"""
-🎵 **{client.me.mention()}** 🎵
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+       greet_message = gvarstatus(client.me.id, "WELCOME") or """
+🌟 𝖂𝖊𝖑𝖈𝖔𝖒𝖊, {name}! 🌟
 
-🎧 **Yᴏᴜʀ ᴍᴜꜱɪᴄᴀʟ ᴊᴏᴜʀɴᴇʏ ʙᴇɢɪɴꜱ ʜᴇʀᴇ**
+🎶 Your **musical journey** begins with {botname}!
 
-🔧 **SYSTEM STATUS**
-• **Uᴘᴛɪᴍᴇ** » `{uptime}`
-• **CPU ᴄᴏʀᴇꜱ** » `{cpu_cores}`
-• **RAM** » `{ram_total}`
-• **Dɪꜱᴋ** » `{disk_total}`
+✨ Enjoy _crystal-clear_ audio and a vast library of sounds.
 
-✨ **Pʀᴇᴍɪᴜᴍ Fᴇᴀᴛᴜʀᴇꜱ**
-**• 8D ꜱᴜʀʀᴏᴜɴᴅ ꜱᴏᴜɴᴅ + ʜɪ-ꜰɪ**
-**• 4K ᴜʟᴛʀᴀ HD ꜱᴛʀᴇᴀᴍɪɴɢ**
-**• 0.1ꜱ ʀᴇꜱᴘᴏɴꜱᴇ ᴛɪᴍᴇ**
-**• 20+ ꜱᴍᴀʀᴛ ᴄᴏɴᴛʀᴏʟꜱ**
-
-⚙️ **Pᴇʀꜰᴏʀᴍᴀɴᴄᴇ**
-**• 24/7 ɴᴏɴꜱᴛᴏᴘ ᴘʟᴀʏʙᴀᴄᴋ**
-**• 99.9% ᴜᴘᴛɪᴍᴇ ɢᴜᴀʀᴀɴᴛᴇᴇ**"""
+🚀 Get ready for an *unparalleled* musical adventure!
+"""
 
        send = client.send_video if alive_logo.endswith(".mp4") else client.send_photo
        await editing.delete()
        await send(
                 user_id ,
                 alive_logo,
-                caption=await format_welcome_message(client, greet_message, message.chat.id, message.from_user.mention() if message.chat.type == enums.ChatType.PRIVATE else message.chat.title )
+                caption=await format_welcome_message(client, greet_message, user_id, message.from_user.mention() if message.chat.type == enums.ChatType.PRIVATE else (message.chat.title or ""))
 ,reply_markup=InlineKeyboardMarkup(buttons)
             )
     except Exception as e:
@@ -1197,9 +1197,12 @@ async def user_client_start_handler(client, message):
 async def format_welcome_message(client, text, chat_id, user_or_chat_name):
     """Helper function to format welcome message with real data"""
     try:
-        formatted_text = text.replace("{name}", user_or_chat_name)
+        # Ensure user_or_chat_name is a string, even if None is passed
+        user_or_chat_name = str(user_or_chat_name) if user_or_chat_name is not None else ""
+        formatted_text = text
+        formatted_text = formatted_text.replace("{name}", user_or_chat_name)
         formatted_text = formatted_text.replace("{id}", str(chat_id))
-        formatted_text = formatted_text.replace("{botname}", f"@{client.me.username}")
+        formatted_text = formatted_text.replace("{botname}", client.me.mention())
         return formatted_text
     except Exception as e:
         logging.error(f"Error formatting welcome message: {str(e)}")
@@ -1208,338 +1211,174 @@ async def format_welcome_message(client, text, chat_id, user_or_chat_name):
 
 @Client.on_callback_query(filters.regex(r"commands_(.*)"))
 async def commands_handler(client, callback_query):
-    data = callback_query.data.split("_", 1)[1]  # Extract command type
+    data = callback_query.data.split("_", 1)[1]          # Extract page name
     user_id = callback_query.from_user.id
     admin_file = f"{ggg}/admin.txt"
 
-    # Check if the user is an admin or owner
+    # --- Permission check (owner / admin / sudo) ---
     is_admin = False
     if os.path.exists(admin_file):
         with open(admin_file, "r") as file:
             admin_ids = [int(line.strip()) for line in file.readlines()]
-            if user_id in admin_ids or OWNER_ID == user_id:
+            if user_id in admin_ids or str(OWNER_ID) == str(user_id):
                 is_admin = True
     owner = await client.get_users(OWNER_ID)
     ow_id = owner.id if owner.username else None
-    
-    # Define command categories with detailed descriptions
+
+    # ---------- Command pages (text blocks) ----------
     playback_commands = """**🎵 PLAYBACK COMMANDS**
 <blockquote>
-**◾ /play or /vplay**
-- Play audio or video from YouTube
-- Usage: `/play [song name or URL]`
-- Can also reply to audio/video file or YouTube link
-- `/vplay` streams video with audio
-- Adds to queue if something is already playing
+◾ /play  /vplay        – queue YouTube audio/video
+◾ /playforce /vplayforce – force play (skip current)
+◾ /cplay /cvplay       – play in linked channel
+◾ /pause               – pause stream
+◾ /resume              – resume stream
+◾ /skip  /cskip        – next track
+◾ /end  /cend          – stop & clear queue
+◾ /seek <sec>          – jump forward
+◾ /seekback <sec>      – jump backward
+◾ /loop <1-20>         – repeat current song
+</blockquote>"""
 
-**◾ /playforce or /vplayforce**
-- Force play (interrupts current playback)
-- Usage: `/playforce [query]` or reply to media
-- Immediately stops current track and plays new one
-
-**◾ /cplay or /cvplay**
-- Play in linked channel (requires group-channel link)
-- Usage: `/cplay [query]` or reply to media
-- Only works in groups with linked broadcast channel
-
-**◾ /pause**
-- Pause current playback
-- Usage: `/pause`
-
-**◾ /resume**
-- Resume paused playback
-- Usage: `/resume`
-
-**◾ /skip**
-- Skip to next track in queue
-- Usage: `/skip`
-- If queue is empty, stops playback
-
-**◾ /end**
-- Stop playback and clear queue
-- Usage: `/end`
-
-**◾ /seek or /seekback**
-- Jump forward/backward in track
-- Usage: `/seek 30` or `/seekback 15`
-
-**◾ /loop**
-- Loop current track X times
-- Usage: `/loop 3` (loops 3 times)
-- Maximum 20 loops
-</blockquote>
-"""
+    auth_commands = """**🔐 AUTHORIZATION COMMANDS**
+<blockquote>
+◾ /auth <reply|id>   – allow user to use player
+◾ /unauth <reply|id> – remove that permission
+◾ /authlist          – list authorized users
+</blockquote>"""
 
     blocklist_commands = """**🚫 BLOCKLIST COMMANDS**
 <blockquote>
-**◾ /block**
-- Block user from using bot
-- Usage: `/block @spammer` or reply to a user
-- Owner/sudo-only command
-
-**◾ /unblock**
-- Unblock user
-- Usage: `/unblock @username` or reply to a user
-- Owner/sudo-only command
-
-**◾ /blocklist**
-- View all blocked users
-- Usage: `/blocklist`
-</blockquote>
-"""
+◾ /block <reply|id>   – block user from bot
+◾ /unblock <reply|id> – unblock user
+◾ /blocklist          – view blocked list
+</blockquote>"""
 
     sudo_commands = """**🔑 SUDO COMMANDS**
 <blockquote>
-**◾ /addsudo**
-- Add sudo user
-- Usage: `/addsudo @username` or reply to a user
-- Owner-only command
-- Grants user admin privileges for the bot
-
-**◾ /rmsudo**
-- Remove sudo user
-- Usage: `/rmsudo @username` or reply to a user
-- Owner-only command
-- Revokes sudo privileges from user
-
-**◾ /sudolist**
-- List all sudo users
-- Usage: `/sudolist`
-</blockquote>
-"""
+◾ /addsudo <reply|id> – add sudo user
+◾ /rmsudo <reply|id>  – remove sudo user
+◾ /sudolist           – list sudo users
+</blockquote>"""
 
     broadcast_commands = """**📢 BROADCAST COMMANDS**
 <blockquote>
-**◾ /broadcast**
-- Send message to all users
-- Usage: Reply to a message and type `/broadcast`
-- Sends copy of message to all users
-
-**◾ /fbroadcast**
-- Force broadcast message
-- Usage: Reply to a message and type `/fbroadcast`
-- Forwards original message to all users
-- Owner/sudo-only command
-</blockquote>
-"""
-
-    auth_commands = """**🔐 AUTH COMMANDS**
-<blockquote>
-**◾ /auth**
-- Authorize user to use bot
-- Usage: `/auth` (reply to user) or `/auth @username`
-- Allows non-admins to use bot commands
-- Admin-only command
-
-**◾ /unauth**
-- Remove user authorization
-- Usage: `/unauth` (reply to user) or `/unauth @username`
-- Revokes authorization from user
-- Admin-only command
-
-**◾ /authlist**
-- List authorized users
-- Usage: `/authlist`
-</blockquote>
-"""
+◾ /broadcast   – copy a message to all dialogs
+◾ /fbroadcast  – forward a message to all dialogs
+</blockquote>"""
 
     tools_commands = """**🛠️ TOOLS COMMANDS**
 <blockquote>
-**◾ /del**
-- Delete replied message
-- Usage: Reply to a message and type `/del`
-- Requires admin or delete permissions
+◾ /del        – delete replied message
+◾ /tagall     – mention all members
+◾ /cancel     – abort running tagall
+◾ /powers     – show bot permissions
+</blockquote>"""
 
-**◾ /tagall**
-- Tag all group members
-- Usage: `/tagall [optional message]`
-- Admin-only command
-
-**◾ /cancel**
-- Cancel ongoing tag process
-- Usage: `/cancel`
-
-**◾ /powers**
-- Check admin permissions
-- Usage: `/powers` (reply to user) or  `/powers`
-</blockquote>
-"""
-
-    kang_commands = """**🎨 KANG COMMANDS**
+    kang_commands = """**🎨 STICKER & MEME COMMANDS**
 <blockquote>
-**◾ /kang**
-- Clone sticker/video/photo
-- Usage: Reply to image/video/sticker and type `/kang [emoji]`
-- Adds sticker to your custom sticker pack
+◾ /kang       – clone sticker/photo to your pack
+◾ /mmf <text> – write text on image/sticker
+◾ /qt <text>  – create fake quote sticker
+</blockquote>"""
 
-**◾ /qt**
-- Create fake quote stickers
-- Usage: Reply to a message and type `/qt [fake text]`
-- Creates fake quote sticker of the user
-
-**◾ /mmf**
-- Write on images/stickers
-- Usage: Reply to an image/sticker and type `/mmf [text]`
-</blockquote>
-"""
-
-    status_commands = """**📊 STATUS COMMANDS**
+    status_commands = """**📊 STATUS & INFO COMMANDS**
 <blockquote>
-**◾ /ping**
-- Check bot response time
-- Usage: `/ping`
-- Shows bot latency and uptime
+◾ /ping       – latency & uptime
+◾ /stats      – bot usage stats
+◾ /ac         – active voice chats
+◾ /about      – user / group / channel info
+</blockquote>"""
 
-**◾ /about**
-- View user/chat information
-- Usage: `/about` (shows your info)
-- Reply to a user or `/about @username` (someone else's info)
-- `/about` in a group shows group info
+    owner_commands = """**⚙️ OWNER COMMANDS**
+<blockquote>
+◾ /reboot     – restart the bot
+◾ /setwelcome – set custom /start message
+◾ /resetwelcome – Reset the welcome message and logo.
+</blockquote>"""
 
-**◾ /stats**
-- Bot statistics
-- Usage: `/stats`
-
-**◾ /ac**
-- View active calls
-- Usage: `/ac`
-</blockquote>
-"""
-
-    # Create category buttons for main commands page
+    # ---------- Navigation buttons ----------
     category_buttons = [
         [
-            InlineKeyboardButton("🎵 Pʟᴀʏʙᴀᴄᴋ", callback_data="commands_playback"),
-            InlineKeyboardButton("🔐 Aᴜᴛʜ", callback_data="commands_auth")
+            InlineKeyboardButton("🎵 Playback",   callback_data="commands_playback"),
+            InlineKeyboardButton("🔐 Auth",       callback_data="commands_auth"),
         ],
         [
-            InlineKeyboardButton("🛠️ Tᴏᴏʟꜱ", callback_data="commands_tools"),
-            InlineKeyboardButton("🎨 Kᴀɴɢ", callback_data="commands_kang")
+            InlineKeyboardButton("🚫 Blocklist",  callback_data="commands_blocklist"),
+            InlineKeyboardButton("🔑 Sudo",       callback_data="commands_sudo"),
         ],
         [
-            InlineKeyboardButton("📊 Sᴛᴀᴛᴜꜱ", callback_data="commands_status"),
-            InlineKeyboardButton("🚫 Bʟᴏᴄᴋʟɪꜱᴛ", callback_data="commands_blocklist")
+            InlineKeyboardButton("📢 Broadcast",  callback_data="commands_broadcast"),
+            InlineKeyboardButton("🛠️ Tools",     callback_data="commands_tools"),
         ],
         [
-            InlineKeyboardButton("🔑 Sᴜᴅᴏ", callback_data="commands_sudo"),
-            InlineKeyboardButton("📢 Bʀᴏᴀᴅᴄᴀꜱᴛ", callback_data="commands_broadcast")
+            InlineKeyboardButton("🎨 Kang/Meme",  callback_data="commands_kang"),
+            InlineKeyboardButton("📊 Status",     callback_data="commands_status"),
         ],
-        [InlineKeyboardButton("Hᴏᴍᴇ", callback_data="commands_back")]
-    ]
-    
-    # Back button for category pages
-    back_button = [
-        [InlineKeyboardButton("Bᴀᴄᴋ", callback_data="commands_all")],
+        [
+            InlineKeyboardButton("⚙️ Owner",      callback_data="commands_owner"),
+        ],
+        [InlineKeyboardButton("🏠 Home",         callback_data="commands_back")],
     ]
 
-    # Handle different callbacks based on data
+    back_button = [[InlineKeyboardButton("🔙 Back", callback_data="commands_all")]]
+
+    # ---------- Routing ----------
     if data == "all":
-        # Show all command categories
         await callback_query.message.edit_caption(
             caption="**📜 SELECT A COMMAND CATEGORY**",
-            reply_markup=InlineKeyboardMarkup(category_buttons)
+            reply_markup=InlineKeyboardMarkup(category_buttons),
         )
     elif data == "playback":
-        await callback_query.message.edit_caption(
-            caption=playback_commands,
-            reply_markup=InlineKeyboardMarkup(back_button)
-        )
-    elif data == "blocklist":
-        await callback_query.message.edit_caption(
-            caption=blocklist_commands,
-            reply_markup=InlineKeyboardMarkup(back_button)
-        )
-    elif data == "sudo":
-        await callback_query.message.edit_caption(
-            caption=sudo_commands,
-            reply_markup=InlineKeyboardMarkup(back_button)
-        )
-    elif data == "broadcast":
-        await callback_query.message.edit_caption(
-            caption=broadcast_commands,
-            reply_markup=InlineKeyboardMarkup(back_button)
-        )
+        await callback_query.message.edit_caption(caption=playback_commands, reply_markup=InlineKeyboardMarkup(back_button))
     elif data == "auth":
-        await callback_query.message.edit_caption(
-            caption=auth_commands,
-            reply_markup=InlineKeyboardMarkup(back_button)
-        )
+        await callback_query.message.edit_caption(caption=auth_commands, reply_markup=InlineKeyboardMarkup(back_button))
+    elif data == "blocklist":
+        await callback_query.message.edit_caption(caption=blocklist_commands, reply_markup=InlineKeyboardMarkup(back_button))
+    elif data == "sudo":
+        await callback_query.message.edit_caption(caption=sudo_commands, reply_markup=InlineKeyboardMarkup(back_button))
+    elif data == "broadcast":
+        await callback_query.message.edit_caption(caption=broadcast_commands, reply_markup=InlineKeyboardMarkup(back_button))
     elif data == "tools":
-        await callback_query.message.edit_caption(
-            caption=tools_commands,
-            reply_markup=InlineKeyboardMarkup(back_button)
-        )
+        await callback_query.message.edit_caption(caption=tools_commands, reply_markup=InlineKeyboardMarkup(back_button))
     elif data == "kang":
-        await callback_query.message.edit_caption(
-            caption=kang_commands,
-            reply_markup=InlineKeyboardMarkup(back_button)
-        )
+        await callback_query.message.edit_caption(caption=kang_commands, reply_markup=InlineKeyboardMarkup(back_button))
     elif data == "status":
-        await callback_query.message.edit_caption(
-            caption=status_commands,
-            reply_markup=InlineKeyboardMarkup(back_button)
-        )
+        await callback_query.message.edit_caption(caption=status_commands, reply_markup=InlineKeyboardMarkup(back_button))
+    elif data == "owner":
+        await callback_query.message.edit_caption(caption=owner_commands, reply_markup=InlineKeyboardMarkup(back_button))
     elif data == "back":
-        # System info collection
-        uptime = await get_readable_time((time.time() - StartTime))
-        start = datetime.datetime.now()
-        try:
-            cpu_cores = psutil.cpu_count(logical=False) or "N/A"
-            ram = psutil.virtual_memory()
-            ram_total = f"{ram.total / (1024**3):.2f} GB"
-            disk = psutil.disk_usage('/')
-            disk_total = f"{disk.total / (1024**3):.2f} GB"
-        except Exception as e:
-            cpu_cores = "N/A"
-            ram_total = "N/A"
-            disk_total = "N/A"
-            
-        # Home buttons
-        buttons = [
-            [InlineKeyboardButton("Aᴅᴅ ᴍᴇ ᴛᴏ ɢʀᴏᴜᴘ", url=f"https://t.me/{client.me.username}?startgroup=true")],
-            [InlineKeyboardButton("Hᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅꜱ", callback_data="commands_all")],
-            [
-                InlineKeyboardButton(
-                    "Cʀᴇᴀᴛᴏʀ",
-                    user_id=OWNER_ID
-                ) if ow_id else InlineKeyboardButton(
-                    "Cʀᴇᴀᴛᴏʀ",
-                    url=f"https://t.me/NubDockerbot"
-                ),
-                InlineKeyboardButton("Sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ", "https://t.me/nub_coder_updates")
-            ],
-        ]
+            name = callback_query.from_user.mention()
+            botname = client.me.mention()
+            greet_message = gvarstatus(client.me.id, "WELCOME") or """
+🌟 𝖂𝖊𝖑𝖈𝖔𝖒𝖊, {name}! 🌟
 
-        greet_message = gvarstatus(client.me.id, "WELCOME") or f"""
-🎵 **{client.me.mention()}** 🎵
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+🎶 Your **musical journey** begins with {botname}!
 
-🎧 **Yᴏᴜʀ ᴍᴜꜱɪᴄᴀʟ ᴊᴏᴜʀɴᴇʏ ʙᴇɢɪɴꜱ ʜᴇʀᴇ**
+✨ Enjoy _crystal-clear_ audio and a vast library of sounds.
 
-🔧 **SYSTEM STATUS**
-• **Uᴘᴛɪᴍᴇ** » `{uptime}`
-• **CPU ᴄᴏʀᴇꜱ** » `{cpu_cores}`
-• **RAM** » `{ram_total}`
-• **Dɪꜱᴋ** » `{disk_total}`
+🚀 Get ready for an *unparalleled* musical adventure!
+"""
+            greet_message = await format_welcome_message(client, greet_message, user_id, callback_query.from_user.mention())
+            buttons = [
+                [InlineKeyboardButton("Aᴅᴅ ᴍᴇ ᴛᴏ ɢʀᴏᴜᴘ", url=f"https://t.me/{client.me.username}?startgroup=true")],
+                [InlineKeyboardButton("Hᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅꜱ", callback_data="commands_all")],
+                [
+                    InlineKeyboardButton(
+                        "Cʀᴇᴀᴛᴏʀ",
+                        user_id=OWNER_ID
+                    ) if ow_id else InlineKeyboardButton(
+                        "Cʀᴇᴀᴛᴏʀ",
+                        url="https://t.me/NubDockerbot"
+                    ),
+                    InlineKeyboardButton("Sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ", url = f"https://t.me/{GROUP}")
+                ],
+            ]
+            await callback_query.message.edit_caption(
+                caption=greet_message,
+                reply_markup=InlineKeyboardMarkup(buttons),
+            )
 
-✨ **Pʀᴇᴍɪᴜᴍ Fᴇᴀᴛᴜʀᴇꜱ**
-**• 8D ꜱᴜʀʀᴏᴜɴᴅ ꜱᴏᴜɴᴅ + ʜɪ-ꜰɪ**
-**• 4K ᴜʟᴛʀᴀ HD ꜱᴛʀᴇᴀᴍɪɴɢ**
-**• 0.1ꜱ ʀᴇꜱᴘᴏɴꜱᴇ ᴛɪᴍᴇ**
-**• 20+ ꜱᴍᴀʀᴛ ᴄᴏɴᴛʀᴏʟꜱ**
-
-⚙️ **Pᴇʀꜰᴏʀᴍᴀɴᴄᴇ**
-**• 24/7 ɴᴏɴꜱᴛᴏᴘ ᴘʟᴀʏʙᴀᴄᴋ**
-**• 99.9% ᴜᴘᴛɪᴍᴇ ɢᴜᴀʀᴀɴᴛᴇᴇ**"""
-        await callback_query.message.edit_caption(
-            caption=await format_welcome_message(
-                client, 
-                greet_message, 
-                callback_query.message.chat.id,
-                callback_query.from_user.first_name if callback_query.message.chat.type == enums.ChatType.PRIVATE else callback_query.message.chat.title
-            ),
-            reply_markup=InlineKeyboardMarkup(buttons)
-        )
 
 
 @Client.on_message(filters.command("blocklist"))
@@ -1558,7 +1397,7 @@ async def blocklist_handler(client, message):
     # Check permissions
     is_authorized = (
         is_admin or
-        OWNER_ID == user_id or
+        str(OWNER_ID) == str(user_id) or
         user_id in sudoers
     )
 
@@ -1790,14 +1629,7 @@ async def play_handler_func(client, message):
     # Check queue for the target chat
     current_queue = len(queues.get(target_chat_id, [])) if queues else 0  
 
-    if act_calls >= 5 or current_queue >= 5:  
-        return await message.reply(  
-            f"The bot is in trial mode, so it has the following limitations:\n"  
-            f"- Active calls: {act_calls} (Limit: 5)\n"  
-            f"- Song queue: {current_queue} (Limit: 5)"  
-        )  
-        
-    massage = await message.reply(f"{upper_mono('Searching for your query, please wait')}")  
+    massage = await message.reply("⚡")
     
     # Set target chat as active based on channel mode or not
     is_active = await is_active_chat(client, target_chat_id)
@@ -2027,8 +1859,6 @@ from yt_dlp import YoutubeDL
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-# API key for YouTube Data API
-API_KEY = 'AIzaSyAnsUvlIJ0f44ILpQ4CS7aYbzkV4DfLZrE'  # Replace if needed
 
 def format_duration(duration):
     """Format duration to HH:MM:SS, MM:SS, or SS format.
@@ -2322,12 +2152,8 @@ def handle_youtube(argument, directory):
         tuple: (title, duration, youtube_link, thumbnail, channel_name, views, video_id)
     """
     # First try using the YouTube Data API
-    result = handle_youtube_api(argument) if not is_url_and_not_youtube_regex(argument) else get_instagram_reel_details(argument,directory)
     
-    # If API fails (e.g., quota exceeded), fall back to yt-dlp
-    if not result:
-        logger.info("YouTube API failed or quota exceeded, falling back to yt-dlp...")
-        result = handle_youtube_ytdlp(argument)
+    result = handle_youtube_ytdlp(argument)
     
     # If both methods fail, return error values
     if not result:
@@ -3170,7 +2996,7 @@ async def status_command_handler(client, message):
     # Check permissions
     is_authorized = (
         is_admin or
-        OWNER_ID == user_id or
+        str(OWNER_ID) == str(user_id) or
         user_id in sudoers
     )
 
@@ -3197,7 +3023,7 @@ async def broadcast_command_handler(client, message):
     # Check permissions
     is_authorized = (
         is_admin or
-        OWNER_ID == user_id or
+        str(OWNER_ID) == str(user_id) or
         user_id in sudoers
     )
 
@@ -3414,8 +3240,15 @@ async def info_command(client: Client, message: Message):
 
     # Handle second argument if provided
     target_user = None
-    if len(message.command) > 1:
-        user_input = message.command[1]
+    sender_id = message.from_user.id
+    if not sender_id == OWNER_ID:
+        return await message.reply_text("Only bot owner is allowed to perform this command")
+
+    sender_id = message.from_user.id
+    if not sender_id == OWNER_ID:
+        return await message.reply_text("Only bot owner is allowed to perform this command")
+
+    if len(message.command) < 2:
         try:
             # Try to get user by ID first
             if user_input.isdigit():
@@ -3935,15 +3768,10 @@ from pyrogram import Client, filters
 
 @Client.on_message(filters.command("setwelcome") & filters.private)
 async def set_welcome_handler(client, message):
+    sender_id = message.from_user.id
     try:
-        sender_id = message.from_user.id
-        user_data = user_sessions.find_one({"user_id": sender_id})
         if not sender_id == OWNER_ID:
-            return await message.reply_text("Only bot owner is allowed to perform this command")
-
-        session_name = f'user_{client.me.id}'
-        user_dir = f"{ggg}/{session_name}"
-        os.makedirs(user_dir, exist_ok=True)
+           return await message.reply_text("Only bot owner is allowed to perform this command")
 
         replied_msg = message.reply_to_message
         if not replied_msg:
@@ -4041,7 +3869,7 @@ async def set_welcome_handler(client, message):
                 error_msg += "• Welcome to {botname}!"
                 return await message.reply_text(error_msg)
 
-            set_gvar(sender_id, "WELCOME", processed_text)
+            set_gvar(client.me.id, "WELCOME", processed_text)
             updates.append("welcome message")
 
         # Handle media if present
@@ -4120,24 +3948,14 @@ async def set_welcome_handler(client, message):
                     alive_logo = rename_file(alive_logo, logo_path_mp4)
 
             welcome_text = gvarstatus(sender_id, "WELCOME") or f"""
-🎵 **{client.me.mention()}** 🎵
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-🎧 **Yᴏᴜʀ ᴍᴜꜱɪᴄᴀʟ ᴊᴏᴜʀɴᴇʏ ʙᴇɢɪɴꜱ ʜᴇʀᴇ**
-🔧 **SYSTEM STATUS**
-• **Uᴘᴛɪᴍᴇ** » `{uptime}`
-• **CPU ᴄᴏʀᴇꜱ** » `{cpu_cores}`
-• **RAM** » `{ram_total}`
-• **Dɪꜱᴋ** » `{disk_total}`
+🌟 𝖂𝖊𝖑𝖈𝖔𝖒𝖊, {name}! 🌟
 
-✨ **Pʀᴇᴍɪᴜᴍ Fᴇᴀᴛᴜʀᴇꜱ**
-**• 8D ꜱᴜʀʀᴏᴜɴᴅ ꜱᴏᴜɴᴅ + ʜɪ-ꜰɪ**
-**• 4K ᴜʟᴛʀᴀ HD ꜱᴛʀᴇᴀᴍɪɴɢ**
-**• 0.1ꜱ ʀᴇꜱᴘᴏɴꜱᴇ ᴛɪᴍᴇ**
-**• 20+ ꜱᴍᴀʀᴛ ᴄᴏɴᴛʀᴏʟꜱ**
+🎶 Your **musical journey** begins with {botname}!
 
-⚙️ **Pᴇʀꜰᴏʀᴍᴀɴᴄᴇ**
-**• 24/7 ɴᴏɴꜱᴛᴏᴘ ᴘʟᴀʏʙᴀᴄᴋ**
-**• 99.9% ᴜᴘᴛɪᴍᴇ ɢᴜᴀʀᴀɴᴛᴇᴇ**"""
+✨ Enjoy _crystal-clear_ audio and a vast library of sounds.
+
+🚀 Get ready for an *unparalleled* musical adventure!
+"""
             if alive_logo.endswith(".mp4"):
                 await client.send_video(
                     message.chat.id,
@@ -4159,10 +3977,17 @@ async def set_welcome_handler(client, message):
                     message.chat.id,
                     welcome_text,
                 )
-
     except Exception as e:
         error_msg = f"❌ Error: `{str(e)}`"
         logger.info(f"Error for user {message.from_user.id}: {str(e)}")
         return await message.reply_text(error_msg)
 
+@Client.on_message(filters.command(["resetwelcome", "rwelcome"]))
+async def resetwelcome(client: Client, message: Message):
+    sender_id = message.from_user.id
+    if not sender_id == OWNER_ID:
+        return await message.reply_text("Only bot owner is allowed to perform this command")
 
+    set_gvar(client.me.id, "WELCOME", None)
+    set_gvar(client.me.id, "LOGO", None)
+    await message.reply_text("Welcome message and logo have been reset.")
