@@ -403,7 +403,7 @@ async def add_active_chat(chat_id):
 async def remove_active_chat(chat_id):
     if chat_id in active:
         active.remove(chat_id)
-    chat_dir = f"{ggg}/user_{clients["bot"].me.id}/{chat_id}"
+    chat_dir = f"{ggg}/user_{clients['bot'].me.id}/{chat_id}"
     os.makedirs(chat_dir, exist_ok=True)
     clear_directory(chat_dir)
 
@@ -619,11 +619,12 @@ queue_styles = {
 ║ 𝔻𝕦𝕣𝕒𝕥𝕚𝕠𝕟: {}
 ╚ ℙ𝕠𝕤𝕚𝕥𝕚𝕠𝕟: #{}""",
 
-    5: """• ғᴜᴛᴜʀᴇ ᴛʀᴀᴄᴋ •
+    5: """⋆｡°✩ ғᴜᴛᴜʀᴇ ᴛʀᴀᴄᴋ ✩°｡⋆
 ┏━━━━━━━━━━━━━━━
 ┣⟡ ᴛɪᴛʟᴇ: {}
 ┣⟡ ʟᴇɴɢᴛʜ: {}
 ┗⟡ ᴘᴏꜱɪᴛɪᴏɴ: #{}""",
+    
 
     6: """🌊 𝙌𝙪𝙚𝙪𝙚 𝙐𝙥𝙙𝙖𝙩𝙚𝙙 🌊
 ┏━━━━━━━━━━━
@@ -710,6 +711,7 @@ play_styles = {
 ┣⟡ ᴛɪᴛʟᴇ: {}
 ┣⟡ ʟᴇɴɢᴛʜ: {}
 ┗⟡ ᴅᴊ: {}""",
+    
 
     6: """🌊 𝙉𝙤𝙬 𝙋𝙡𝙖𝙮𝙞𝙣𝙜 🌊
 ┏━━━━━━━━━━━━
@@ -917,7 +919,7 @@ formats = [
     "f4p",
     "f4a",
     "f4b",
-    "m3u8",
+    ".m3u8",
 ]
 
 async def convert_to_image(message, client) -> [None, str]:
@@ -1119,8 +1121,8 @@ async def join_call(message, title, youtube_link, chat, by, duration, mode, thum
             chat.id,
             MediaStream(
 youtube_link,
-AudioQuality.STUDIO,
-                VideoQuality.UHD_4K,
+AudioQuality.HIGH,
+                VideoQuality.HD_720p,
                 video_flags=audio_flags,
                 ytdlp_parameters=f"--cookies-from-browser chrome",
 ),
@@ -1134,16 +1136,18 @@ AudioQuality.STUDIO,
                 InlineKeyboardButton(text="‣‣I" if position <1 else f"‣‣I({position})", callback_data="skip"),
                 InlineKeyboardButton(text="▢", callback_data="end"),
             ],
-        [                                                                                           InlineKeyboardButton(
-                text=f"{smallcap('Add to group')}", url=f"https://t.me/{clients["bot"].me.username}?startgroup=true"
-            ),InlineKeyboardButton(
-                text="✖ Close",callback_data="close"
-            )
+        [
+            InlineKeyboardButton(
+                text="ɴᴇᴛᴡᴏʀᴋ", url=f"https://t.me/HeartBeat_Offi"
+            ),
+            InlineKeyboardButton(
+                text="ᴄʜᴀᴛ", url=f"https://t.me/HeartBeat_Fam"
+            ),
         ],
         ])
         sent_message = await clients["bot"].send_photo(
             message.chat.id, thumb, play_styles[int(gvarstatus(OWNER_ID, "format") or 5)].format(
-f"[{lightyagami(title)}](https://t.me/{clients["bot"].me.username}?start=vidid_{extract_video_id(youtube_link)})" if not os.path.exists(youtube_link) else lightyagami(title), duration, by.mention()),
+f"[{lightyagami(title)}](https://t.me/{clients['bot'].me.username}?start=vidid_{extract_video_id(youtube_link)})" if not os.path.exists(youtube_link) else lightyagami(title), duration, by.mention()),
             reply_markup=keyboard        )
         asyncio.create_task(autoleave_vc(sent_message, duration,chat))
         asyncio.create_task(update_progress_button(sent_message, duration,chat))
