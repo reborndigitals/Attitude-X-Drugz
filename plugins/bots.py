@@ -2482,7 +2482,7 @@ async def button_end_handler(client: Client, callback_query: CallbackQuery):
         if chat_id in queues:
          if len(queues[chat_id]) >0:
             next = queues[chat_id].pop(0)
-            await callback_query.message.reply(f"⏭️ 𝗦𝗞𝗜𝗣𝗣𝗜𝗡𝗚!\n┏━━━━━━━━━━━━━━\n┣ 𝗡𝗲𝘅𝘁 𝘁𝗿𝗮𝗰𝗸 𝗹𝗼𝗮𝗱𝗶𝗻𝗴...\n┗ 👤 {callback_query.from_user.mention()}")
+            await callback_query.message.reply(f"<blockquote>🪄𝐈 𝐖αƨ 𝐘σʋя '𝐌αʏвɛ'..✨ 𝐁ʋт 𝐘σʋ 𝐖ɛяɛ 𝐌ʏ '𝐃ɛғιиιтɛƖʏ'...💕🦋<\blockquote>\n<blockquote>𝐈 𝐇αтɛ 𝐇σω 𝐈 𝐂αи*т 𝐇αтɛ 𝐘σʋ\n{callback_query.from_user.mention()}<\blockquote>")
             try:
                 await call_py.pause(chat_id)
             except:
@@ -2593,7 +2593,7 @@ async def skip_handler_func(client, message):
    if message.chat.id in queues:
     if len(queues[message.chat.id]) >0:
        next = queues[message.chat.id].pop(0)
-       await client.send_message(message.chat.id, f"⏭️ 𝗦𝗞𝗜𝗣𝗣𝗜𝗡𝗚!\n┏━━━━━━━━━━━━━━\n┣ 𝗡𝗲𝘅𝘁 𝘁𝗿𝗮𝗰𝗸 𝗹𝗼𝗮𝗱𝗶𝗻𝗴...\n┗ 👤 {message.from_user.mention()}")
+       await client.send_message(message.chat.id, f"<blockquote>🪄𝐈 𝐖αƨ 𝐘σʋя '𝐌αʏвɛ'..✨ 𝐁ʋт 𝐘σʋ 𝐖ɛяɛ 𝐌ʏ '𝐃ɛғιиιтɛƖʏ'...💕🦋<\blockquote>\n<blockquote>𝐈 𝐇αтɛ 𝐇σω 𝐈 𝐂αи*т 𝐇αтɛ 𝐘σʋ\n{callback_query.from_user.mention()}<\blockquote>")
        playing[message.chat.id] = next
        try:
           await call_py.pause(message.chat.id)
