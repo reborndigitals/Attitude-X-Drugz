@@ -621,7 +621,7 @@ queue_styles = {
 
     5: """<blockquote>⋆｡°✩ 𝐒σʋƖмᴧтɛ 𝐖ᴧιт ✩°｡⋆</blockquote>
 <blockquote>┏━━━━━━━━━━━━━━━
-┣⟡ 𝐒σʋƖ: {}[:18]
+┣⟡ 𝐒σʋƖ: {}
 ┣⟡ 𝐒ρɛи∂: {}
 ┗⟡ 𝐃ιƨтᴧиᴄє: #{}</blockquote>""",
     
@@ -708,7 +708,7 @@ play_styles = {
 
     5: """<blockquote>⋆｡°✩ 𝐒σʋƖмᴧтɛ 𝐅σʋи∂ ✩°｡⋆</blockquote>
 <blockquote>┏━━━━━━━━━━━━━━━
-┣⟡ 𝐒σʋƖ: {}[:18]
+┣⟡ 𝐒σʋƖ: {}
 ┣⟡ 𝐒ρɛи∂: {}
 ┗⟡ 𝐓нɛғт-βʏ: {}</blockquote>""",
     
@@ -1147,7 +1147,7 @@ AudioQuality.HIGH,
         ])
         sent_message = await clients["bot"].send_photo(
             message.chat.id, thumb, play_styles[int(gvarstatus(OWNER_ID, "format") or 5)].format(
-f"[{lightyagami(title)}](https://t.me/{clients['bot'].me.username}?start=vidid_{extract_video_id(youtube_link)})" if not os.path.exists(youtube_link) else lightyagami(title), duration, by.mention()),
+f"[{lightyagami(title)[:18]}](https://t.me/{clients['bot'].me.username}?start=vidid_{extract_video_id(youtube_link)})" if not os.path.exists(youtube_link) else lightyagami(title)[:18], duration, by.mention()),
             reply_markup=keyboard        )
         asyncio.create_task(autoleave_vc(sent_message, duration,chat))
         asyncio.create_task(update_progress_button(sent_message, duration,chat))
