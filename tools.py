@@ -619,11 +619,11 @@ queue_styles = {
 ║ 𝔻𝕦𝕣𝕒𝕥𝕚𝕠𝕟: {}
 ╚ ℙ𝕠𝕤𝕚𝕥𝕚𝕠𝕟: #{}""",
 
-    5: """<blockquote>⋆｡°✩ ғᴜᴛᴜʀᴇ ᴛʀᴀᴄᴋ ✩°｡⋆</blockquote>
+    5: """<blockquote>⋆｡°✩ 𝐒σʋƖмᴧтɛ 𝐖ᴧιт ✩°｡⋆</blockquote>
 <blockquote>┏━━━━━━━━━━━━━━━
-┣⟡ ᴛɪᴛʟᴇ: {}[:18]
-┣⟡ ʟᴇɴɢᴛʜ: {}
-┗⟡ ᴘᴏꜱɪᴛɪᴏɴ: #{}</blockquote>""",
+┣⟡ 𝐒σʋƖ: {}[:18]
+┣⟡ 𝐒ρɛи∂: {}
+┗⟡ 𝐃ιƨтᴧиᴄє: #{}</blockquote>""",
     
 
     6: """🌊 𝙌𝙪𝙚𝙪𝙚 𝙐𝙥𝙙𝙖𝙩𝙚𝙙 🌊
@@ -706,11 +706,11 @@ play_styles = {
 ║ 𝔻𝕦𝕣𝕒𝕥𝕚𝕠𝕟: {}
 ╚ ℝ𝕖𝕢𝕦𝕖𝕤𝕥𝕖𝕕 𝕓𝕪: {}""",
 
-    5: """<blockquote>⋆｡°✩ ᴄᴜʀʀᴇɴᴛ ᴛʀᴀᴄᴋ ✩°｡⋆</blockquote>
+    5: """<blockquote>⋆｡°✩ 𝐒σʋƖмᴧтɛ 𝐅σʋи∂ ✩°｡⋆</blockquote>
 <blockquote>┏━━━━━━━━━━━━━━━
-┣⟡ ᴛɪᴛʟᴇ: {}[:18]
-┣⟡ ʟᴇɴɢᴛʜ: {}
-┗⟡ ᴅᴊ: {}</blockquote>""",
+┣⟡ 𝐒σʋƖ: {}[:18]
+┣⟡ 𝐒ρɛи∂: {}
+┗⟡ 𝐓нɛғт-βʏ: {}</blockquote>""",
     
 
     6: """🌊 𝙉𝙤𝙬 𝙋𝙡𝙖𝙮𝙞𝙣𝙜 🌊
@@ -1138,10 +1138,10 @@ AudioQuality.HIGH,
             ],
         [
             InlineKeyboardButton(
-                text="ɴᴇᴛᴡᴏʀᴋ", url=f"https://t.me/HeartBeat_Offi"
+                text="˹𝐍єтωσяк˼", url=f"https://t.me/HeartBeat_Offi"
             ),
             InlineKeyboardButton(
-                text="ᴄʜᴀᴛ", url=f"https://t.me/HeartBeat_Fam"
+                text="˹𝐂нᴧт˼", url=f"https://t.me/HeartBeat_Fam"
             ),
         ],
         ])
