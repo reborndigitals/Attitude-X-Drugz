@@ -407,7 +407,7 @@ async def remove_active_chat(chat_id):
     os.makedirs(chat_dir, exist_ok=True)
     clear_directory(chat_dir)
 
-
+'''
 async def autoleave_vc(message, duration_str,chat):
     """
     Automatically leave voice chat when only the bot remains in the call for 5 seconds
@@ -522,7 +522,7 @@ async def pautoleave_vc(message, duration_str):
         
         # Wait before next check
         await asyncio.sleep(10)
-
+'''
 
 async def update_progress_button(message, duration_str,chat):
     try:
@@ -549,9 +549,9 @@ async def update_progress_button(message, duration_str,chat):
             elapsed_str = time.strftime('%M:%S', time.gmtime(int(time.time() - played[chat.id])))
             elapsed_seconds = int(time.time() - played[chat.id])
             # Calculate progress bar (6 `─` with spaces)
-            progress_length = 7
+            progress_length = 8
             position = min(int((elapsed_seconds / total_seconds) * progress_length), progress_length)
-            progress_bar = "ﮩ٨ـ" * position + "𔘓" + "ﮩ٨ـ" * (progress_length - position - 1)
+            progress_bar = "⭑" * position + "✪" + "⭑" * (progress_length - position - 1)
             progress_bar = progress_bar.strip()  # Remove trailing spaces
 
             progress_text = f"{elapsed_str} {progress_bar} {duration_str}"
