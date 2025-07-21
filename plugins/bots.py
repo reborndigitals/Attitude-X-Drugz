@@ -1831,14 +1831,14 @@ async def play_handler_func(client, message):
             ],
         [
             InlineKeyboardButton(
-                text="ɴᴇᴛᴡᴏʀᴋ", url=f"https://t.me/HeartBeat_Offi"
+                text="˹𝐍єтωσяк˼", url=f"https://t.me/HeartBeat_Offi"
             ),
             InlineKeyboardButton(
-                text="ᴄʜᴀᴛ", url=f"https://t.me/HeartBeat_Fam"
+                text="˹𝐂нᴧт˼", url=f"https://t.me/HeartBeat_Fam"
             ),
         ],
         ])
-                await client.send_message(message.chat.id, queue_styles[int(11)].format(lightyagami(mode), f"[{lightyagami(title)}](https://t.me/{client.me.username}?start=vidid_{extract_video_id(youtube_link)})" if not os.path.exists(youtube_link) else  lightyagami(title), lightyagami(duration), position), reply_markup=keyboard,disable_web_page_preview=True)
+                await client.send_message(message.chat.id, queue_styles[int(5)].format(f"[{lightyagami(title)[:15]}](https://t.me/{client.me.username}?start=vidid_{extract_video_id(youtube_link)})" if not os.path.exists(youtube_link) else  lightyagami(title)[:15], lightyagami(duration), position), reply_markup=keyboard,disable_web_page_preview=True)
 
     else:
       await dend(client, massage, target_chat.id if channel_mode else None)
