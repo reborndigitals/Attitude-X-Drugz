@@ -1629,7 +1629,7 @@ async def play_handler_func(client, message):
     # Check queue for the target chat
     current_queue = len(queues.get(target_chat_id, [])) if queues else 0  
 
-    massage = await message.reply("🦋")
+    massage = await message.reply("**🫴𝐘σʋя 𝐍αмɛ 𝐎и 𝐌ʏ 𝐋ιρƨ🫦 𝐓αƨтɛƨ 𝐋ικɛ ✨ Λ 𝐌ɛƖтιиɢ 𝐂нσcσƖαтɛ 🍭**")
     
     # Set target chat as active based on channel mode or not
     is_active = await is_active_chat(client, target_chat_id)
