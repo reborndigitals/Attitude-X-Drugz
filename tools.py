@@ -624,7 +624,7 @@ queue_styles = {
 ┣⟡ 𝐒σʋƖ ➥ {}
 ┣⟡ 𝐒ρɛи∂ ➥ {}
 ┗⟡ 𝐃ιƨтᴧиᴄɛ ➥ #{}</blockquote>
- </blockquote>☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★</blockquote>""",
+ <blockquote>☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★</blockquote>""",
     
 
     6: """🌊 𝙌𝙪𝙚𝙪𝙚 𝙐𝙥𝙙𝙖𝙩𝙚𝙙 🌊
@@ -711,9 +711,9 @@ play_styles = {
 <blockquote>┏━━━━━━━━━━━━━━━
 ┣⟡ 𝐒σʋƖ ➥ {}
 ┣⟡ 𝐒ρɛи∂ ➥ {}
-┗━━━⟡𝐓нɛғт-βʏ⟡━━━
- \n{}</blockquote>
- </blockquote>☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★</blockquote>""",
+┗━━━⟡𝐓нɛғт-βʏ⟡━━━━
+ \n{}\n</blockquote>
+ <blockquote>☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★</blockquote>""",
     
 
     6: """🌊 𝙉𝙤𝙬 𝙋𝙡𝙖𝙮𝙞𝙣𝙜 🌊
