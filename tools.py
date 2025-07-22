@@ -1139,10 +1139,10 @@ AudioQuality.HIGH,
             ],
         [
             InlineKeyboardButton(
-                text="🔻𝐒ʋиƨнιи🔺", url=f"https://t.me/HeartBeat_Offi"
+                text="🔻𝐒ωɛɛт🔺", url=f"https://t.me/HeartBeat_Offi"
             ),
             InlineKeyboardButton(
-                text="🔻𝐌σσиƖιɢнт🔺", url=f"https://t.me/HeartBeat_Fam"
+                text="🔻𝐏ɛρρɛя🔺", url=f"https://t.me/HeartBeat_Fam"
             ),
         ],
         ])
