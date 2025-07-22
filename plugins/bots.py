@@ -2459,7 +2459,7 @@ f"<blockquote>**🫴🏻𝐓нɛ 𝐇σттɛƨт 𝐋σᴠɛ 𝐇αƨ 𝐓нɛ 
      await call_py.leave_call(message.chat.id)
      playing[message.chat.id].clear()
   except NotInCallError:
-     await client.send_message(message.chat.id, f""
+     await client.send_message(message.chat.id, f"**𝐏Ɩαʏ 𝐀ɢαιи**"
 )
      playing[message.chat.id].clear()
 
