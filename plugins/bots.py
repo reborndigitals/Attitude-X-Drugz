@@ -1173,13 +1173,15 @@ async def user_client_start_handler(client, message):
 
 
        greet_message = gvarstatus(client.me.id, "WELCOME") or """
-🌟 𝖂𝖊𝖑𝖈𝖔𝖒𝖊, {name}! 🌟
-
-🎶 Your **musical journey** begins with {botname}!
-
-✨ Enjoy _crystal-clear_ audio and a vast library of sounds.
-
-🚀 Get ready for an *unparalleled* musical adventure!
+<blockquote>𝆺𝅥𓆩〭〬❥𝖂ɛƖᴄσмɛ \n
+{name}</blockquote>
+➽─────────────────❥ 
+<blockquote>𓆩⃪〭𝆭〬፥܍𝐀м 𝐘σʋяƨ \𝐧
+{botname}</blockquote>
+☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★
+<blockquote>🌹 𝐀 𝐓нσƨαи∂ 𝐒σиɢƨ 𝐈 𝐖ιƨнɛ∂ 𝐓σ 𝐇ɛαя.. 𝐁ʋт 𝐖ιтн 𝐘σʋ 𝐁ɛƨι∂ɛ 𝐌ɛ, 𝐓нαт 𝐎иɛ 𝐌σмɛит 𝐁ɛαтƨ 𝐓нɛм 𝐀ƖƖ...</blockquote>
+☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★
+<blockquote>💕🦋𝐃σит тσʋᴄн мʏ [𝐂𝖗𝖚𝖘𝖍 🦇](http://t.me/Ghostt_Batt)</blockquote>
 """
 
        send = client.send_video if alive_logo.endswith(".mp4") else client.send_photo
@@ -1351,13 +1353,15 @@ async def commands_handler(client, callback_query):
             name = callback_query.from_user.mention()
             botname = client.me.mention()
             greet_message = gvarstatus(client.me.id, "WELCOME") or """
-🌟 𝖂𝖊𝖑𝖈𝖔𝖒𝖊, {name}! 🌟
-
-🎶 Your **musical journey** begins with {botname}!
-
-✨ Enjoy _crystal-clear_ audio and a vast library of sounds.
-
-🚀 Get ready for an *unparalleled* musical adventure!
+<blockquote>𝆺𝅥𓆩〭〬❥𝖂ɛƖᴄσмɛ \n
+{name}</blockquote>
+➽─────────────────❥ 
+<blockquote>𓆩⃪〭𝆭〬፥܍𝐀м 𝐘σʋяƨ \𝐧
+{botname}</blockquote>
+☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★
+<blockquote>🌹 𝐀 𝐓нσƨαи∂ 𝐒σиɢƨ 𝐈 𝐖ιƨнɛ∂ 𝐓σ 𝐇ɛαя.. 𝐁ʋт 𝐖ιтн 𝐘σʋ 𝐁ɛƨι∂ɛ 𝐌ɛ, 𝐓нαт 𝐎иɛ 𝐌σмɛит 𝐁ɛαтƨ 𝐓нɛм 𝐀ƖƖ...</blockquote>
+☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★
+<blockquote>💕🦋𝐃σит тσʋᴄн мʏ [𝐂𝖗𝖚𝖘𝖍 🦇](http://t.me/Ghostt_Batt)</blockquote>
 """
             greet_message = await format_welcome_message(client, greet_message, user_id, callback_query.from_user.mention())
             buttons = [
@@ -3952,13 +3956,15 @@ async def set_welcome_handler(client, message):
                     alive_logo = rename_file(alive_logo, logo_path_mp4)
 
             welcome_text = gvarstatus(sender_id, "WELCOME") or f"""
-🌟 𝖂𝖊𝖑𝖈𝖔𝖒𝖊, {name}! 🌟
-
-🎶 Your **musical journey** begins with {botname}!
-
-✨ Enjoy _crystal-clear_ audio and a vast library of sounds.
-
-🚀 Get ready for an *unparalleled* musical adventure!
+<blockquote>𝆺𝅥𓆩〭〬❥𝖂ɛƖᴄσмɛ \n
+{name}</blockquote>
+➽─────────────────❥ 
+<blockquote>𓆩⃪〭𝆭〬፥܍𝐀м 𝐘σʋяƨ \𝐧
+{botname}</blockquote>
+☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★
+<blockquote>🌹 𝐀 𝐓нσƨαи∂ 𝐒σиɢƨ 𝐈 𝐖ιƨнɛ∂ 𝐓σ 𝐇ɛαя.. 𝐁ʋт 𝐖ιтн 𝐘σʋ 𝐁ɛƨι∂ɛ 𝐌ɛ, 𝐓нαт 𝐎иɛ 𝐌σмɛит 𝐁ɛαтƨ 𝐓нɛм 𝐀ƖƖ...</blockquote>
+☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★
+<blockquote>💕🦋𝐃σит тσʋᴄн мʏ [𝐂𝖗𝖚𝖘𝖍 🦇](http://t.me/Ghostt_Batt)</blockquote>
 """
             if alive_logo.endswith(".mp4"):
                 await client.send_video(
