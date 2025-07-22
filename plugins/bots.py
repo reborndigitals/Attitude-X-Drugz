@@ -2401,7 +2401,7 @@ async def button_end_handler(client: Client, callback_query: CallbackQuery):
             queues[chat_id].clear()
             await call_py.leave_call(chat_id)
             await callback_query.message.reply(
-                f"✅ 𝗤𝗨𝗘𝗨𝗘 𝗖𝗟𝗘𝗔𝗥𝗘𝗗!\n┏━━━━━━━━━━━━━━\n┣ 𝗦𝘁𝗿𝗲𝗮𝗺𝗶𝗻𝗴 𝘀𝘁𝗼𝗽𝗽𝗲𝗱\n┗ 👤 {callback_query.from_user.mention()}"
+                f"<blockquote>**🫴🏻𝐓нɛ 𝐇σттɛƨт 𝐋σᴠɛ 𝐇αƨ 𝐓нɛ 𝐂σƖ∂ɛƨт 𝐄и∂ 💔🥹**</blockquote>\n\n<blockquote>**⋆｡°✩ 𝐁яɛακʋρ ✩°｡⋆** {callback_query.from_user.mention()}</blockquote>"
             )
             await callback_query.message.delete()
             playing[chat_id].clear()
@@ -2414,7 +2414,7 @@ async def button_end_handler(client: Client, callback_query: CallbackQuery):
             playing[chat_id].clear()
     except NotInCallError:
         await callback_query.answer(
-            f"✅ 𝗤𝗨𝗘𝗨𝗘 𝗖𝗟𝗘𝗔𝗥𝗘𝗗!\n┏━━━━━━━━━━━━━━\n┣ 𝗦𝘁𝗿𝗲𝗮𝗺𝗶𝗻𝗴 𝘀𝘁𝗼𝗽𝗽𝗲𝗱\n┗ 👤 {callback_query.from_user.mention()}",
+            f"<blockquote>**🫴🏻𝐓нɛ 𝐇σттɛƨт 𝐋σᴠɛ 𝐇αƨ 𝐓нɛ 𝐂σƖ∂ɛƨт 𝐄и∂ 💔🥹**</blockquote>\n\n<blockquote>**⋆｡°✩ 𝐁яɛακʋρ ✩°｡⋆** {callback_query.from_user.mention()}</blockquote>",
             show_alert=True,
         )
         playing[chat_id].clear()
@@ -2445,7 +2445,7 @@ async def end_handler_func(client, message):
        await remove_active_chat(client, message.chat.id)
        queues[message.chat.id].clear()
        await client.send_message(message.chat.id, 
-f"✅ 𝗤𝗨𝗘𝗨𝗘 𝗖𝗟𝗘𝗔𝗥𝗘𝗗!\n┏━━━━━━━━━━━━━━\n┣ 𝗦𝘁𝗿𝗲𝗮𝗺𝗶𝗻𝗴 𝘀𝘁𝗼𝗽𝗽𝗲𝗱\n┗ 👤 {message.from_user.mention()}"            )
+f"<blockquote>**🫴🏻𝐓нɛ 𝐇σттɛƨт 𝐋σᴠɛ 𝐇αƨ 𝐓нɛ 𝐂σƖ∂ɛƨт 𝐄и∂ 💔🥹**</blockquote>\n\n<blockquote>**⋆｡°✩ 𝐁яɛακʋρ ✩°｡⋆** {message.from_user.mention()}</blockquote>"            )
        await call_py.leave_call(message.chat.id)
        playing[message.chat.id].clear()
    else:
@@ -2509,7 +2509,7 @@ async def button_end_handler(client: Client, callback_query: CallbackQuery):
             playing[chat_id].clear()
     except NotInCallError:
         await callback_query.answer(
-            f"✅ 𝗤𝗨𝗘𝗨𝗘 𝗖𝗟𝗘𝗔𝗥𝗘𝗗!\n┏━━━━━━━━━━━━━━\n┣ 𝗦𝘁𝗿𝗲𝗮𝗺𝗶𝗻𝗴 𝘀𝘁𝗼𝗽𝗽𝗲𝗱\n┗ 👤 {callback_query.from_user.mention()}",
+            f"<blockquote>**🫴🏻𝐓нɛ 𝐇σттɛƨт 𝐋σᴠɛ 𝐇αƨ 𝐓нɛ 𝐂σƖ∂ɛƨт 𝐄и∂ 💔🥹**</blockquote>\n\n<blockquote>**⋆｡°✩ 𝐁яɛακʋρ ✩°｡⋆** {callback_query.from_user.mention()}</blockquote>",
             show_alert=True,
         )
         playing[chat_id].clear()
@@ -2692,7 +2692,7 @@ async def resume_handler_func(client, message):
    bot_username = client.me.username
    if  await is_active_chat(client, message.chat.id):
        await call_py.resume(message.chat.id)
-       await client.send_message(message.chat.id, f"▶️ 𝗥𝗘𝗦𝗨𝗠𝗘𝗗!\n┏━━━━━━━━━━━━━━\n┣ 𝗨𝘀𝗲 /𝗽𝗮𝘂𝘀𝗲 𝘁𝗼 𝘀𝘁𝗼𝗽\n┗ 👤 {message.from_user.mention()}")
+       await client.send_message(message.chat.id, f"**<blockquote>⚡𝐓нιиκιиɢ 𝐎ғ 𝐘σʋ 𝐈ƨ Λ 𝐏σιƨσи..💗 𝐈 𝐃яιиκ 𝐎ғтɛи✨💋</blockquote>**\n\n<blockquote>{message.from_user.mention()}</blockquote>")
    else: await client.send_message(message.chat.id, f"🚫 𝗡𝗢 𝗦𝗧𝗥𝗘𝗔𝗠!\n┏━━━━━━━━━━━━━━\n┣ 𝗔𝘀𝘀𝗶𝘀𝘁𝗮𝗻𝘁 𝗶𝗱𝗹𝗲\n┗ 🎧 𝗡𝗼𝘁𝗵𝗶𝗻𝗴 𝗽𝗹𝗮𝘆𝗶𝗻𝗴!")
   except NotInCallError:
      await client.send_message(message.chat.id, f"🚫 𝗡𝗢 𝗦𝗧𝗥𝗘𝗔𝗠!\n┏━━━━━━━━━━━━━━\n┣ 𝗔𝘀𝘀𝗶𝘀𝘁𝗮𝗻𝘁 𝗶𝗱𝗹𝗲\n┗ 🎧 𝗡𝗼𝘁𝗵𝗶𝗻𝗴 𝗽𝗹𝗮𝘆𝗶𝗻𝗴!")
