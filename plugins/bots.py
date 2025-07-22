@@ -1302,25 +1302,25 @@ async def commands_handler(client, callback_query):
     # ---------- Navigation buttons ----------
     category_buttons = [
         [
-            InlineKeyboardButton("🎵 Playback",   callback_data="commands_playback"),
-            InlineKeyboardButton("🔐 Auth",       callback_data="commands_auth"),
+            InlineKeyboardButton("🔺𝐏Ɩᴧʏвᴧcκ🔻",   callback_data="commands_playback"),
+            InlineKeyboardButton("▪️𝐀ʋтн▪️",       callback_data="commands_auth"),
         ],
         [
-            InlineKeyboardButton("🚫 Blocklist",  callback_data="commands_blocklist"),
-            InlineKeyboardButton("🔑 Sudo",       callback_data="commands_sudo"),
+            InlineKeyboardButton("🔺𝐁ƖᴧcκƖιƨт🔻",  callback_data="commands_blocklist"),
+            InlineKeyboardButton("▪️𝐒ʋᴅσ▪️",       callback_data="commands_sudo"),
         ],
         [
-            InlineKeyboardButton("📢 Broadcast",  callback_data="commands_broadcast"),
-            InlineKeyboardButton("🛠️ Tools",     callback_data="commands_tools"),
+            InlineKeyboardButton("🔺𝐁яσᴧᴅcᴧƨт🔻",  callback_data="commands_broadcast"),
+            InlineKeyboardButton("▪️𝐓σσƖƨ▪️",     callback_data="commands_tools"),
         ],
         [
-            InlineKeyboardButton("🎨 Kang/Meme",  callback_data="commands_kang"),
-            InlineKeyboardButton("📊 Status",     callback_data="commands_status"),
+            InlineKeyboardButton("🔺𝐊ᴧиɢ-𝐌ɛмɛ🔻",  callback_data="commands_kang"),
+            InlineKeyboardButton("▪️𝐒тᴧтʋƨ▪️",     callback_data="commands_status"),
         ],
         [
-            InlineKeyboardButton("⚙️ Owner",      callback_data="commands_owner"),
+            InlineKeyboardButton("🔺𝐂яʋƨн🔻",      callback_data="commands_owner"),
         ],
-        [InlineKeyboardButton("🏠 Home",         callback_data="commands_back")],
+        [InlineKeyboardButton("🔻𝐆σ 𝐓σ 𝐌ʏ 𝐇ɛᴧят🔻",         callback_data="commands_back")],
     ]
 
     back_button = [[InlineKeyboardButton("🔙 Back", callback_data="commands_all")]]
@@ -1328,7 +1328,7 @@ async def commands_handler(client, callback_query):
     # ---------- Routing ----------
     if data == "all":
         await callback_query.message.edit_caption(
-            caption="<blockquote>𓆩⃪〭𝆭〬፥܍𝐇єу 𝐌ιηє \n{name}</blockquote>\n☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★\n<blockquote>🌹 𝐌ʏ 𝐕σιᴄɛ 𝐃ιƨƨσƖνɛƨ 𝐘σʋя Λᴄнɛƨ 𝐋ικɛ 𝐒ʋɢαя 𝐈и 𝐓ɛα</blockquote>\n☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★\n<blockquote>💕🦋𝐃σит тσʋᴄн мʏ [𝐂𝖗𝖚𝖘𝖍 🦇](https://t.me/Ghostt_Batt)</blockquote>",
+            caption="<blockquote>𓆩⃪〭𝆭〬፥܍𝐇єу 𝐌ιηє, 𝐓нιƨ 𝐈ƨ \n{botname}</blockquote>\n☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★\n<blockquote>🌹 𝐌ʏ 𝐕σιᴄɛ 𝐃ιƨƨσƖνɛƨ 𝐘σʋя Λᴄнɛƨ 𝐋ικɛ 𝐒ʋɢαя 𝐈и 𝐓ɛα</blockquote>\n☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★\n<blockquote>💕🦋𝐃σит тσʋᴄн мʏ [𝐂𝖗𝖚𝖘𝖍 🦇](https://t.me/Ghostt_Batt)</blockquote>",
             reply_markup=InlineKeyboardMarkup(category_buttons),
         )
     elif data == "playback":
@@ -1365,17 +1365,17 @@ async def commands_handler(client, callback_query):
 """
             greet_message = await format_welcome_message(client, greet_message, user_id, callback_query.from_user.mention())
             buttons = [
-                [InlineKeyboardButton("Aᴅᴅ ᴍᴇ ᴛᴏ ɢʀᴏᴜᴘ", url=f"https://t.me/{client.me.username}?startgroup=true")],
+                [InlineKeyboardButton("🔻 𝐒ɛɛ 𝐓нɛ 𝐌ᴧɢιᴄ 🔺", url=f"https://t.me/{client.me.username}?startgroup=true")],
                 [InlineKeyboardButton("Hᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅꜱ", callback_data="commands_all")],
                 [
                     InlineKeyboardButton(
                         "Cʀᴇᴀᴛᴏʀ",
                         user_id=OWNER_ID
                     ) if ow_id else InlineKeyboardButton(
-                        "Cʀᴇᴀᴛᴏʀ",
-                        url="https://t.me/NubDockerbot"
+                        "🔻 𝐍ɛтωσяκ 🔺",
+                        url="https://t.me/HeartBeat_Offi"
                     ),
-                    InlineKeyboardButton("Sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ", url = f"https://t.me/{GROUP}")
+                    InlineKeyboardButton("🔺 𝐂нᴧт 🔻", url = f"https://t.me/HeartBeat_Fam")
                 ],
             ]
             await callback_query.message.edit_caption(
