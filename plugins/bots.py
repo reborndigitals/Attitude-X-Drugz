@@ -2493,7 +2493,7 @@ async def button_end_handler(client: Client, callback_query: CallbackQuery):
          else:
             await clients['call_py'].leave_call(chat_id)
             await remove_active_chat(client, chat_id)
-            await callback_query.message.reply(f"<blockquote>💞 𝐈 𝐆αᴠɛ 𝐘σʋ 𝐌ʏ 𝐇ɛαят❤️.. 𝐀и∂ 𝐘σʋ 𝐓яɛαтɛ∂ 𝐀т 𝐋ικɛ α 𝐑ɛитαƖ... 💕🥺<\blockquote>\n\n<blockquote>𝐘σʋ 𝐁яσκɛ 𝐌ʏ 𝐇ɛαят💔\n{callback_query.from_user.mention()}<\blockquote>")
+            await callback_query.message.reply(f"<blockquote>💞 𝐈 𝐆αᴠɛ 𝐘σʋ 𝐌ʏ 𝐇ɛαят❤️.. 𝐀и∂ 𝐘σʋ 𝐓яɛαтɛ∂ 𝐀т 𝐋ικɛ α 𝐑ɛитαƖ... 💕🥺<\blockquote>\n\n<blockquote>𝐘σʋ 𝐁яσκɛ 𝐌ʏ 𝐇ɛαят💔\n {callback_query.from_user.mention()}<\blockquote>")
             playing[chat_id].clear()
             await callback_query.message.delete()
         else:
@@ -2593,7 +2593,7 @@ async def skip_handler_func(client, message):
    if message.chat.id in queues:
     if len(queues[message.chat.id]) >0:
        next = queues[message.chat.id].pop(0)
-       await client.send_message(message.chat.id, f"<blockquote>🪄𝐈 𝐖αƨ 𝐘σʋя '𝐌αʏвɛ'..✨ 𝐁ʋт 𝐘σʋ 𝐖ɛяɛ 𝐌ʏ '𝐃ɛғιиιтɛƖʏ'...💕🦋<\blockquote>\n<blockquote>𝐈 𝐇αтɛ 𝐇σω 𝐈 𝐂αи*т 𝐇αтɛ 𝐘σʋ\n{callback_query.from_user.mention()}<\blockquote>")
+       await client.send_message(message.chat.id, f"<blockquote>🪄𝐈 𝐖αƨ 𝐘σʋя '𝐌αʏвɛ'..✨ 𝐁ʋт 𝐘σʋ 𝐖ɛяɛ 𝐌ʏ '𝐃ɛғιиιтɛƖʏ'...💕🦋<\blockquote>\n<blockquote>𝐈 𝐇αтɛ 𝐇σω 𝐈 𝐂αи*т 𝐇αтɛ 𝐘σʋ\n {callback_query.from_user.mention()} <\blockquote>")
        playing[message.chat.id] = next
        try:
           await call_py.pause(message.chat.id)
@@ -2604,13 +2604,13 @@ async def skip_handler_func(client, message):
     else:
        await call_py.leave_call(message.chat.id)
        await remove_active_chat(client, message.chat.id)
-       await client.send_message(message.chat.id, f"<blockquote>💞 𝐈 𝐆αᴠɛ 𝐘σʋ 𝐌ʏ 𝐇ɛαят❤️.. 𝐀и∂ 𝐘σʋ 𝐓яɛαтɛ∂ 𝐀т 𝐋ικɛ α 𝐑ɛитαƖ... 💕🥺<\blockquote>\n\n<blockquote>𝐘σʋ 𝐁яσκɛ 𝐌ʏ 𝐇ɛαят💔\n{callback_query.from_user.mention()}<\blockquote>")
+       await client.send_message(message.chat.id, f"<blockquote>💞 𝐈 𝐆αᴠɛ 𝐘σʋ 𝐌ʏ 𝐇ɛαят❤️.. 𝐀и∂ 𝐘σʋ 𝐓яɛαтɛ∂ 𝐀т 𝐋ικɛ α 𝐑ɛитαƖ... 💕🥺<\blockquote>\n\n<blockquote>𝐘σʋ 𝐁яσκɛ 𝐌ʏ 𝐇ɛαят💔\n {callback_query.from_user.mention()} <\blockquote>")
        playing[message.chat.id].clear()
    else:
        await call_py.leave_call(message.chat.id)
        await remove_active_chat(client, message.chat.id)
        await client.send_message(message.chat.id, 
-              f"<blockquote>💞 𝐈 𝐆αᴠɛ 𝐘σʋ 𝐌ʏ 𝐇ɛαят❤️.. 𝐀и∂ 𝐘σʋ 𝐓яɛαтɛ∂ 𝐀т 𝐋ικɛ α 𝐑ɛитαƖ... 💕🥺<\blockquote>\n\n<blockquote>𝐘σʋ 𝐁яσκɛ 𝐌ʏ 𝐇ɛαят💔\n{callback_query.from_user.mention()}<\blockquote>")
+              f"<blockquote>💞 𝐈 𝐆αᴠɛ 𝐘σʋ 𝐌ʏ 𝐇ɛαят❤️.. 𝐀и∂ 𝐘σʋ 𝐓яɛαтɛ∂ 𝐀т 𝐋ικɛ α 𝐑ɛитαƖ... 💕🥺<\blockquote>\n\n<blockquote>𝐘σʋ 𝐁яσκɛ 𝐌ʏ 𝐇ɛαят💔\n {callback_query.from_user.mention()}<\blockquote>")
        playing[message.chat.id].clear()
   except NotInCallError:
      await client.send_message(message.chat.id, f"🚫 𝗡𝗢 𝗦𝗧𝗥𝗘𝗔𝗠!\n┏━━━━━━━━━━━━━━\n┣ 𝗔𝘀𝘀𝗶𝘀𝘁𝗮𝗻𝘁 𝗶𝗱𝗹𝗲\n┗ 🎧 𝗡𝗼𝘁𝗵𝗶𝗻𝗴 𝗽𝗹𝗮𝘆𝗶𝗻𝗴!"
