@@ -1113,17 +1113,17 @@ async def user_client_start_handler(client, message):
     ow_id = owner.id if owner.username else None
 
     buttons = [
-   [InlineKeyboardButton("Aᴅᴅ ᴍᴇ ᴛᴏ ɢʀᴏᴜᴘ", url=f"https://t.me/{client.me.username}?startgroup=true")],
-   [InlineKeyboardButton("Hᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅꜱ", callback_data="commands_all")],
+   [InlineKeyboardButton("🔻 𝐒ɛɛ 𝐓нɛ 𝐌ᴧɢιᴄ 🔺", url=f"https://t.me/{client.me.username}?startgroup=true")],
+   [InlineKeyboardButton("▪️ 𝐂σммᴧη∂ƨ ▪️", callback_data="commands_all")],
    [
        InlineKeyboardButton(
            "Cʀᴇᴀᴛᴏʀ",
            user_id=OWNER_ID
        ) if ow_id else InlineKeyboardButton(
-           "Cʀᴇᴀᴛᴏʀ",
-           url="https://t.me/NubDockerbot"
+           "🔻 𝐍ɛтωσяκ 🔺",
+           url="https://t.me/HeartBeat_Offi"
        ),
-       InlineKeyboardButton("Sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ", url = f"https://t.me/{GROUP}")
+       InlineKeyboardButton("🔺 𝐂нᴧт 🔻", url = f"https://t.me/HeartBeat_Fam")
    ],
 ]
     import psutil
@@ -1366,7 +1366,7 @@ async def commands_handler(client, callback_query):
             greet_message = await format_welcome_message(client, greet_message, user_id, callback_query.from_user.mention())
             buttons = [
                 [InlineKeyboardButton("🔻 𝐒ɛɛ 𝐓нɛ 𝐌ᴧɢιᴄ 🔺", url=f"https://t.me/{client.me.username}?startgroup=true")],
-                [InlineKeyboardButton("Hᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅꜱ", callback_data="commands_all")],
+                [InlineKeyboardButton("▪️ 𝐂σммᴧη∂ƨ ▪️", callback_data="commands_all")],
                 [
                     InlineKeyboardButton(
                         "Cʀᴇᴀᴛᴏʀ",
