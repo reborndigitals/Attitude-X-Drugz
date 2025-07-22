@@ -1303,18 +1303,18 @@ async def commands_handler(client, callback_query):
     category_buttons = [
         [
             InlineKeyboardButton("🔺𝐏Ɩᴧʏвᴧcκ🔻",   callback_data="commands_playback"),
-            InlineKeyboardButton("▪️𝐀ʋтн▪️",       callback_data="commands_auth"),
+            InlineKeyboardButton("🔺𝐀ʋтн🔻",       callback_data="commands_auth"),
         ],
         [
-            InlineKeyboardButton("🔺𝐁ƖᴧcκƖιƨт🔻",  callback_data="commands_blocklist"),
+            InlineKeyboardButton("▪️𝐁ƖᴧcκƖιƨт▪️",  callback_data="commands_blocklist"),
             InlineKeyboardButton("▪️𝐒ʋᴅσ▪️",       callback_data="commands_sudo"),
         ],
         [
             InlineKeyboardButton("🔺𝐁яσᴧᴅcᴧƨт🔻",  callback_data="commands_broadcast"),
-            InlineKeyboardButton("▪️𝐓σσƖƨ▪️",     callback_data="commands_tools"),
+            InlineKeyboardButton("🔺𝐓σσƖƨ🔻",     callback_data="commands_tools"),
         ],
         [
-            InlineKeyboardButton("🔺𝐊ᴧиɢ-𝐌ɛмɛ🔻",  callback_data="commands_kang"),
+            InlineKeyboardButton("▪️𝐊ᴧиɢ-𝐌ɛмɛ▪️",  callback_data="commands_kang"),
             InlineKeyboardButton("▪️𝐒тᴧтʋƨ▪️",     callback_data="commands_status"),
         ],
         [
