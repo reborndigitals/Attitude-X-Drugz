@@ -204,7 +204,7 @@ async def active_chats(client, message):
     )
 
     if not is_authorized:
-        return await message.reply("**MF\n\nTHIS IS OWNER/SUDOER'S COMMAND...**")
+        return await message.reply("**<blockquote>🪄𝐓нιƨ 𝐈ƨ 𝐔ƨɛ∂ 𝐁ʏ 𝐌ʏ 𝐂яʋƨн @Ghostt_Batt 🦇 𝐎иƖʏ✨🏓<blockquote>**")
 
     active_chats_list = active
     if active_chats_list:
@@ -586,7 +586,7 @@ async def block_user(client, message):
     )
 
     if not is_authorized:
-        return await message.reply("**MF\n\nTHIS IS OWNER/SUDOER'S COMMAND...**")
+        return await message.reply("**<blockquote>🪄𝐓нιƨ 𝐈ƨ 𝐔ƨɛ∂ 𝐁ʏ 𝐌ʏ 𝐂яʋƨн @Ghostt_Batt 🦇 𝐎иƖʏ✨🏓<blockquote>**")
 
     # Check if the message is a reply
 
@@ -661,7 +661,7 @@ async def reboot_handler(client: Client, message: Message):
     )
 
     if not is_authorized:
-        return await message.reply("**MF\n\nTHIS IS OWNER/SUDOER'S COMMAND...**")
+        return await message.reply("**<blockquote>🪄𝐓нιƨ 𝐈ƨ 𝐔ƨɛ∂ 𝐁ʏ 𝐌ʏ 𝐂яʋƨн @Ghostt_Batt 🦇 𝐎иƖʏ✨🏓<blockquote>**")
 
     # Authorized: Reboot process
     await message.reply("**Admin command received. Rebooting...**")
@@ -689,7 +689,7 @@ async def unblock_user(client, message):
     )
 
     if not is_authorized:
-        return await message.reply("**MF\n\nTHIS IS OWNER/SUDOER'S COMMAND...**")
+        return await message.reply("**<blockquote>🪄𝐓нιƨ 𝐈ƨ 𝐔ƨɛ∂ 𝐁ʏ 𝐌ʏ 𝐂яʋƨн @Ghostt_Batt 🦇 𝐎иƖʏ✨🏓<blockquote>**")
 
     user_data = collection.find_one({"bot_id": client.me.id})
     busers = user_data.get('busers', {}) if user_data else []
@@ -1402,7 +1402,7 @@ async def blocklist_handler(client, message):
     )
 
     if not is_authorized:
-        return await message.reply("**MF\n\nTHIS IS OWNER/SUDOER'S COMMAND...**")
+        return await message.reply("**<blockquote>🪄𝐓нιƨ 𝐈ƨ 𝐔ƨɛ∂ 𝐁ʏ 𝐌ʏ 𝐂яʋƨн @Ghostt_Batt 🦇 𝐎иƖʏ✨🏓<blockquote>**")
 
     # Check for admin or owner
 
@@ -3005,7 +3005,7 @@ async def status_command_handler(client, message):
     )
 
     if not is_authorized:
-        return await message.reply("**MF\n\nTHIS IS OWNER/SUDOER'S COMMAND...**")
+        return await message.reply("**<blockquote>🪄𝐓нιƨ 𝐈ƨ 𝐔ƨɛ∂ 𝐁ʏ 𝐌ʏ 𝐂яʋƨн @Ghostt_Batt 🦇 𝐎иƖʏ✨🏓<blockquote>**")
 
     await status(client, message)
 
@@ -3032,7 +3032,7 @@ async def broadcast_command_handler(client, message):
     )
 
     if not is_authorized:
-        return await message.reply("**MF\n\nTHIS IS OWNER/SUDOER'S COMMAND...**")
+        return await message.reply("**<blockquote>🪄𝐓нιƨ 𝐈ƨ 𝐔ƨɛ∂ 𝐁ʏ 𝐌ʏ 𝐂яʋƨн @Ghostt_Batt 🦇 𝐎иƖʏ✨🏓<blockquote>**")
 
     sender_id = client.me.id
     user_data = user_sessions.find_one({"bot_id": sender_id})
