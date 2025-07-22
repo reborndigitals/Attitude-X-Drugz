@@ -1629,7 +1629,7 @@ async def play_handler_func(client, message):
     # Check queue for the target chat
     current_queue = len(queues.get(target_chat_id, [])) if queues else 0  
 
-    massage = await message.reply("**<blockquote>🫴𝐘σʋя 𝐍αмɛ 𝐎и 𝐌ʏ 𝐋ιρƨ🫦 𝐓αƨтɛƨ 𝐋ικɛ ✨ Λ 𝐌ɛƖтιиɢ 𝐂нσcσƖαтɛ 🍭<\blockquote>**")
+    massage = await message.reply("**<blockquote>🫴𝐘σʋя 𝐍αмɛ 𝐎и 𝐌ʏ 𝐋ιρƨ🫦 𝐓αƨтɛƨ 𝐋ικɛ ✨ Λ 𝐌ɛƖтιиɢ 𝐂нσcσƖαтɛ 🍭</blockquote>**")
     
     # Set target chat as active based on channel mode or not
     is_active = await is_active_chat(client, target_chat_id)
@@ -2409,7 +2409,7 @@ async def button_end_handler(client: Client, callback_query: CallbackQuery):
             await remove_active_chat(client, chat_id)
             await call_py.leave_call(chat_id)
             await callback_query.message.reply(
-                f"1**<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**"
+                f"**<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**"
             )
             playing[chat_id].clear()
     except NotInCallError:
@@ -2449,13 +2449,13 @@ f"<blockquote>**🫴🏻𝐓нɛ 𝐇σттɛƨт 𝐋σᴠɛ 𝐇αƨ 𝐓нɛ 
        await call_py.leave_call(message.chat.id)
        playing[message.chat.id].clear()
    else:
-     await client.send_message(message.chat.id, f"2**<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**"
+     await client.send_message(message.chat.id, f"**<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**"
 )
      await remove_active_chat(client, message.chat.id)
      await call_py.leave_call(message.chat.id)
      playing[message.chat.id].clear()
   except NotInCallError:
-     await client.send_message(message.chat.id, f"**3<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**"
+     #await client.send_message(message.chat.id, f"**<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**"
 )
      playing[message.chat.id].clear()
 
@@ -2504,7 +2504,7 @@ async def button_end_handler(client: Client, callback_query: CallbackQuery):
             await remove_active_chat(client, chat_id)
             await call_py.leave_call(chat_id)
             await callback_query.message.reply(
-                f"4**<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**"
+                f"**<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**"
             )
             playing[chat_id].clear()
     except NotInCallError:
@@ -2617,7 +2617,7 @@ async def skip_handler_func(client, message):
               f"<blockquote>💞 𝐈 𝐆αᴠɛ 𝐘σʋ 𝐌ʏ 𝐇ɛαят❤️.. 𝐀и∂ 𝐘σʋ 𝐓яɛαтɛ∂ 𝐀т 𝐋ικɛ α 𝐑ɛитαƖ... 💕🥺</blockquote>\n\n<blockquote>𝐘σʋ 𝐁яσκɛ 𝐌ʏ 𝐇ɛαят💔\n {message.from_user.mention()}</blockquote>")
        playing[message.chat.id].clear()
   except NotInCallError:
-     await client.send_message(message.chat.id, f"5**<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**"
+     await client.send_message(message.chat.id, f"**<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**"
 )
      playing[message.chat.id].clear()
 
@@ -2693,9 +2693,9 @@ async def resume_handler_func(client, message):
    if  await is_active_chat(client, message.chat.id):
        await call_py.resume(message.chat.id)
        await client.send_message(message.chat.id, f"**<blockquote>⚡𝐓нιиκιиɢ 𝐎ғ 𝐘σʋ 𝐈ƨ Λ 𝐏σιƨσи..💗 𝐈 𝐃яιиκ 𝐎ғтɛи✨💋</blockquote>**\n\n<blockquote>{message.from_user.mention()}</blockquote>")
-   else: await client.send_message(message.chat.id, f"6**<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**")
+   else: await client.send_message(message.chat.id, f"**<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**")
   except NotInCallError:
-     await client.send_message(message.chat.id, f"7**<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**")
+     await client.send_message(message.chat.id, f"**<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**")
 
 
 @Client.on_message(filters.command("pause"))
@@ -2712,9 +2712,9 @@ async def pause_handler_func(client, message):
        await client.send_message(message.chat.id, f"**<blockquote>💞𝐓нɛ 𝐂яʋɛƖɛƨт 𝐋ιɛ?🫀 '𝐈' ƖƖ 𝐍ɛᴠɛя 𝐇ʋят 𝐘σʋ... 💕💔</blockquote>**\n\n⏸️<blockquote>{message.from_user.mention()}</blockquote>"
 )
    else:
-       await client.send_message(message.chat.id,  f"8**<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**")
+       await client.send_message(message.chat.id,  f"**<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**")
   except NotInCallError:
-     await client.send_message(message.chat.id, f"9**<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**")
+     await client.send_message(message.chat.id, f"**<blockquote>🤌🏻💔 𝐒σмɛ 𝐆σσ∂вʏɛ 𝐀яɛ 𝐐ʋιɛт 𝐃ɛαтнƨ..🤏🏻 𝐘σʋяƨ 𝐖αƨ Λ 𝐖αя..🗡️ 𝐈 𝐃ι∂'т 𝐒ʋяʏʋᴠɛ 🥀🌚</blockquote>**")
 
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
