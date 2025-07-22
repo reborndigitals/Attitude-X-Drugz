@@ -1176,7 +1176,7 @@ async def user_client_start_handler(client, message):
 <blockquote>𝆺𝅥𓆩〭〬❥𝖂ɛƖᴄσмɛ \n
 {name}</blockquote>
 ➽─────────────────❥ 
-<blockquote>𓆩⃪〭𝆭〬፥܍𝐀м 𝐘σʋяƨ \𝐧
+<blockquote>𓆩⃪〭𝆭〬፥܍𝐀м 𝐘σʋяƨ \n
 {botname}</blockquote>
 ☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★
 <blockquote>🌹 𝐀 𝐓нσƨαи∂ 𝐒σиɢƨ 𝐈 𝐖ιƨнɛ∂ 𝐓σ 𝐇ɛαя.. 𝐁ʋт 𝐖ιтн 𝐘σʋ 𝐁ɛƨι∂ɛ 𝐌ɛ, 𝐓нαт 𝐎иɛ 𝐌σмɛит 𝐁ɛαтƨ 𝐓нɛм 𝐀ƖƖ...</blockquote>
@@ -1356,7 +1356,7 @@ async def commands_handler(client, callback_query):
 <blockquote>𝆺𝅥𓆩〭〬❥𝖂ɛƖᴄσмɛ \n
 {name}</blockquote>
 ➽─────────────────❥ 
-<blockquote>𓆩⃪〭𝆭〬፥܍𝐀м 𝐘σʋяƨ \𝐧
+<blockquote>𓆩⃪〭𝆭〬፥܍𝐀м 𝐘σʋяƨ \n
 {botname}</blockquote>
 ☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★
 <blockquote>🌹 𝐀 𝐓нσƨαи∂ 𝐒σиɢƨ 𝐈 𝐖ιƨнɛ∂ 𝐓σ 𝐇ɛαя.. 𝐁ʋт 𝐖ιтн 𝐘σʋ 𝐁ɛƨι∂ɛ 𝐌ɛ, 𝐓нαт 𝐎иɛ 𝐌σмɛит 𝐁ɛαтƨ 𝐓нɛм 𝐀ƖƖ...</blockquote>
@@ -3959,7 +3959,7 @@ async def set_welcome_handler(client, message):
 <blockquote>𝆺𝅥𓆩〭〬❥𝖂ɛƖᴄσмɛ \n
 {name}</blockquote>
 ➽─────────────────❥ 
-<blockquote>𓆩⃪〭𝆭〬፥܍𝐀м 𝐘σʋяƨ \𝐧
+<blockquote>𓆩⃪〭𝆭〬፥܍𝐀м 𝐘σʋяƨ \n
 {botname}</blockquote>
 ☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★
 <blockquote>🌹 𝐀 𝐓нσƨαи∂ 𝐒σиɢƨ 𝐈 𝐖ιƨнɛ∂ 𝐓σ 𝐇ɛαя.. 𝐁ʋт 𝐖ιтн 𝐘σʋ 𝐁ɛƨι∂ɛ 𝐌ɛ, 𝐓нαт 𝐎иɛ 𝐌σмɛит 𝐁ɛαтƨ 𝐓нɛм 𝐀ƖƖ...</blockquote>
