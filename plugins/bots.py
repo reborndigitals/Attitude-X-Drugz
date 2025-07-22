@@ -1328,7 +1328,7 @@ async def commands_handler(client, callback_query):
     # ---------- Routing ----------
     if data == "all":
         await callback_query.message.edit_caption(
-            caption="**📜 SELECT A COMMAND CATEGORY**",
+            caption="<blockquote>𓆩⃪〭𝆭〬፥܍𝐇єу 𝐌ιηє \n{name}</blockquote>\n☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★\n<blockquote>🌹 𝐌ʏ 𝐕σιᴄɛ 𝐃ιƨƨσƖνɛƨ 𝐘σʋя Λᴄнɛƨ 𝐋ικɛ 𝐒ʋɢαя 𝐈и 𝐓ɛα</blockquote>\n☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★\n<blockquote>💕🦋𝐃σит тσʋᴄн мʏ [𝐂𝖗𝖚𝖘𝖍 🦇](https://t.me/Ghostt_Batt)</blockquote>",
             reply_markup=InlineKeyboardMarkup(category_buttons),
         )
     elif data == "playback":
