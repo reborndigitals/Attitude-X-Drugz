@@ -1,5 +1,5 @@
 {
-  "name": "SlowPoison",
+  "name": "CollageCrush",
   "description": "🔥 Ultimate Telegram Voice Chat Music Bot with breathtaking streaming capabilities! Powered by cutting-edge latest Pyrogram (Kurigram) and next-gen PyTgCalls for lightning-fast performance. Experience crystal-clear HD audio/video streaming with stunning UI and advanced features that will revolutionize your group voice chats! ⚡✨",
   "logo": "https://raw.githubusercontent.com/nub-coders/nub-music-bot/refs/heads/main/music.jpg",
   "keywords": [
@@ -24,7 +24,7 @@
     },
     "BOT_TOKEN": {
       "description": "A Bot's token from Botfather",
-      "value": "7405370458:AAHLueU2s0Lb3Up9g_QKcJClxIKhr7E9Ymk",
+      "value": "7921879783:AAFdFgIr1ti-FOvGa00W1t6hyskwyjp6IC0",
       "required": true
     },
     "OWNER_ID": {
