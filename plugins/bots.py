@@ -2709,7 +2709,7 @@ async def pause_handler_func(client, message):
    bot_username = client.me.username
    if  await is_active_chat(client, message.chat.id):
        await call_py.pause(message.chat.id)
-       await client.send_message(message.chat.id, f"⏸️ 𝗣𝗔𝗨𝗦𝗘𝗗!\n┏━━━━━━━━━━━━━━\n┣ 𝗨𝘀𝗲 /𝗿𝗲𝘀𝘂𝗺𝗲 𝘁𝗼 𝗰𝗼𝗻𝘁𝗶𝗻𝘂𝗲\n┗ 👤 {message.from_user.mention()}"
+       await client.send_message(message.chat.id, f"**<blockquote>💞𝐓нɛ 𝐂яʋɛƖɛƨт 𝐋ιɛ?🫀 '𝐈' ƖƖ 𝐍ɛᴠɛя 𝐇ʋят 𝐘σʋ... 💕💔</blockquote>**\n\n⏸️<blockquote>{message.from_user.mention()}</blockquote>"
 )
    else:
        await client.send_message(message.chat.id,  f"🚫 𝗡𝗢 𝗦𝗧𝗥𝗘𝗔𝗠!\n┏━━━━━━━━━━━━━━\n┣ 𝗔𝘀𝘀𝗶𝘀𝘁𝗮𝗻𝘁 𝗶𝗱𝗹𝗲\n┗ 🎧 𝗡𝗼𝘁𝗵𝗶𝗻𝗴 𝗽𝗹𝗮𝘆𝗶𝗻𝗴!")
