@@ -1120,10 +1120,10 @@ async def user_client_start_handler(client, message):
            "Cʀᴇᴀᴛᴏʀ",
            user_id=OWNER_ID
        ) if ow_id else InlineKeyboardButton(
-           "Nᴇᴛᴡᴏʀᴋ",
-           url="https://t.me/HeartBeat_Offi"
+           "Cʀᴇᴀᴛᴏʀ",
+           url="https://t.me/NubDockerbot"
        ),
-       InlineKeyboardButton("Cʜᴀᴛ", url = f"https://t.me/{GROUP}")
+       InlineKeyboardButton("Sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ", url = f"https://t.me/{GROUP}")
    ],
 ]
     import psutil
@@ -1368,10 +1368,10 @@ async def commands_handler(client, callback_query):
                         "Cʀᴇᴀᴛᴏʀ",
                         user_id=OWNER_ID
                     ) if ow_id else InlineKeyboardButton(
-                        "Nᴇᴛᴡᴏʀᴋ",
-                        url="https://t.me/HeartBeat_Offi"
+                        "Cʀᴇᴀᴛᴏʀ",
+                        url="https://t.me/NubDockerbot"
                     ),
-                    InlineKeyboardButton("Cʜᴀᴛ", url = f"https://t.me/{GROUP}")
+                    InlineKeyboardButton("Sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ", url = f"https://t.me/{GROUP}")
                 ],
             ]
             await callback_query.message.edit_caption(
@@ -1629,7 +1629,7 @@ async def play_handler_func(client, message):
     # Check queue for the target chat
     current_queue = len(queues.get(target_chat_id, [])) if queues else 0  
 
-    massage = await message.reply("**🫴𝐘σʋя 𝐍αмɛ 𝐎и 𝐌ʏ 𝐋ιρƨ🫦 𝐓αƨтɛƨ 𝐋ικɛ ✨ Λ 𝐌ɛƖтιиɢ 𝐂нσcσƖαтɛ 🍭**")
+    massage = await message.reply("⚡")
     
     # Set target chat as active based on channel mode or not
     is_active = await is_active_chat(client, target_chat_id)
@@ -1829,16 +1829,16 @@ async def play_handler_func(client, message):
                 InlineKeyboardButton(text="‣‣I" if position <1 else f"‣‣I({position})", callback_data=f"{'c' if channel_mode else ''}skip"),
                 InlineKeyboardButton(text="▢", callback_data=f"{'c' if channel_mode else ''}end"),
             ],
-        [
-            InlineKeyboardButton(
-                text="˹𝐍єтωσяк˼", url=f"https://t.me/HeartBeat_Offi"
+        [                                                                                          InlineKeyboardButton(
+               text=f"{smallcap('Add to group')}" , url=f"https://t.me/{client.me.username}?startgroup=true"
             ),
             InlineKeyboardButton(
-                text="˹𝐂нᴧт˼", url=f"https://t.me/HeartBeat_Fam"
-            ),
+                text="✖ Close", 
+                callback_data="close"
+            )
         ],
         ])
-                await client.send_message(message.chat.id, queue_styles[int(5)].format(f"[{lightyagami(title)[:15]}](https://t.me/{client.me.username}?start=vidid_{extract_video_id(youtube_link)})" if not os.path.exists(youtube_link) else  lightyagami(title)[:15], lightyagami(duration), position), reply_markup=keyboard,disable_web_page_preview=True)
+                await client.send_message(message.chat.id, queue_styles[int(11)].format(lightyagami(mode), f"[{lightyagami(title)}](https://t.me/{client.me.username}?start=vidid_{extract_video_id(youtube_link)})" if not os.path.exists(youtube_link) else  lightyagami(title), lightyagami(duration), position), reply_markup=keyboard,disable_web_page_preview=True)
 
     else:
       await dend(client, massage, target_chat.id if channel_mode else None)
@@ -2482,7 +2482,7 @@ async def button_end_handler(client: Client, callback_query: CallbackQuery):
         if chat_id in queues:
          if len(queues[chat_id]) >0:
             next = queues[chat_id].pop(0)
-            await callback_query.message.reply(f"<blockquote>🪄𝐈 𝐖αƨ 𝐘σʋя '𝐌αʏвɛ'..✨ 𝐁ʋт 𝐘σʋ 𝐖ɛяɛ 𝐌ʏ '𝐃ɛғιиιтɛƖʏ'...💕🦋<\blockquote>\n<blockquote>𝐈 𝐇αтɛ 𝐇σω 𝐈 𝐂αи*т 𝐇αтɛ 𝐘σʋ\n{callback_query.from_user.mention()}<\blockquote>")
+            await callback_query.message.reply(f"⏭️ 𝗦𝗞𝗜𝗣𝗣𝗜𝗡𝗚!\n┏━━━━━━━━━━━━━━\n┣ 𝗡𝗲𝘅𝘁 𝘁𝗿𝗮𝗰𝗸 𝗹𝗼𝗮𝗱𝗶𝗻𝗴...\n┗ 👤 {callback_query.from_user.mention()}")
             try:
                 await call_py.pause(chat_id)
             except:
@@ -2493,7 +2493,7 @@ async def button_end_handler(client: Client, callback_query: CallbackQuery):
          else:
             await clients['call_py'].leave_call(chat_id)
             await remove_active_chat(client, chat_id)
-            await callback_query.message.reply(f"<blockquote>💞 𝐈 𝐆αᴠɛ 𝐘σʋ 𝐌ʏ 𝐇ɛαят❤️.. 𝐀и∂ 𝐘σʋ 𝐓яɛαтɛ∂ 𝐀т 𝐋ικɛ α 𝐑ɛитαƖ... 💕🥺<\blockquote>\n\n<blockquote>𝐘σʋ 𝐁яσκɛ 𝐌ʏ 𝐇ɛαят💔\n {callback_query.from_user.mention()}<\blockquote>")
+            await callback_query.message.reply(f"🚫 𝗦𝗞𝗜𝗣𝗣𝗘𝗗!\n┏━━━━━━━━━━━━━━\n┣ 𝗤𝘂𝗲𝘂𝗲 𝗶𝘀 𝗻𝗼𝘄 𝗲𝗺𝗽𝘁𝘆!\n┗ 👤 {callback_query.from_user.mention()}")
             playing[chat_id].clear()
             await callback_query.message.delete()
         else:
@@ -2593,7 +2593,7 @@ async def skip_handler_func(client, message):
    if message.chat.id in queues:
     if len(queues[message.chat.id]) >0:
        next = queues[message.chat.id].pop(0)
-       await client.send_message(message.chat.id, f"<blockquote>🪄𝐈 𝐖αƨ 𝐘σʋя '𝐌αʏвɛ'..✨ 𝐁ʋт 𝐘σʋ 𝐖ɛяɛ 𝐌ʏ '𝐃ɛғιиιтɛƖʏ'...💕🦋<\blockquote>\n<blockquote>𝐈 𝐇αтɛ 𝐇σω 𝐈 𝐂αи*т 𝐇αтɛ 𝐘σʋ\n {callback_query.from_user.mention()} <\blockquote>")
+       await client.send_message(message.chat.id, f"⏭️ 𝗦𝗞𝗜𝗣𝗣𝗜𝗡𝗚!\n┏━━━━━━━━━━━━━━\n┣ 𝗡𝗲𝘅𝘁 𝘁𝗿𝗮𝗰𝗸 𝗹𝗼𝗮𝗱𝗶𝗻𝗴...\n┗ 👤 {message.from_user.mention()}")
        playing[message.chat.id] = next
        try:
           await call_py.pause(message.chat.id)
@@ -2604,13 +2604,13 @@ async def skip_handler_func(client, message):
     else:
        await call_py.leave_call(message.chat.id)
        await remove_active_chat(client, message.chat.id)
-       await client.send_message(message.chat.id, f"<blockquote>💞 𝐈 𝐆αᴠɛ 𝐘σʋ 𝐌ʏ 𝐇ɛαят❤️.. 𝐀и∂ 𝐘σʋ 𝐓яɛαтɛ∂ 𝐀т 𝐋ικɛ α 𝐑ɛитαƖ... 💕🥺<\blockquote>\n\n<blockquote>𝐘σʋ 𝐁яσκɛ 𝐌ʏ 𝐇ɛαят💔\n {callback_query.from_user.mention()} <\blockquote>")
+       await client.send_message(message.chat.id, f"🚫 𝗦𝗞𝗜𝗣𝗣𝗘𝗗!\n┏━━━━━━━━━━━━━━\n┣ 𝗤𝘂𝗲𝘂𝗲 𝗶𝘀 𝗻𝗼𝘄 𝗲𝗺𝗽𝘁𝘆!\n┗ 👤 {message.from_user.mention()}")
        playing[message.chat.id].clear()
    else:
        await call_py.leave_call(message.chat.id)
        await remove_active_chat(client, message.chat.id)
        await client.send_message(message.chat.id, 
-              f"<blockquote>💞 𝐈 𝐆αᴠɛ 𝐘σʋ 𝐌ʏ 𝐇ɛαят❤️.. 𝐀и∂ 𝐘σʋ 𝐓яɛαтɛ∂ 𝐀т 𝐋ικɛ α 𝐑ɛитαƖ... 💕🥺<\blockquote>\n\n<blockquote>𝐘σʋ 𝐁яσκɛ 𝐌ʏ 𝐇ɛαят💔\n {callback_query.from_user.mention()}<\blockquote>")
+              f"🚫 𝗦𝗞𝗜𝗣𝗣𝗘𝗗!\n┏━━━━━━━━━━━━━━\n┣ 𝗤𝘂𝗲𝘂𝗲 𝗶𝘀 𝗻𝗼𝘄 𝗲𝗺𝗽𝘁𝘆!\n┗ 👤 {message.from_user.mention()}")
        playing[message.chat.id].clear()
   except NotInCallError:
      await client.send_message(message.chat.id, f"🚫 𝗡𝗢 𝗦𝗧𝗥𝗘𝗔𝗠!\n┏━━━━━━━━━━━━━━\n┣ 𝗔𝘀𝘀𝗶𝘀𝘁𝗮𝗻𝘁 𝗶𝗱𝗹𝗲\n┗ 🎧 𝗡𝗼𝘁𝗵𝗶𝗻𝗴 𝗽𝗹𝗮𝘆𝗶𝗻𝗴!"
