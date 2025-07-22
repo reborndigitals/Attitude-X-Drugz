@@ -1117,9 +1117,6 @@ async def user_client_start_handler(client, message):
    [InlineKeyboardButton("▪️ 𝐂σммᴧη∂ƨ ▪️", callback_data="commands_all")],
    [
        InlineKeyboardButton(
-           "Cʀᴇᴀᴛᴏʀ",
-           user_id=OWNER_ID
-       ) if ow_id else InlineKeyboardButton(
            "🔻 𝐍ɛтωσяκ 🔺",
            url="https://t.me/HeartBeat_Offi"
        ),
@@ -1368,10 +1365,7 @@ async def commands_handler(client, callback_query):
                 [InlineKeyboardButton("🔻 𝐒ɛɛ 𝐓нɛ 𝐌ᴧɢιᴄ 🔺", url=f"https://t.me/{client.me.username}?startgroup=true")],
                 [InlineKeyboardButton("▪️ 𝐂σммᴧη∂ƨ ▪️", callback_data="commands_all")],
                 [
-                    InlineKeyboardButton(
-                        "Cʀᴇᴀᴛᴏʀ",
-                        user_id=OWNER_ID
-                    ) if ow_id else InlineKeyboardButton(
+                     InlineKeyboardButton(
                         "🔻 𝐍ɛтωσяκ 🔺",
                         url="https://t.me/HeartBeat_Offi"
                     ),
