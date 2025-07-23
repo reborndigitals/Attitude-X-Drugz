@@ -10,7 +10,6 @@ python-magic
 youtube-search-python
 certifi
 yt_dlp
-uvloop
 lottie
 telegraph
 pytz
