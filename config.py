@@ -12,10 +12,10 @@ from fonts import *
 # Use getenv for all sensitive/configurable values
 API_ID = os.getenv("API_ID","10284859")
 API_HASH = os.getenv("API_HASH", "b0ad58eb8b845ba0003e0d9ce5fc2196")
-STRING_SESSION = os.getenv("STRING_SESSION", "BQDMBnkAhl63LfVwI1-Pu38Cj_U5J1fg94CoUuYa8VcOfu6JcKTsMf6IjdKxGuJUmTyLcycSMFw4H_amfXQ-6B8q0DoT1uA7xM4nAxR8XBQvDkepomQoB9qF6fiTRTBMJjIXFfVgNUY_5JI9PK08mJ26whDradE6lMEPlvVcR4Jto3KdaLpvTPE45nmx5VeAUl_LAgy4o3VgOa9S0yKy8Ha8d0ueGa_A8goiXm52ADheVq2EOcCuu09e-kJixlMujIuDrqLFd4S_RLlfTSvvmYAF0eOu1b6jz1vOwFahGBQCOT_eucH26KQe-VUlWlT-ECD3LyRJIwezaSrYZADjw_aXMUqQaQAAAAHjb-HaAA")
+STRING_SESSION = os.getenv("STRING_SESSION", "BQGVn2EAP_P3wNGw5EC62KWf66UWqO8_snHTIoT2qOBxqG7slnLMLAbEbPDlPIA_GDDkUxYAgI3DMABtwDiB8wLrJ10OmjgNuLCVeBvYcA13VYsryydjl5WL6XUbH17SQ7dZEDPsdNDdFazAnSNivsVIYoytJB61bkFAajDkmaTKOlYUKy0XA5si2Xhmew-kWen8pVSazgQKcNRxgtbIJdQD_B_zzUMMSn4aMS1Nj6B_9D5pYnh8jUo78yk-jc2svuYmYqkRFUv5TCSnW08hiXdY-OQ6X-9o1s6OOAzvvdy2M4m781O0uQxVPcwDYDiRL2P3vnIDttkEtxbPgBqEhHkAHY9DOQAAAAGkzbnBAA")
 GROUP = os.getenv("GROUP", "HeartBeat_Fam")
 CHANNEL = os.getenv("CHANNEL", "HeartBeat_Offi")
-BOT_TOKEN = os.getenv("BOT_TOKEN", "7921879783:AAFdFgIr1ti-FOvGa00W1t6hyskwyjp6IC0")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "7405370458:AAG7LOvTVcRzIA6Ho1_qQ122zjzzMYNldOs")
 OWNER_ID = int(os.getenv("OWNER_ID", 1281282633))
 LOGGER_ID = os.getenv("LOGGER_ID", "-1001735663878")
 mongodb = os.getenv("MONGODB_URI", "mongodb+srv://heartbeat:Beat7Heart@heartbeat.1h1nbxv.mongodb.net/?retryWrites=true&w=majority")
