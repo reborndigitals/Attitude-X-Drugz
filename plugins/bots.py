@@ -1113,14 +1113,14 @@ async def user_client_start_handler(client, message):
     ow_id = owner.id if owner.username else None
 
     buttons = [
-   [InlineKeyboardButton("🔻 𝐒ɛɛ 𝐓нɛ 𝐌ᴧɢιᴄ 🔺", url=f"https://t.me/{client.me.username}?startgroup=true")],
-   [InlineKeyboardButton("▪️ 𝐂σммᴧη∂ƨ ▪️", callback_data="commands_all")],
+   [InlineKeyboardButton("🚀 𝐒ɛɛ 𝐓нɛ 𝐌ᴧɢιᴄ 🚀", url=f"https://t.me/{client.me.username}?startgroup=true")],
+   [InlineKeyboardButton("🕹️ 𝐂σммᴧη∂ƨ 🕹️", callback_data="commands_all")],
    [
        InlineKeyboardButton(
-           "🔻 𝐍ɛтωσяκ 🔺",
+           "🖲️ 𝐍ɛтωσяκ 🖲️",
            url="https://t.me/HeartBeat_Offi"
        ),
-       InlineKeyboardButton("🔺 𝐂нᴧт 🔻", url = f"https://t.me/HeartBeat_Fam")
+       InlineKeyboardButton("🕹️ 𝐂нᴧт 🕹️", url = f"https://t.me/HeartBeat_Fam")
    ],
 ]
     import psutil
@@ -1176,9 +1176,9 @@ async def user_client_start_handler(client, message):
 <blockquote>𓆩⃪〭𝆭〬፥܍𝐀м 𝐘σʋяƨ \n
 {botname}</blockquote>
 ☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★
-<blockquote>🌹 𝐀 𝐓нσƨαи∂ 𝐒σиɢƨ 𝐈 𝐖ιƨнɛ∂ 𝐓σ 𝐇ɛαя.. 𝐁ʋт 𝐖ιтн 𝐘σʋ 𝐁ɛƨι∂ɛ 𝐌ɛ, 𝐓нαт 𝐎иɛ 𝐌σмɛит 𝐁ɛαтƨ 𝐓нɛм 𝐀ƖƖ...</blockquote>
+<blockquote>🐦‍🔥 𝐀 𝐓нσƨαи∂ 𝐒σиɢƨ 𝐈 𝐖ιƨнɛ∂ 𝐓σ 𝐇ɛαя.. 𝐁ʋт 𝐖ιтн 𝐘σʋ 𝐁ɛƨι∂ɛ 𝐌ɛ, 𝐓нαт 𝐎иɛ 𝐌σмɛит 𝐁ɛαтƨ 𝐓нɛм 𝐀ƖƖ...</blockquote>
 ☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★
-<blockquote>💕🦋𝐃σит тσʋᴄн мʏ [𝐂𝖗𝖚𝖘𝖍 🦇](http://t.me/Ghostt_Batt)</blockquote>
+<blockquote>💕💋𝐃σит тσʋᴄн мʏ ⚡[𝐅ᴄᴜᴋɪɴɢ 𝐈ᴅισт 🦇](http://t.me/Ghostt_Batt)</blockquote>
 """
 
        send = client.send_video if alive_logo.endswith(".mp4") else client.send_photo
@@ -1299,25 +1299,25 @@ async def commands_handler(client, callback_query):
     # ---------- Navigation buttons ----------
     category_buttons = [
         [
-            InlineKeyboardButton("🔺𝐏Ɩᴧʏвᴧcκ🔻",   callback_data="commands_playback"),
-            InlineKeyboardButton("🔺𝐀ʋтн🔻",       callback_data="commands_auth"),
+            InlineKeyboardButton("🕹️𝐏Ɩᴧʏвᴧcκ🕹️",   callback_data="commands_playback"),
+            InlineKeyboardButton("🕹️𝐀ʋтн🕹️",       callback_data="commands_auth"),
         ],
         [
-            InlineKeyboardButton("▪️𝐁ƖᴧcκƖιƨт▪️",  callback_data="commands_blocklist"),
-            InlineKeyboardButton("▪️𝐒ʋᴅσ▪️",       callback_data="commands_sudo"),
+            InlineKeyboardButton("🚀𝐁ƖᴧcκƖιƨт🚀",  callback_data="commands_blocklist"),
+            InlineKeyboardButton("🚀𝐒ʋᴅσ🚀",       callback_data="commands_sudo"),
         ],
         [
-            InlineKeyboardButton("🔺𝐁яσᴧᴅcᴧƨт🔻",  callback_data="commands_broadcast"),
-            InlineKeyboardButton("🔺𝐓σσƖƨ🔻",     callback_data="commands_tools"),
+            InlineKeyboardButton("🕹️𝐁яσᴧᴅcᴧƨт🕹️",  callback_data="commands_broadcast"),
+            InlineKeyboardButton("🕹️𝐓σσƖƨ🕹️",     callback_data="commands_tools"),
         ],
         [
-            InlineKeyboardButton("▪️𝐊ᴧиɢ-𝐌ɛмɛ▪️",  callback_data="commands_kang"),
-            InlineKeyboardButton("▪️𝐒тᴧтʋƨ▪️",     callback_data="commands_status"),
+            InlineKeyboardButton("🚀𝐊ᴧиɢ-𝐌ɛмɛ🚀",  callback_data="commands_kang"),
+            InlineKeyboardButton("🚀𝐒тᴧтʋƨ🚀",     callback_data="commands_status"),
         ],
         [
-            InlineKeyboardButton("🔺𝐂яʋƨн🔻",      callback_data="commands_owner"),
+            InlineKeyboardButton("🕹️𝐂яʋƨн🕹️",      callback_data="commands_owner"),
         ],
-        [InlineKeyboardButton("🔻𝐆σ 𝐓σ 𝐌ʏ 𝐇ɛᴧят🔻",         callback_data="commands_back")],
+        [InlineKeyboardButton("🖲️𝐆σ 𝐓σ 𝐌ʏ 𝐇ɛᴧят🖲️",         callback_data="commands_back")],
     ]
 
     back_button = [[InlineKeyboardButton("🔙 Back", callback_data="commands_all")]]
@@ -1356,20 +1356,20 @@ async def commands_handler(client, callback_query):
 <blockquote>𓆩⃪〭𝆭〬፥܍𝐀м 𝐘σʋяƨ \n
 {botname}</blockquote>
 ☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★
-<blockquote>🌹 𝐀 𝐓нσƨαи∂ 𝐒σиɢƨ 𝐈 𝐖ιƨнɛ∂ 𝐓σ 𝐇ɛαя.. 𝐁ʋт 𝐖ιтн 𝐘σʋ 𝐁ɛƨι∂ɛ 𝐌ɛ, 𝐓нαт 𝐎иɛ 𝐌σмɛит 𝐁ɛαтƨ 𝐓нɛм 𝐀ƖƖ...</blockquote>
+<blockquote>🐦‍🔥 𝐀 𝐓нσƨαи∂ 𝐒σиɢƨ 𝐈 𝐖ιƨнɛ∂ 𝐓σ 𝐇ɛαя.. 𝐁ʋт 𝐖ιтн 𝐘σʋ 𝐁ɛƨι∂ɛ 𝐌ɛ, 𝐓нαт 𝐎иɛ 𝐌σмɛит 𝐁ɛαтƨ 𝐓нɛм 𝐀ƖƖ...</blockquote>
 ☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★
-<blockquote>💕🦋𝐃σит тσʋᴄн мʏ [𝐂𝖗𝖚𝖘𝖍 🦇](http://t.me/Ghostt_Batt)</blockquote>
+<blockquote>💕💋𝐃σит тσʋᴄн мʏ ⚡[𝐅ᴄᴜᴋɪɴɢ 𝐈ᴅισт 🦇](http://t.me/Ghostt_Batt)</blockquote>
 """
             greet_message = await format_welcome_message(client, greet_message, user_id, callback_query.from_user.mention())
             buttons = [
-                [InlineKeyboardButton("🔻 𝐒ɛɛ 𝐓нɛ 𝐌ᴧɢιᴄ 🔺", url=f"https://t.me/{client.me.username}?startgroup=true")],
+                [InlineKeyboardButton("🚀 𝐒ɛɛ 𝐓нɛ 𝐌ᴧɢιᴄ 🚀", url=f"https://t.me/{client.me.username}?startgroup=true")],
                 [InlineKeyboardButton("▪️ 𝐂σммᴧη∂ƨ ▪️", callback_data="commands_all")],
                 [
                      InlineKeyboardButton(
-                        "🔻 𝐍ɛтωσяκ 🔺",
+                        "🖲️ 𝐍ɛтωσяκ 🖲️",
                         url="https://t.me/HeartBeat_Offi"
                     ),
-                    InlineKeyboardButton("🔺 𝐂нᴧт 🔻", url = f"https://t.me/HeartBeat_Fam")
+                    InlineKeyboardButton("🕹️ 𝐂нᴧт 🕹️", url = f"https://t.me/HeartBeat_Fam")
                 ],
             ]
             await callback_query.message.edit_caption(
@@ -1833,10 +1833,10 @@ async def play_handler_func(client, message):
         ],
         [
             InlineKeyboardButton(
-                text="🔻𝐒ωɛɛт🔺", url=f"https://t.me/HeartBeat_Offi"
+                text="🕹️ 𝐓яᴧᴘ 🕹️", url=f"https://t.me/HeartBeat_Offi"
             ),
             InlineKeyboardButton(
-                text="🔻𝐏ɛρρɛя🔺", url=f"https://t.me/HeartBeat_Fam"
+                text="🚀 𝐇ɛƖƖ 🚀", url=f"https://t.me/HeartBeat_Fam"
             ),
         ],
         ])
