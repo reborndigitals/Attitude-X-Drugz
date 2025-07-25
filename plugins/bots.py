@@ -1299,25 +1299,25 @@ async def commands_handler(client, callback_query):
     # ---------- Navigation buttons ----------
     category_buttons = [
         [
-            InlineKeyboardButton("🕹️𝐏Ɩᴧʏвᴧcκ🕹️",   callback_data="commands_playback"),
-            InlineKeyboardButton("🕹️𝐀ʋтн🕹️",       callback_data="commands_auth"),
+            InlineKeyboardButton("🕹️ 𝐏Ɩᴧʏвᴧcκ 🕹️",   callback_data="commands_playback"),
+            InlineKeyboardButton("🕹️ 𝐀ʋтн 🕹️",       callback_data="commands_auth"),
         ],
         [
-            InlineKeyboardButton("🚀𝐁ƖᴧcκƖιƨт🚀",  callback_data="commands_blocklist"),
-            InlineKeyboardButton("🚀𝐒ʋᴅσ🚀",       callback_data="commands_sudo"),
+            InlineKeyboardButton("🚀 𝐁ƖᴧcκƖιƨт 🚀",  callback_data="commands_blocklist"),
+            InlineKeyboardButton("🚀 𝐒ʋᴅσ 🚀",       callback_data="commands_sudo"),
         ],
         [
-            InlineKeyboardButton("🕹️𝐁яσᴧᴅcᴧƨт🕹️",  callback_data="commands_broadcast"),
-            InlineKeyboardButton("🕹️𝐓σσƖƨ🕹️",     callback_data="commands_tools"),
+            InlineKeyboardButton("🕹️ 𝐁яσᴧᴅcᴧƨт 🕹️",  callback_data="commands_broadcast"),
+            InlineKeyboardButton("🕹️ 𝐓σσƖƨ 🕹️",     callback_data="commands_tools"),
         ],
         [
-            InlineKeyboardButton("🚀𝐊ᴧиɢ-𝐌ɛмɛ🚀",  callback_data="commands_kang"),
-            InlineKeyboardButton("🚀𝐒тᴧтʋƨ🚀",     callback_data="commands_status"),
+            InlineKeyboardButton("🚀 𝐊ᴧиɢ-𝐌ɛмɛ 🚀",  callback_data="commands_kang"),
+            InlineKeyboardButton("🚀 𝐒тᴧтʋƨ 🚀",     callback_data="commands_status"),
         ],
         [
-            InlineKeyboardButton("🕹️𝐂яʋƨн🕹️",      callback_data="commands_owner"),
+            InlineKeyboardButton("🕹️🖲️ 𝐂яʋƨн 🖲️🕹️",      callback_data="commands_owner"),
         ],
-        [InlineKeyboardButton("🖲️𝐆σ 𝐓σ 𝐌ʏ 𝐇ɛᴧят🖲️",         callback_data="commands_back")],
+        [InlineKeyboardButton("🕹️ 𝐆σ 𝐓σ 𝐌ʏ 𝐇ɛᴧят 🕹️",         callback_data="commands_back")],
     ]
 
     back_button = [[InlineKeyboardButton("🔙 Back", callback_data="commands_all")]]
@@ -1362,11 +1362,11 @@ async def commands_handler(client, callback_query):
 """
             greet_message = await format_welcome_message(client, greet_message, user_id, callback_query.from_user.mention())
             buttons = [
-                [InlineKeyboardButton("🚀 𝐒ɛɛ 𝐓нɛ 𝐌ᴧɢιᴄ 🚀", url=f"https://t.me/{client.me.username}?startgroup=true")],
+                [InlineKeyboardButton("🖲️ 𝐒ɛɛ 𝐓нɛ 𝐌ᴧɢιᴄ 🖲️", url=f"https://t.me/{client.me.username}?startgroup=true")],
                 [InlineKeyboardButton("▪️ 𝐂σммᴧη∂ƨ ▪️", callback_data="commands_all")],
                 [
                      InlineKeyboardButton(
-                        "🖲️ 𝐍ɛтωσяκ 🖲️",
+                        "🚀 𝐍ɛтωσяκ 🚀",
                         url="https://t.me/HeartBeat_Offi"
                     ),
                     InlineKeyboardButton("🕹️ 𝐂нᴧт 🕹️", url = f"https://t.me/HeartBeat_Fam")
