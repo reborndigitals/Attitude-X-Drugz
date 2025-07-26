@@ -1325,7 +1325,7 @@ async def commands_handler(client, callback_query):
     # ---------- Routing ----------
     if data == "all":
         await callback_query.message.edit_caption(
-            caption="<blockquote>𓆩⃪〭𝆭〬፥܍𝐇єу 𝐌ιηє</blockquote>\n☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★\n<blockquote>🌹 𝐌ʏ 𝐕σιᴄɛ 𝐃ιƨƨσƖνɛƨ 𝐘σʋя Λᴄнɛƨ 𝐋ικɛ 𝐒ʋɢαя 𝐈и 𝐓ɛα</blockquote>\n☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★\n<blockquote>💕🦋𝐇ɛяɛ, 𝐒σмɛ 𝐓ιρƨ 𝐓σ 𝐈мρяɛƨƨ 𝐌ɛ</blockquote>",
+            caption="<blockquote>𓆩⃪〭𝆭〬፥܍𝐇єу 𝐌ιηє</blockquote>\n☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★\n<blockquote>🌹 𝐌ʏ 𝐕σιᴄɛ 𝐃ιƨƨσƖνɛƨ 𝐘σʋя Λᴄнɛƨ 𝐋ικɛ 𝐒ʋɢαя 𝐈и 𝐓ɛα</blockquote>\n☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★\n<blockquote>💕🌶️𝐇ɛʏ, 𝐒σмɛ 𝐓ιρƨ 𝐓σ 𝐅ᴄʋκ 𝐌ɛ</blockquote>",
             reply_markup=InlineKeyboardMarkup(category_buttons),
         )
     elif data == "playback":
