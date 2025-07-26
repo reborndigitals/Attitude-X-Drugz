@@ -34,7 +34,7 @@
     },
     "STRING_SESSION": {
       "description": "A Pyrogram session string for the user account",
-      "value": "BQGVn2EAP_P3wNGw5EC62KWf66UWqO8_snHTIoT2qOBxqG7slnLMLAbEbPDlPIA_GDDkUxYAgI3DMABtwDiB8wLrJ10OmjgNuLCVeBvYcA13VYsryydjl5WL6XUbH17SQ7dZEDPsdNDdFazAnSNivsVIYoytJB61bkFAajDkmaTKOlYUKy0XA5si2Xhmew-kWen8pVSazgQKcNRxgtbIJdQD_B_zzUMMSn4aMS1Nj6B_9D5pYnh8jUo78yk-jc2svuYmYqkRFUv5TCSnW08hiXdY-OQ6X-9o1s6OOAzvvdy2M4m781O0uQxVPcwDYDiRL2P3vnIDttkEtxbPgBqEhHkAHY9DOQAAAAGkzbnBAA",
+      "value": "BQGVn2EAOZapXLQ0NmnX88wthxdt_rEiV4Hn4Jg8M1b4tMpIRfDLqZNi0OTgqMULoPa5AaJ9cbmLsC_nqJMxeL6d7F_MKD_jyh1JVL3uCQ0yFbTiM7hLYaXRF57p7jmn7sSYF2fwY8NeXDpZHTDLanDt0k0L_din7fAIHyhCHRT_t7CJ8W3zUkrxSOpBicwvQCYla3phRvwjstba6uI3bKcYJUiBcEoGlQBguj6N1eRvTm-KwsOQuy1cCJDwAcv6TJRMqgqMT1Z8BQ5UvKr4YD0Iaxy65cuQVCplD6A9rPkT0XATA4NXf7hzHtyR5PAfaIw2PL5YRKtJPOimLq3UwhJOwxXTzwAAAAGkzbnBAA",
       "required": true
     },
     "GROUP": {
