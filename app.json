@@ -1,5 +1,5 @@
 {
-  "name": "SlowPoison",
+  "name": "SilkuMusic",
   "description": "🔥 Ultimate Telegram Voice Chat Music Bot with breathtaking streaming capabilities! Powered by cutting-edge latest Pyrogram (Kurigram) and next-gen PyTgCalls for lightning-fast performance. Experience crystal-clear HD audio/video streaming with stunning UI and advanced features that will revolutionize your group voice chats! ⚡✨",
   "logo": "https://raw.githubusercontent.com/nub-coders/nub-music-bot/refs/heads/main/music.jpg",
   "keywords": [
@@ -24,7 +24,7 @@
     },
     "BOT_TOKEN": {
       "description": "A Bot's token from Botfather",
-      "value": "7956556231:AAEgPQOQsvTqpFV5I6BuFBCcPn-z_RGaKgc",
+      "value": "7992290736:AAGNT441X0menIQ1ZBxc9RjHQHYfEL0Qz2E",
       "required": true
     },
     "OWNER_ID": {
