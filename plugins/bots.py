@@ -256,12 +256,12 @@ async def mentionall(client, message):
             break
         usrnum += 1
         usrtxt += f"{usr.user.mention()}, "
-        if usrnum == 5:
+        if usrnum == 1:
             if args:
-                txt = f"<blockquote>{args}\n\n{usrtxt}</blockquote>"
+                txt = f"<blockquote>{args}</blockquote>\n\n<blockquote>✰| {usrtxt}</blockquote>"
                 await client.send_message(chat_id, txt)
             elif direp:
-                await direp.reply(f"<blockquote>{usrtxt}</blockquote>")
+                await direp.reply(f"\n\n<blockquote>✰| {usrtxt}</blockquote>")
             await asyncio.sleep(5)
             usrnum = 0
             usrtxt = ""
