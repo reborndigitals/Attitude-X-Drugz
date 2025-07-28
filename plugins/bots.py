@@ -39,6 +39,22 @@ from config import *
 from fonts import *
 from tools import *
 
+async def end(client, update):
+    """Handle stream end event"""
+    chat_id = update.chat_id
+    logger.info(f"Stream ended in chat {chat_id}")
+    await dend(clients['bot'], type('obj', (object,), {'chat': type('obj', (object,), {'id': chat_id})})(), chat_id)
+
+async def hd_stream_closed_kicked(client, update):
+    """Handle voice chat closed or kicked events"""
+    chat_id = update.chat_id
+    logger.info(f"Voice chat closed or kicked in chat {chat_id}")
+    await remove_active_chat(clients['bot'], chat_id)
+    if chat_id in playing:
+        playing[chat_id].clear()
+    if chat_id in queues:
+        queues[chat_id].clear()
+
 # Clients will be passed as parameter instead of imported
 # Get the logger
 logger = logging.getLogger("pyrogram")
@@ -84,8 +100,6 @@ def admin_only():
                     return
                 
                 logger.debug("Performing admin check")
-                user_data = user_sessions.find_one({"bot_id": client.me.id})
-                sudoers = user_data.get("SUDOERS", [])
                 
                 # Check admin status
                 is_admin = False
@@ -97,11 +111,10 @@ def admin_only():
                         if is_admin:
                             logger.debug(f"User {user_id} is in admin list")
                 
-                # Check permissions
+                # Check permissions using global variables
                 is_auth_user = False
-                auth_users = user_data.get('auth_users', {})
-                if isinstance(auth_users, dict) and str(chat_id) in auth_users:
-                    is_auth_user = user_id in auth_users[str(chat_id)]
+                if str(chat_id) in AUTH:
+                    is_auth_user = user_id in AUTH[str(chat_id)]
                     if is_auth_user:
                         logger.debug(f"User {user_id} is authorized for chat {chat_id}")
                     
@@ -111,7 +124,7 @@ def admin_only():
                         logger.debug("Command ends with 'del', auth_user status reset")
                 
                 is_authorized = (
-                    is_admin or str(OWNER_ID) == str(user_id) or user_id in sudoers or is_auth_user)
+                    is_admin or str(OWNER_ID) == str(user_id) or user_id in SUDO or is_auth_user)
                 
                 # Get chat member status
                 chat_member = await client.get_chat_member(chat_id, user_id)
@@ -187,8 +200,6 @@ async def add_active_chat(client,chat_id):
 async def active_chats(client, message):
     admin_file = f"{ggg}/admin.txt"
     user_id = message.from_user.id
-    users_data = user_sessions.find_one({"bot_id": client.me.id})
-    sudoers = users_data.get("SUDOERS", [])
 
     is_admin = False
     if os.path.exists(admin_file):
@@ -196,11 +207,11 @@ async def active_chats(client, message):
             admin_ids = [int(line.strip()) for line in file.readlines()]
             is_admin = user_id in admin_ids
 
-    # Check permissions
+    # Check permissions using global SUDO variable
     is_authorized = (
         is_admin or
         str(OWNER_ID) == str(user_id) or
-        user_id in sudoers
+        user_id in SUDO
     )
 
     if not is_authorized:
@@ -256,12 +267,12 @@ async def mentionall(client, message):
             break
         usrnum += 1
         usrtxt += f"{usr.user.mention()}, "
-        if usrnum == 1:
+        if usrnum == 5:
             if args:
-                txt = f"<blockquote>{args}</blockquote>\n\n<blockquote>✰| {usrtxt}</blockquote>"
+                txt = f"<blockquote>{args}\n\n{usrtxt}</blockquote>"
                 await client.send_message(chat_id, txt)
             elif direp:
-                await direp.reply(f"\n\n<blockquote>✰| {usrtxt}</blockquote>")
+                await direp.reply(f"<blockquote>{usrtxt}</blockquote>")
             await asyncio.sleep(5)
             usrnum = 0
             usrtxt = ""
@@ -278,10 +289,8 @@ async def seek_handler_func(client, message):
         await message.delete()
     except:
         pass
-    # Check if user is banned
-    user_data = collection.find_one({"bot_id": client.me.id})
-    busers = user_data.get('busers', {})
-    if message.from_user.id in busers:
+    # Check if user is banned using global variable
+    if message.from_user.id in BLOCK:
         return
 
     try:
@@ -360,10 +369,11 @@ async def seek_handler_func(client, message):
 
             # Seek to specified position
             to_seek = format_duration(total_seek)
+            stream_url = current_song['yt_link']
             await call_py.play(
                 message.chat.id,
                 MediaStream(
-                    current_song['yt_link'],
+                    stream_url,
                     AudioQuality.HIGH,
                     VideoQuality.HD_720p,
                     video_flags=audio_flags,
@@ -429,22 +439,12 @@ async def delete_message_handler(client, message):
 async def auth_user(client, message):
     admin_file = f"{ggg}/admin.txt"
     user_id = message.from_user.id
-    user_data = user_sessions.find_one({"bot_id": client.me.id})
-    sudoers = user_data.get("SUDOERS", [])
-    
-    # Check if user is admin
-
     
     chat_id = message.chat.id
-    auth_users = user_data.get('auth_users', {})
     
-    # Convert auth_users to dict if it's not already (for backward compatibility)
-    if not isinstance(auth_users, dict):
-        auth_users = {}
-    
-    # Initialize empty list for chat_id if it doesn't exist
-    if str(chat_id) not in auth_users:
-        auth_users[str(chat_id)] = []
+    # Use global AUTH variable and ensure chat exists
+    if str(chat_id) not in AUTH:
+        AUTH[str(chat_id)] = []
     
     if message.reply_to_message:
         replied_message = message.reply_to_message
@@ -463,12 +463,13 @@ async def auth_user(client, message):
                 not replied_message.from_user.is_self and 
                 not OWNER_ID == replied_user_id):
                 
-                # Check if user is already authorized in this chat
-                if replied_user_id not in auth_users[str(chat_id)]:
-                    auth_users[str(chat_id)].append(replied_user_id)
+                # Check if user is already authorized in this chat using global AUTH
+                if replied_user_id not in AUTH[str(chat_id)]:
+                    AUTH[str(chat_id)].append(replied_user_id)
+                    # Update database to maintain persistence
                     user_sessions.update_one(
                         {"bot_id": client.me.id},
-                        {"$set": {'auth_users': auth_users}},
+                        {"$set": {'auth_users': AUTH}},
                         upsert=True
                     )
                     await message.reply(f"User {replied_user_id} has been authorized in this chat.")
@@ -484,12 +485,13 @@ async def auth_user(client, message):
         if len(command_parts) > 1:
             try:
                 user_id_to_auth = int(command_parts[1])
-                # Check if user is already authorized in this chat
-                if user_id_to_auth not in auth_users[str(chat_id)]:
-                    auth_users[str(chat_id)].append(user_id_to_auth)
+                # Check if user is already authorized in this chat using global AUTH
+                if user_id_to_auth not in AUTH[str(chat_id)]:
+                    AUTH[str(chat_id)].append(user_id_to_auth)
+                    # Update database to maintain persistence
                     user_sessions.update_one(
                         {"bot_id": client.me.id},
-                        {"$set": {'auth_users': auth_users}},
+                        {"$set": {'auth_users': AUTH}},
                         upsert=True
                     )
                     await message.reply(f"User {user_id_to_auth} has been authorized in this chat.")
@@ -504,19 +506,11 @@ async def auth_user(client, message):
 @admin_only()
 async def unauth_user(client, message):
     admin_file = f"{ggg}/admin.txt"
-    user_id = message.from_user.id
-    user_data = user_sessions.find_one({"bot_id": client.me.id})
-
     chat_id = message.chat.id
-    auth_users = user_data.get('auth_users', {})
     
-    # Convert auth_users to dict if it's not already (for backward compatibility)
-    if not isinstance(auth_users, dict):
-        auth_users = {}
-    
-    # Initialize empty list for chat_id if it doesn't exist
-    if str(chat_id) not in auth_users:
-        auth_users[str(chat_id)] = []
+    # Ensure chat exists in global AUTH
+    if str(chat_id) not in AUTH:
+        AUTH[str(chat_id)] = []
     
     if message.reply_to_message:
         replied_message = message.reply_to_message
@@ -530,12 +524,13 @@ async def unauth_user(client, message):
                     if replied_user_id in admin_ids:
                         return await message.reply(f"**You can't remove authorization from owner.**")
             
-            # Check if user can be unauthorized
-            if replied_user_id in auth_users[str(chat_id)]:
-                auth_users[str(chat_id)].remove(replied_user_id)
+            # Check if user can be unauthorized using global AUTH
+            if replied_user_id in AUTH[str(chat_id)]:
+                AUTH[str(chat_id)].remove(replied_user_id)
+                # Update database to maintain persistence
                 user_sessions.update_one(
                     {"bot_id": client.me.id},
-                    {"$set": {'auth_users': auth_users}},
+                    {"$set": {'auth_users': AUTH}},
                     upsert=True
                 )
                 await message.reply(f"User {replied_user_id} has been removed from authorized users in this chat.")
@@ -549,12 +544,13 @@ async def unauth_user(client, message):
         if len(command_parts) > 1:
             try:
                 user_id_to_unauth = int(command_parts[1])
-                # Check if user is authorized in this chat
-                if user_id_to_unauth in auth_users[str(chat_id)]:
-                    auth_users[str(chat_id)].remove(user_id_to_unauth)
+                # Check if user is authorized in this chat using global AUTH
+                if user_id_to_unauth in AUTH[str(chat_id)]:
+                    AUTH[str(chat_id)].remove(user_id_to_unauth)
+                    # Update database to maintain persistence
                     user_sessions.update_one(
                         {"bot_id": client.me.id},
-                        {"$set": {'auth_users': auth_users}},
+                        {"$set": {'auth_users': AUTH}},
                         upsert=True
                     )
                     await message.reply(f"User {user_id_to_unauth} has been removed from authorized users in this chat.")
@@ -569,8 +565,6 @@ async def unauth_user(client, message):
 async def block_user(client, message):
     admin_file = f"{ggg}/admin.txt"
     user_id = message.from_user.id
-    users_data = user_sessions.find_one({"bot_id": client.me.id})
-    sudoers = users_data.get("SUDOERS", [])
 
     is_admin = False
     if os.path.exists(admin_file):
@@ -578,21 +572,17 @@ async def block_user(client, message):
             admin_ids = [int(line.strip()) for line in file.readlines()]
             is_admin = user_id in admin_ids
 
-    # Check permissions
+    # Check permissions using global SUDO variable
     is_authorized = (
         is_admin or
         str(OWNER_ID) == str(user_id) or
-        user_id in sudoers
+        user_id in SUDO
     )
 
     if not is_authorized:
         return await message.reply("**<blockquote>🪄𝐓нιƨ 𝐈ƨ 𝐔ƨɛ∂ 𝐁ʏ 𝐌ʏ 𝐂яʋƨн @Ghostt_Batt 🦇 𝐎иƖʏ✨🏓<blockquote>**")
 
     # Check if the message is a reply
-
-
-    user_data = collection.find_one({"bot_id": client.me.id})
-    busers = user_data.get('busers', {}) if user_data else []
     if message.reply_to_message:
         replied_message = message.reply_to_message
         # If the replied message is from a user (and not from the bot itself)
@@ -606,13 +596,16 @@ async def block_user(client, message):
                      return await message.reply(f"**MF\n\nYou can't block my owner.**")
             # Check if the replied user is the same as the current chat (group) id
             if replied_user_id != message.chat.id and not replied_message.from_user.is_self and not OWNER_ID == replied_user_id:
-                if not replied_user_id in busers:
+                if replied_user_id not in BLOCK:
+                    BLOCK.append(replied_user_id)
+                    # Update database to maintain persistence
                     collection.update_one({"bot_id": client.me.id},
                                         {"$push": {'busers': replied_user_id}},
                                         upsert=True)
+                    await message.reply(f"User {replied_user_id} has been added to blocklist.")
                 else:
                    return await message.reply(f"User {replied_user_id} already in the blocklist.")
-                await message.reply(f"User {replied_user_id} has been added to blocklist.")
+                
             else:
                 await message.reply("You cannot block yourself or a anonymous user")
         else:
@@ -622,16 +615,18 @@ async def block_user(client, message):
         command_parts = message.text.split()
         if len(command_parts) > 1:
             try:
-                user_id = int(command_parts[1])
-                # Block the user with the provided user ID
-                if not user_id in busers:
+                user_id_to_block = int(command_parts[1])
+                # Block the user with the provided user ID using global BLOCK
+                if user_id_to_block not in BLOCK:
+                    BLOCK.append(user_id_to_block)
+                    # Update database to maintain persistence
                     collection.update_one({"bot_id": client.me.id},
-                                        {"$push": {'busers': user_id}},
+                                        {"$push": {'busers': user_id_to_block}},
                                         upsert=True
                                     )
+                    await message.reply(f"User {user_id_to_block} has been added to blocklist.")
                 else:
-                   return await message.reply(f"User {user_id} already in the blocklist.")
-                await message.reply(f"User {user_id} has been added to blocklist.")
+                   return await message.reply(f"User {user_id_to_block} already in the blocklist.")
             except ValueError:
                 await message.reply("Please provide a valid user ID.")
         else:
@@ -642,10 +637,6 @@ async def reboot_handler(client: Client, message: Message):
     user_id = message.from_user.id
     admin_file = f"{ggg}/admin.txt"
 
-    # MongoDB: Fetch sudoers list
-    users_data = user_sessions.find_one({"bot_id": client.me.id})
-    sudoers = users_data.get("SUDOERS", []) if users_data else []
-
     # Admin file check
     is_admin = False
     if os.path.exists(admin_file):
@@ -653,11 +644,11 @@ async def reboot_handler(client: Client, message: Message):
             admin_ids = [int(line.strip()) for line in file.readlines()]
             is_admin = user_id in admin_ids
 
-    # Authorization check
+    # Authorization check using global SUDO variable
     is_authorized = (
         is_admin or
         str(OWNER_ID) == str(user_id) or
-        user_id in sudoers
+        user_id in SUDO
     )
 
     if not is_authorized:
@@ -669,11 +660,8 @@ async def reboot_handler(client: Client, message: Message):
 
 @Client.on_message(filters.command("unblock"))
 async def unblock_user(client, message):
-    # Check if the message is a reply
     admin_file = f"{ggg}/admin.txt"
     user_id = message.from_user.id
-    users_data = user_sessions.find_one({"bot_id": client.me.id})
-    sudoers = users_data.get("SUDOERS", [])
 
     is_admin = False
     if os.path.exists(admin_file):
@@ -681,47 +669,48 @@ async def unblock_user(client, message):
             admin_ids = [int(line.strip()) for line in file.readlines()]
             is_admin = user_id in admin_ids
 
-    # Check permissions
+    # Check permissions using global SUDO variable
     is_authorized = (
         is_admin or
         str(OWNER_ID) == str(user_id) or
-        user_id in sudoers
+        user_id in SUDO
     )
 
     if not is_authorized:
         return await message.reply("**<blockquote>🪄𝐓нιƨ 𝐈ƨ 𝐔ƨɛ∂ 𝐁ʏ 𝐌ʏ 𝐂яʋƨн @Ghostt_Batt 🦇 𝐎иƖʏ✨🏓<blockquote>**")
 
-    user_data = collection.find_one({"bot_id": client.me.id})
-    busers = user_data.get('busers', {}) if user_data else []
     if message.reply_to_message:
         replied_message = message.reply_to_message
-        # If the replied message is from a user (and not from the bot itself)
         replied_user_id = replied_message.from_user.id
-            # Check if the replied user is the same as the current chat (group) id
-        if replied_user_id in busers:
-               collection.update_one({"bot_id": client.me.id},
-                                        {"$pull": {'busers': replied_user_id}},
-                                        upsert=True
-                                    )
-               await message.reply(f"User {replied_user_id} has been removed from blocklist.")
+        
+        # Check if user is in blocklist using global BLOCK
+        if replied_user_id in BLOCK:
+            BLOCK.remove(replied_user_id)
+            # Update database to maintain persistence
+            collection.update_one({"bot_id": client.me.id},
+                                {"$pull": {'busers': replied_user_id}},
+                                upsert=True)
+            await message.reply(f"User {replied_user_id} has been removed from blocklist.")
         else:
-              return await message.reply(f"User {replied_user_id} not in the blocklist.")
+            return await message.reply(f"User {replied_user_id} not in the blocklist.")
 
     else:
         # If not a reply, check if a user ID is provided in the command
         command_parts = message.text.split()
         if len(command_parts) > 1:
             try:
-                user_id = int(command_parts[1])
-                # Block the user with the provided user ID
-                if user_id in busers:
+                target_user_id = int(command_parts[1])
+                
+                # Check if user is in blocklist using global BLOCK
+                if target_user_id in BLOCK:
+                    BLOCK.remove(target_user_id)
+                    # Update database to maintain persistence
                     collection.update_one({"bot_id": client.me.id},
-                                        {"$pull": {'busers': user_id}},
-                                        upsert=True
-                                    )
+                                        {"$pull": {'busers': target_user_id}},
+                                        upsert=True)
+                    await message.reply(f"User {target_user_id} has been removed from blocklist.")
                 else:
-                   return await message.reply(f"User {user_id} not in the blocklist.")
-                await message.reply(f"User {user_id} has been removed from blocklist.")
+                    return await message.reply(f"User {target_user_id} not in the blocklist.")
             except ValueError:
                 await message.reply("Please provide a valid user ID.")
         else:
@@ -821,6 +810,7 @@ async def add_to_sudo(client, message):
                         upsert=True
                     )
                     await message.reply(f"User {replied_user_id} has been added to sudoers list.")
+                    SUDO.append(replied_user_id)
                 else:
                     await message.reply(f"User {replied_user_id} is already in sudoers list.")
             else:
@@ -854,6 +844,7 @@ async def add_to_sudo(client, message):
                         upsert=True
                     )
                     await message.reply(f"User {target_user_id} has been added to sudoers list.")
+                    SUDO.append(target_user_id)
                 else:
                     await message.reply(f"User {target_user_id} is already in sudoers list.")
             except ValueError:
@@ -908,6 +899,7 @@ async def remove_from_sudo(client, message):
                         {"$pull": {"SUDOERS": replied_user_id}}
                     )
                     await message.reply(f"User {replied_user_id} has been removed from sudoers list.")
+                    SUDO.remove(replied_user_id)
                 else:
                     await message.reply(f"User {replied_user_id} is not in sudoers list.")
             else:
@@ -942,6 +934,7 @@ async def remove_from_sudo(client, message):
                         {"$pull": {"SUDOERS": target_user_id}}
                     )
                     await message.reply(f"User {target_user_id} has been removed from sudoers list.")
+                    SUDO.remove(target_user_id)
                 else:
                     await message.reply(f"User {target_user_id} is not in sudoers list.")
             except ValueError:
@@ -1123,6 +1116,9 @@ async def user_client_start_handler(client, message):
        InlineKeyboardButton("🕹️ 𝐂нᴧт 🕹️", url = f"https://t.me/HeartBeat_Fam")
    ],
 ]
+    
+    
+    
     import psutil
     from random import choice
     uptime = await get_readable_time((time.time() - StartTime))
@@ -1165,8 +1161,6 @@ async def user_client_start_handler(client, message):
                fimage.write(base64.b64decode(logo))
            if 'video' in mime.from_file(alive_logo):
                alive_logo = rename_file(alive_logo, logo_path_mp4)
-
-
 
 
        greet_message = gvarstatus(client.me.id, "WELCOME") or """
@@ -1405,6 +1399,7 @@ async def blocklist_handler(client, message):
     # Check for admin or owner
 
 
+    
     # Fetch blocklist from the database
     user_data = collection.find_one({"bot_id": client.me.id})
     if not user_data:
@@ -1438,6 +1433,8 @@ def currently_playing(client, message):
 
 
 
+# Import join_call function from tools.py
+
 async def dend(client, update, channel_id= None):
     # Enhanced input validation
     try:
@@ -1459,7 +1456,8 @@ async def dend(client, update, channel_id= None):
                 next_song['by'], 
                 next_song['duration'], 
                 next_song['mode'], 
-                next_song['thumb'])
+                next_song['thumb']
+            )
         else:
             logger.info(f"Song queue for chat {chat_id} is empty.")
             await client.leave_call(chat_id)
@@ -1591,9 +1589,9 @@ async def play_handler_func(client, message):
         await message.delete()
     except:
         pass
-    user_data = collection.find_one({"bot_id": client.me.id})
-    busers = user_data.get('busers', {}) if user_data else []
-    if message.from_user.id in busers:
+    
+    # Check if user is banned using global BLOCK variable
+    if message.from_user.id in BLOCK:
         return
 
     command = message.command[0].lower()
@@ -1678,18 +1676,21 @@ async def play_handler_func(client, message):
                 thumbnail = await client.download_media(media.thumbs[0].file_id)  
         elif media_msg.document:  
             doc = media_msg.document  
-            for attr in doc.attributes:  
-                if isinstance(attr, DocumentAttributeVideo):  
-                    media_type = "video"  
-                    title = doc.file_name or "Telegram Video"  
-                    duration = attr.duration  
-                elif isinstance(attr, DocumentAttributeAudio):  
-                    media_type = "audio"  
-                    title = doc.file_name or "Telegram Audio"  
-                    duration = attr.duration  
+    
+    # In Pyrogram, check the mime_type directly
+            if doc.mime_type:
+                if doc.mime_type.startswith("video/"):
+                    media_type = "video"
+                    title = doc.file_name or "Telegram Video"
+                    duration = getattr(doc, 'duration', 0)  # duration might not always be available
+            elif doc.mime_type.startswith("audio/"):
+                     media_type = "audio"
+                     title = doc.file_name or "Telegram Audio"
+                     duration = getattr(doc, 'duration', 0)
+
 
             if media_type and doc.thumbs:  
-                thumbnail = await client.download_media(f"{user_dir}/{doc}".thumbs[0].file_id)  
+                thumbnail = await client.download_media(doc.thumbs[0].file_id,f"{user_dir}/")
         else:  
             await massage.edit(f"{upper_mono('❌ Unsupported media type')}")  
             return await remove_active_chat(client, target_chat_id)  
@@ -1726,7 +1727,7 @@ async def play_handler_func(client, message):
     elif len(input_text) == 2:  
         search_query = input_text[1]  
 
-        title, duration, youtube_link, thumbnail, channel_name, views, video_id = handle_youtube(search_query,user_dir)
+        title, duration, youtube_link, thumbnail, channel_name, views, video_id = handle_youtube(search_query)
         if not youtube_link:  
             try:  
                 await massage.edit(f"{upper_mono('No matching query found, please retry!')}")  
@@ -1827,10 +1828,6 @@ async def play_handler_func(client, message):
                 InlineKeyboardButton(text="‣‣I" if position <1 else f"‣‣I({position})", callback_data=f"{'c' if channel_mode else ''}skip"),
                 InlineKeyboardButton(text="▢", callback_data=f"{'c' if channel_mode else ''}end"),
             ],
-        [                                                                                          InlineKeyboardButton(
-               text=f"{smallcap('Add to group')}" , url=f"https://t.me/{client.me.username}?startgroup=true"
-            ),
-        ],
         [
             InlineKeyboardButton(
                 text="🕹️ 𝐓яᴧᴘ 🕹️", url=f"https://t.me/HeartBeat_Offi"
@@ -1840,7 +1837,7 @@ async def play_handler_func(client, message):
             ),
         ],
         ])
-                await client.send_message(message.chat.id, queue_styles[int(5)].format(f"[{lightyagami(title)[:15]}](https://t.me/{client.me.username}?start=vidid_{extract_video_id(youtube_link)})" if not os.path.exists(youtube_link) else  lightyagami(title)[:15], lightyagami(duration), position), reply_markup=keyboard,disable_web_page_preview=True)
+                await client.send_message(message.chat.id, queue_styles[int(5)].format(f"[{lightyagami(title)[:15]}(https://t.me/{client.me.username}?start=vidid_{extract_video_id(youtube_link)})" if not os.path.exists(youtube_link) else  lightyagami(title)[:15], lightyagami(duration), position), reply_markup=keyboard,disable_web_page_preview=True)
 
     else:
       await dend(client, massage, target_chat.id if channel_mode else None)
@@ -1903,63 +1900,6 @@ def extract_video_id(url):
             return match.group(1)
     return None
 
-def handle_youtube_api(argument):
-    """Get YouTube video information using the YouTube Data API"""
-    try:
-        youtube = build('youtube', 'v3', developerKey=API_KEY)
-        
-        # Determine if input is URL or search query
-        video_id = extract_video_id(argument)
-
-        if not video_id:
-            # Perform search if it's not a URL
-            search_response = youtube.search().list(
-                q=argument,
-                part='id',
-                maxResults=1,
-                type='video'
-            ).execute()
-
-            if not search_response.get('items'):
-                return None
-
-            video_id = search_response['items'][0]['id']['videoId']
-
-        # Get video details
-        video_response = youtube.videos().list(
-            part='snippet,contentDetails,statistics',
-            id=video_id
-        ).execute()
-
-        if not video_response.get('items'):
-            return None
-
-        item = video_response['items'][0]
-        snippet = item['snippet']
-        stats = item['statistics']
-        details = item['contentDetails']
-
-        # Get best available thumbnail
-        thumbnails = snippet.get('thumbnails', {})
-        thumbnail = thumbnails.get('maxres', thumbnails.get('high',
-            thumbnails.get('medium', thumbnails.get('default', {}))))['url']
-
-        return (
-            snippet.get('title', 'Title not found'),
-            format_duration(details.get('duration', 'PT0S')),
-            f'https://youtu.be/{video_id}',
-            thumbnail,
-            snippet.get('channelTitle', 'Channel not found'),
-            stats.get('viewCount', 'N/A'),
-            video_id
-        )
-
-    except HttpError as e:
-        logger.warning(f"API Error: {e.resp.status} {e._get_reason()}")
-        return None
-    except Exception as e:
-        logger.warning(f"Google API error: {str(e)}")
-        return None
 
 
 
@@ -1998,88 +1938,6 @@ import os
 import yt_dlp
 import os
 
-def download_instagram_reel(url, output_path):
-    """
-    Download an Instagram Reel using yt-dlp with browser cookies.
-
-    Args:
-        url (str): URL of the Instagram Reel.
-        output_path (str, optional): Directory to save the downloaded Reel.
-                                     Defaults to the current directory.
-    """
-    # Set default output path to current directory if not specified
-    if output_path is None:
-        output_path = os.getcwd()
-
-    # Ensure output directory exists
-    os.makedirs(output_path, exist_ok=True)
-
-    # Configure yt-dlp options
-    ydl_opts = {
-        'proxy':'socks5://localhost:9050',
-        'format': 'mp4',
-        'outtmpl': os.path.join(output_path, '%(title)s.%(ext)s'),
-        'nooverwrites': True,
-        'no_color': True,
-        'ignoreerrors': False,
-    }
-
-    try:
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            # Extract video info to determine filename before downloading
-            info_dict = ydl.extract_info(url, download=False)
-            file_path = ydl.prepare_filename(info_dict)
-
-            # Download the Reel
-            ydl.download([url])
-
-        return file_path
-
-    except Exception as e:
-        return (f"Error downloading Reel: {e}")
-
-
-def get_instagram_reel_details(reel_url, directory):
-    """
-    Extract details from an Instagram Reel using yt_dlp with Chrome browser cookies.
-    
-    Args:
-        reel_url (str): URL of the Instagram Reel
-    
-    Returns:
-        list: Formatted Reel details
-    """
-    # yt-dlp configuration with simplified cookie extraction
-    ydl_opts = {
-        'no_warnings': False,
-        'quiet': False,
-        'extract_flat': False,
-        'no_color': True,
-        'proxy':'socks5://localhost:9050'
-    }
-
-    try:
-        # Create yt-dlp extractor
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            # Extract video info
-            info_dict = ydl.extract_info(reel_url, download=False)
-            
-            # Format details as specified
-            reel_details = (
-                truncate_description(info_dict.get('title')) or truncate_description(info_dict.get('description', '')),  # Description (truncated)
-                format_duration(info_dict.get('duration')),  # Duration
-                format_duration(info_dict.get('url')),  # Duration
-                info_dict.get('thumbnail', ''),  # Thumbnail URL
-                info_dict.get('channel', ''),  # Channel
-                None,  # Placeholder for additional info
-                None  # Placeholder for additional info
-            )
-            
-            return reel_details
-
-    except Exception as e:
-        print(f"Error extracting Reel details: {e}")
-        return None
 
 
 def handle_youtube_ytdlp(argument):
@@ -2088,15 +1946,10 @@ def handle_youtube_ytdlp(argument):
         is_url = re.match(r"^(https?://)?(www\.)?(youtube\.com|youtu\.be)/.+", argument)
 
         ydl_opts = {
-            'format': 'bestaudio/best',
-            'quiet': True,
-            'no_warnings': True,
+            'quiet': True, # Suppress output
             'extract_flat': True,
-            'noplaylist': True,
-            'skip_download': True,
-            'cookiesfrombrowser': ('chrome',),
+            'skip_download': True, # Don't download, just extract info
         }
-        
 
         with YoutubeDL(ydl_opts) as ydl:
             if is_url:
@@ -2109,6 +1962,8 @@ def handle_youtube_ytdlp(argument):
             
             video_id = info.get('id', 'ID not found')
             youtube_link = f'https://youtu.be/{video_id}'
+
+            # Extract video URL from formats
 
             return (
                 info.get('title', 'Title not found'),
@@ -2129,23 +1984,8 @@ import re
 from urllib.parse import urlparse
 
 
-def is_url_and_not_youtube_regex(url_string):
-       regex = r"^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$"
-       pattern = re.compile(regex)
 
-       try:
-           if pattern.search(url_string): #Verify URL
-               result = urlparse(url_string)  # Parse for domain
-               is_youtube = (
-            "youtube.com" in result.netloc or
-            "youtu.be" in result.netloc
-        )  #
-               return not is_youtube #Return value
-           else:
-               return False
-       except:
-           return False
-def handle_youtube(argument, directory):
+def handle_youtube(argument):
     """
     Main function to get YouTube video information.
     Falls back to yt-dlp if the YouTube API fails.
@@ -2375,10 +2215,8 @@ async def status(client, message):
 @Client.on_callback_query(filters.regex("^(end|cend)$"))
 @admin_only()
 async def button_end_handler(client: Client, callback_query: CallbackQuery):
-    user_data = collection.find_one({"bot_id": client.me.id})
-    busers = user_data.get('busers', {})
-
-    if callback_query.from_user.id in busers:
+    # Check if user is banned using global BLOCK variable
+    if callback_query.from_user.id in BLOCK:
         await callback_query.answer(f"{upper_mono('You do not have permission to end the session!')}", show_alert=True)
         return
 
