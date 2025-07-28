@@ -1198,7 +1198,7 @@ async def join_call(message, title, youtube_link, chat, by, duration, mode, thum
         sent_message = await clients["bot"].send_photo(
             message.chat.id, thumb, play_styles[int(gvarstatus(OWNER_ID, "format") or 5)].format(
 
-                f"[{lightyagami(title)[:15]}](https://t.me/{clients['bot'].me.username}?start=vidid_{extract_video_id(youtube_link)})" if not os.path.exists(youtube_link) else lightyagami(title)[:15], 
+                f"[{lightyagami(title)[:15]}(https://t.me/{client.me.username}?start=vidid_{extract_video_id(youtube_link)})" if not os.path.exists(youtube_link) else  lightyagami(title)[:15], 
                 duration, 
                 by.mention()
             ),
