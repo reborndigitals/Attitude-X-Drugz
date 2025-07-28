@@ -23,21 +23,6 @@ mongodb = os.getenv("MONGODB_URI", "mongodb+srv://heartbeat:Beat7Heart@heartbeat
 ggg = os.getcwd()
 
 # Initialize data structures
-temporary = {}
-active = []
-playing = {}
-queues = {}
-clients = {}
-played = {}
-linkage = {}
-conversations = {}
-connector = {}
-songs_client = {}
-owners = {}
-spam_chats = []
-broadcasts = {}
-broadcast_message = {}
-
 # Track start time
 StartTime = time.time()
 
