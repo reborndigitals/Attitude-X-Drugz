@@ -48,6 +48,24 @@ from pyrogram.errors import (
     RPCError,
 )
 
+
+temporary = {}
+active = []
+playing = {}
+queues = {}
+clients = {}
+played = {}
+linkage = {}
+conversations = {}
+connector = {}
+songs_client = {}
+owners = {}
+spam_chats = []
+broadcasts = {}
+broadcast_message = {}
+SUDO = []
+AUTH = {}
+BLOCK = []
 # Replace with your actual API ID and API hash from my.telegram.org                     
 async def handle_disconnect(client, retries=5, delay=5):
     """Handles disconnects by attempting to reconnect with retries."""
@@ -211,8 +229,7 @@ def get_video_details(video_id):
         ydl_opts = {
             'quiet': True,
             'no_warnings': True,
-            'extract_flat': False,
-            'cookiesfrombrowser': ('chrome',)
+            'extract_flat':True,
         }
 
         # Try YouTube URL first
@@ -262,8 +279,7 @@ def get_video_details(video_id):
             ydl_opts = {
                 'quiet': True,
                 'no_warnings': True,
-                'extract_flat': False,
-                'cookiesfrombrowser': ('chrome',)
+                'extract_flat': True,
             }
 
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -328,9 +344,9 @@ def is_streamable(file_path):
     # Supported streamable file extensions
     STREAMABLE_EXTENSIONS = {
         'video': {'.mp4', '.avi', '.mkv', '.mov', '.wmv', '.flv', 
-                  '.webm', '.m4v', '.mpg', '.mpeg', '.3gp', '.m3u8'},
+                  '.webm', '.m4v', '.mpg', '.mpeg', '.3gp'},
         'audio': {'.mp3', '.wav', '.flac', '.aac', '.ogg', 
-                  '.wma', '.m4a', '.opus', '.m3u8'}
+                  '.wma', '.m4a', '.opus'}
     }
 
     try:
@@ -881,7 +897,6 @@ def check_duration(file_path):
 
     return "Unknown"
 
-
 formats = [
     "webm",
     "mkv",
@@ -920,7 +935,6 @@ formats = [
     "f4p",
     "f4a",
     "f4b",
-    ".m3u8",
 ]
 
 async def convert_to_image(message, client) -> [None, str]:
@@ -1097,8 +1111,16 @@ async def end(client, update):
        if update.stream_type == StreamEnded.Type.VIDEO:
          await client.leave_call(update.chat_id)
       playing[update.chat_id] = next_song
-      await join_call(next_song['message'], next_song['title'],
-next_song['yt_link'], next_song['chat'], next_song['by'], next_song['duration'], next_song['mode'], next_song['thumb'])
+      await join_call(
+          next_song['message'], 
+          next_song['title'],
+          next_song['yt_link'], 
+          next_song['chat'], 
+          next_song['by'], 
+          next_song['duration'], 
+          next_song['mode'], 
+          next_song['thumb']
+      )
     else:
       logger.info(f"Song queue for chat {update.chat_id} is empty.")
       await client.leave_call(update.chat_id)
@@ -1113,22 +1135,48 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
 async def join_call(message, title, youtube_link, chat, by, duration, mode, thumb):
-    audio_flags = MediaStream.Flags.IGNORE if mode == "audio" else None
-    position = len(queues.get(message.chat.id)) if queues.get(message.chat.id) else 0
+    """Join voice call and start streaming"""
     try:
-        cookie_files = ['cook.txt', 'cooki.txt', 'cookie.txt', 'cookies.txt']
-        selected_cookie = random.choice(cookie_files)
+        chat_id = chat.id
+        # Set audio flags based on mode
+        audio_flags = MediaStream.Flags.IGNORE if mode == "audio" else None
+        position = len(queues.get(chat_id)) if queues.get(chat_id) else 0
+        print(youtube_link)
+        # Create MediaStream with the appropriate URL
         await clients["call_py"].play(
-            chat.id,
+            chat_id,
             MediaStream(
-youtube_link,
-AudioQuality.HIGH,
+                youtube_link,
+                AudioQuality.HIGH,
                 VideoQuality.HD_720p,
                 video_flags=audio_flags,
-                ytdlp_parameters=f"--cookies-from-browser chrome",
-),
+                ytdlp_parameters='--cookies-from-browser chrome',
+            ),
         )
-        played[message.chat.id] =time.time()
+        
+        # Update playing status and timestamp
+        playing[chat_id] = {
+            "message": message,
+            "title": title,
+            "yt_link": youtube_link,
+            "chat": chat,
+            "by": by,
+            "duration": duration,
+            "mode": mode,
+            "thumb": thumb
+        }
+        played[chat_id] = int(time.time())
+        
+        # Add current time to database for statistics
+        try:
+            collection.update_one(
+                {"bot_id": clients["bot"].me.id},
+                {"$push": {"dates": datetime.datetime.now()}},
+                upsert=True
+            )
+        except Exception as e:
+            logger.info(f"Error saving playtime: {e}")
+        
         # Creating the inline keyboard with buttons arranged in two rows
         keyboard = InlineKeyboardMarkup([
             [
@@ -1146,25 +1194,35 @@ AudioQuality.HIGH,
             )
         ],
         ])
+
         sent_message = await clients["bot"].send_photo(
             message.chat.id, thumb, play_styles[int(gvarstatus(OWNER_ID, "format") or 5)].format(
-f"[{lightyagami(title)[:15]}](https://t.me/{clients['bot'].me.username}?start=vidid_{extract_video_id(youtube_link)})" if not os.path.exists(youtube_link) else lightyagami(title)[:15], duration, by.mention()),
-            reply_markup=keyboard        )
-        #asyncio.create_task(autoleave_vc(sent_message, duration,chat))
-        asyncio.create_task(update_progress_button(sent_message, duration,chat))
+
+                f"[{lightyagami(title)[:15]}](https://t.me/{clients['bot'].me.username}?start=vidid_{extract_video_id(youtube_link)})" if not os.path.exists(youtube_link) else lightyagami(title)[:15], 
+                duration, 
+                by.mention()
+            ),
+            reply_markup=keyboard
+        )
+        
+        asyncio.create_task(update_progress_button(sent_message, duration, chat))
+        
         try:
             await message.delete()
         except Exception as e:
             logger.info(e)
+            
+        logger.info(f"Started streaming in chat {chat_id}: {title}")
+        
     except NoActiveGroupCall:
         await clients["bot"].send_message(chat.id, "ERROR: No active group calls")
-        return await remove_active_chat(message.chat.id)
+        return await remove_active_chat(chat.id)
     except GroupcallForbidden:
         await clients["bot"].send_message(chat.id, "ERROR: Telegram internal server error")
-        return await remove_active_chat( message.chat.id)
+        return await remove_active_chat(chat.id)
     except Exception as e:
         await clients["bot"].send_message(chat.id, f"ERROR: {e}")
-        return await remove_active_chat(message.chat.id)
+        return await remove_active_chat(chat.id)
 
 
 
